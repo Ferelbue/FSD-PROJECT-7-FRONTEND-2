@@ -17,7 +17,7 @@ export const Profile = () => {
         console.log(rdxUser.credentials.token);
         const data = await getUserProfile(rdxUser.credentials.token);
         setProfileData(data);
-        console.log(profileData)
+
       } catch (error) {
         setError(error);
       }
