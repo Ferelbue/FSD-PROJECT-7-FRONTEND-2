@@ -1,0 +1,31 @@
+
+.headerDesign {
+    height: 16vh;
+    width: 100vw;
+
+    background: linear-gradient(crimson,30%, black);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+}
+.out-design {
+    color: white;
+    font-weight: bold;
+  
+    margin: 1em;
+  
+    transition: 0.3s;
+  }
+  
+  .out-design:hover {
+    transition: 0.3s;
+    color: black;
+    cursor: pointer;
+  }
+  

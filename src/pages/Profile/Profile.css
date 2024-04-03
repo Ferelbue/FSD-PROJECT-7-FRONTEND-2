@@ -1,0 +1,41 @@
+.profileDesign {
+    height: 84vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('../../img/sintítulo.png');
+}
+
+
+.profileCardDesign {
+    height: 40vh;
+    width: 50vw;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: crimson;
+}
+
+.pruebaImg {
+    height: 19vh;
+    width: 9.5vw;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('../../img/pers1.png');
+}
+.prueba{
+    height: 5em;
+    width: 5em;
+
+}

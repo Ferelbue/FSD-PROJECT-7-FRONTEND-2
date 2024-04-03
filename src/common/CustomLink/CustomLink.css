@@ -1,0 +1,18 @@
+
+.navigateDesign {
+
+    font-weight: bold;
+    color: white;
+
+    transition: 0.4s;
+    margin: 1em;
+    /* width: 5em; */
+}
+
+.navigateDesign:hover {
+    cursor: pointer;
+    
+    transition: 0.4s;
+    color: crimson;
+    font-size: large;
+}

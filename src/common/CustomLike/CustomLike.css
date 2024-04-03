@@ -1,0 +1,18 @@
+
+.likeDesign {
+
+    font-weight: bold;
+    color: white;
+
+    transition: 0.4s;
+    margin: 1em;
+    /* width: 5em; */
+}
+
+.likeDesign:hover {
+    cursor: pointer;
+    
+    transition: 0.4s;
+    color: black;
+    font-size: large;
+}

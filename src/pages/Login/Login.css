@@ -1,0 +1,33 @@
+.loginDesign {
+    height: 84vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('../../img/sintítulo.png');
+}
+
+.loginButton {
+
+    height: 3.5em;
+
+    width: 10em;
+
+    background-color: lightsalmon;
+    border-radius: 0.4em;
+    transition: 0.4s;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginButton:hover {
+
+    cursor: pointer;
+    background-color: red;
+    transition: 0.4s;
+}
