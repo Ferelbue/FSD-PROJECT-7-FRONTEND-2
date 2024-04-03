@@ -5,8 +5,8 @@ import { validame } from "../../utils/functions";
 import "./Login.css";
 import { loginMe } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../app/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, userData } from "../../app/slices/userSlice";
 
 export const Login = () => {
   const navigate = useNavigate();

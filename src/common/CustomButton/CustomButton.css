@@ -6,9 +6,9 @@
 
     border-radius: 0.5em;
     border: solid 0.2em;
-    border-color: crimson;
-    background-color: black;
-    color: white;
+    border-color: rgb(61,88,139);
+    background-color: white;
+    color: black;
     font-weight: bold;
 
     display: flex;
@@ -21,9 +21,9 @@
 
     cursor: pointer;
     transition: 0.2s;
-    background-color: crimson;
+    background-color: rgb(61,88,139);
     border: solid 0.2em;
-    border-color: black;
+    border-color: white;
 
     height: 3.5em;
     width: 16em;

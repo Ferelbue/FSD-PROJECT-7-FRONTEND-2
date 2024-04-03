@@ -55,7 +55,7 @@ export const Posts = () => {
   return (
     <>
       <div className='postsDesign'>
-        {postsData && postsData.data.map((post, index) => (
+        {postsData && postsData.data?.map((post, index) => (
           <div key={index} className='postsCardDesign'>
             <div className="body">
               <p>{post.title.toUpperCase()}</p>
