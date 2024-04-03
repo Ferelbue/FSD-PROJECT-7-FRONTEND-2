@@ -1,0 +1,38 @@
+.postsDesign {
+    min-height: 84vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(111,163,202);
+}
+
+
+.postsCardDesign {
+    height: 30vh;
+    width: 90vw;
+    border-radius: 1em;
+    background-color: crimson !important;
+    opacity: 90%;
+
+    color:black;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    font-size:1.4vw !important;
+}
+
+.body{
+    width: 75vw;
+    font-weight: bold;
+    margin: 0.5em;
+}
+.likes{
+    width: 15vw;
+    font-weight: bold;
+}

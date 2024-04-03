@@ -1,0 +1,19 @@
+
+.homeDesign {
+    height: 84vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(111,163,202);
+
+
+    color: white;
+    font-weight: bold;
+    font-size: 5vw;
+}
+.title{
+    color:rgb(61,88,139);
+}

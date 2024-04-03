@@ -1,0 +1,34 @@
+
+.customButtonDesign {
+
+    height: 3em;
+    width: 15em;
+
+    border-radius: 0.5em;
+    border: solid 0.2em;
+    border-color: rgb(61,88,139);
+    background-color: white;
+    color: black;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.customButtonDesign:hover {
+
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: rgb(61,88,139);
+    border: solid 0.2em;
+    border-color: white;
+
+    height: 3.5em;
+    width: 16em;
+}
+.error {
+    color: red;
+    font-weight: bold;
+  }

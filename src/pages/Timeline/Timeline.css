@@ -1,0 +1,32 @@
+.postsDesign {
+    height: 100%;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(111,163,202);
+}
+
+
+.postsCardDesign {
+    height: 30vh;
+    width: 90vw;
+    border-radius: 1em;
+    background-color: crimson;
+    opacity: 90%;
+
+    color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    font-size:1.2vw !important;
+}
+
+.title{
+    font-weight: bold;
+}
