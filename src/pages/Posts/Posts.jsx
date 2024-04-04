@@ -9,6 +9,7 @@ export const Posts = () => {
 
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
+  const [flag, setFlag] = useState(false);
 
   const rdxUser = useSelector(userData);
 
@@ -25,28 +26,36 @@ export const Posts = () => {
     fetchUserPosts();
   }, [rdxUser.credentials.token]);
 
-  const handleLike = async (postId) => {
-    try {
-      // Realizar una solicitud PUT a la base de datos para actualizar el post con el like
-      await updatePost(postId, rdxUser.credentials.token);
+  const handleLike = async (index, userId) => {
+    let positionRemove = 0;
+    console.log(index);
+    for (let i = 0; i < postsData.data[index].like.length; i++) {
 
-      // Actualizar los datos de los posts después de la actualización exitosa
-      const updatedPostsData = await getUserPosts(rdxUser.credentials.token);
-      setPostsData(updatedPostsData);
-    } catch (error) {
-      setError(error);
+      if ((postsData.data[index].like[i]) === userId) {
+        setFlag(true);
+        i = positionRemove;
+        break;
+      }
     }
+    if (flag === true) {
+      postsData.data[index].like.splice(positionRemove, 1);
+      setFlag(false)
+    } else {
+      (postsData.data[index].like).push(userId)
+    }
+    console.log(postsData.data[index].like)
+
+    return postsData.data[index].like;
   };
 
   const handleDelete = async (postId) => {
     try {
-      // Realizar una solicitud PUT a la base de datos para actualizar el post con el like
+
       await deletePost(postId, rdxUser.credentials.token);
 
-      // Actualizar los datos de los posts después de la actualización exitosa
       const updatedPostsData = await getUserPosts(rdxUser.credentials.token);
       setPostsData(updatedPostsData);
-      
+
     } catch (error) {
       setError(error);
     }
@@ -62,7 +71,7 @@ export const Posts = () => {
               <p>{post.description}</p>
             </div>
             <div className="likes">
-              <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
+              <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(index, rdxUser.credentials.user.userId)} />
               <CustomLike title={`COMMENTS: ${post.comments.length}`} />
               <CustomLike title={`DELETE`} onClick={() => handleDelete(post._id)} />
             </div>
