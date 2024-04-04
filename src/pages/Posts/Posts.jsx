@@ -27,12 +27,12 @@ export const Posts = () => {
 
   const handleLike = async (postId) => {
     try {
-      // Realizar una solicitud PUT a la base de datos para actualizar el post con el like
+
       await updatePost(postId, rdxUser.credentials.token);
 
-      // Actualizar los datos de los posts después de la actualización exitosa
       const updatedPostsData = await getUserPosts(rdxUser.credentials.token);
       setPostsData(updatedPostsData);
+      console.log("este",postsData.data[0].like)
     } catch (error) {
       setError(error);
     }
@@ -40,10 +40,9 @@ export const Posts = () => {
 
   const handleDelete = async (postId) => {
     try {
-      // Realizar una solicitud PUT a la base de datos para actualizar el post con el like
+
       await deletePost(postId, rdxUser.credentials.token);
 
-      // Actualizar los datos de los posts después de la actualización exitosa
       const updatedPostsData = await getUserPosts(rdxUser.credentials.token);
       setPostsData(updatedPostsData);
       
