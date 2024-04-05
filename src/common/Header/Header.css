@@ -20,6 +20,16 @@
 
 }
 
+.menu2 {
+  width: 70vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-right: 2em;
+}
+
 .inputHeader {
   width: 40vw;
   height: 16vh;
@@ -27,12 +37,28 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 }
+
+.menuInputHeader{
+  width: 70vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.registerHeader{
+  width: 70vw;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}
+
 
 .logoHeader {
   width: 30vw;
-  height: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -63,4 +89,68 @@
   background-color: azure;
   color: black;
   border-radius: 0.5em;
+}
+.headerHomeDesign{
+  height: 30vh;
+  width: 100vw;
+
+  background: rgb(111,163,202);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+}
+.headerRegisterDesign{
+  height: 16vh;
+  width: 100vw;
+
+  background: rgb(111,163,202);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+
+}
+.customButtonHeaderDesign {
+
+  height: 2.2em;
+  width: 7em;
+
+  border-radius: 0.5em;
+  border: solid 0.2em;
+  border-color: rgb(61,88,139);
+  background-color: white;
+  color: black;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+.customButtonHeaderDesign:hover {
+
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: rgb(61,88,139);
+  border: solid 0.2em;
+  border-color: white;
+
+  height: 2.3em;
+  width: 7em;
+}
+.errorHeader {
+  color: red;
+  font-size: small;
+  font-weight: bold;
+  margin-left: 1em;
+  height: 1vh;
+}
+.inputError{
+  width: 20vw;
+}
+.logoRegisterHeader{
+  font-size: x-large;
 }

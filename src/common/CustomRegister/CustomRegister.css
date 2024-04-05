@@ -1,0 +1,16 @@
+
+.navigateRegisterDesign {
+    color: white;
+
+    transition: 0.4s;
+    /* width: 5em; */
+    font-size: large;
+}
+
+.navigateRegisterDesign:hover {
+    cursor: pointer;
+    
+    transition: 0.4s;
+    color: black;
+    font-size: large;
+}
