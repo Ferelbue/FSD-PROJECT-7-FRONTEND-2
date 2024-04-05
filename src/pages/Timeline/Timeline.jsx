@@ -5,6 +5,7 @@ import { getPosts, getUserPosts, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import {useNavigate} from "react-router-dom"
 
 export const Timeline = () => {
 
@@ -12,6 +13,15 @@ export const Timeline = () => {
   const [error, setError] = useState();
 
   const rdxUser = useSelector(userData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
+
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
