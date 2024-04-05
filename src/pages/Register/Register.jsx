@@ -12,7 +12,7 @@ export const Register = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const rdxUser = useSelector(userData);
 
   const [user, setUser] = useState({
@@ -73,59 +73,68 @@ export const Register = () => {
 
   return (
     <>
+      <div className="headerRegisterDesing">
+        LOGO INSTAGEEKS
+      </div>
       <div className="registerDesign">
         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         <div className="registerCardDesign">
-          <CustomInput
-            className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""
-              }`}
-            type={"text"}
-            placeholder={"name"}
-            name={"firstName"}
-            value={user.firstName || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-            onBlurFunction={(e) => checkError(e)}
-          />
-          <div className="error">{userError.firstNameError}</div>
-          <CustomInput
-            className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
-              }`}
-            type={"email"}
-            placeholder={"email"}
-            name={"email"}
-            value={user.email || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-            onBlurFunction={(e) => checkError(e)}
-          />
-          <div className="error">{userError.emailError}</div>
-          <CustomInput
-            className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
-              }`}
-            type={"password"}
-            placeholder={"password"}
-            name={"password"}
-            value={user.password || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-            onBlurFunction={(e) => checkError(e)}
-          />
-          <div className="error">{userError.passwordError}</div>
-          <CustomInput
-            className={`inputDesign ${userError.imageError !== "" ? "inputDesignError" : ""
-              }`}
-            type={"text"}
-            placeholder={"image"}
-            name={"image"}
-            value={user.image || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-            onBlurFunction={(e) => checkError(e)}
-          />
-          <div className="error">{userError.imageError}</div>
-          <CustomButton
-            className={"customButtonDesign"}
-            title={"Register"}
-            functionEmit={registerUser}
-          />
-          <div className="error">{msgError}</div>
+          <div className="registerCardUp">
+            Registro
+          </div>
+
+          <div className="registerCardDown">
+            <CustomInput
+              className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""
+                }`}
+              type={"text"}
+              placeholder={"name"}
+              name={"firstName"}
+              value={user.firstName || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+              onBlurFunction={(e) => checkError(e)}
+            />
+            <div className="error">{userError.firstNameError}</div>
+            <CustomInput
+              className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
+                }`}
+              type={"email"}
+              placeholder={"email"}
+              name={"email"}
+              value={user.email || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+              onBlurFunction={(e) => checkError(e)}
+            />
+            <div className="error">{userError.emailError}</div>
+            <CustomInput
+              className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
+                }`}
+              type={"password"}
+              placeholder={"password"}
+              name={"password"}
+              value={user.password || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+              onBlurFunction={(e) => checkError(e)}
+            />
+            <div className="error">{userError.passwordError}</div>
+            <CustomInput
+              className={`inputDesign ${userError.imageError !== "" ? "inputDesignError" : ""
+                }`}
+              type={"text"}
+              placeholder={"image"}
+              name={"image"}
+              value={user.image || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+              onBlurFunction={(e) => checkError(e)}
+            />
+            <div className="error">{userError.imageError}</div>
+            <CustomButton
+              className={"customButtonDesign"}
+              title={"Send"}
+              functionEmit={registerUser}
+            />
+            <div className="error">{msgError}</div>
+          </div>
         </div>
       </div>
     </>

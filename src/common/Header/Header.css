@@ -1,28 +1,30 @@
 .headerDesign {
-  height: 16vh;
-  width: 100vw;
+  height: 6vh;
+  width: 98.5vw;
 
-  background: linear-gradient(white, 1%, rgb(61,88,139));
+  background-color: rgb(61,88,139);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
+  position: fixed;
+  z-index: 1000
 }
 
 .menu {
   width: 30vw;
-  height: 16vh;
+  height: 6vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   margin-right: 2em;
 
 }
 
 .inputHeader {
   width: 40vw;
-  height: 16vh;
+  height: 6vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,7 +34,7 @@
 
 .logoHeader {
   width: 30vw;
-  height: 30vh;
+  height: 6vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -59,7 +61,7 @@
 
 .inputSearch {
   width: 20vw;
-  height: 5vh;
+  height: 4vh;
   background-color: azure;
   color: black;
   border-radius: 0.5em;

@@ -1,23 +1,24 @@
-.postsDesign {
+.timelineDesign {
     height: 100%;
-    width: 100vw;
+    width: 98.5vw;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 
-    background-color: rgb(111,163,202);
+    background-color: white;
 }
 
-
-.postsCardDesign {
-    height: 30vh;
-    width: 90vw;
-    border-radius: 1em;
-    background-color: crimson;
+.timelineCardDesign {
+    height: 50vh;
+    width: 50vw;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color:black;
+    background-color: whitesmoke;
     opacity: 90%;
-
     color:black;
     display: flex;
     flex-direction: column;
@@ -29,4 +30,92 @@
 
 .title{
     font-weight: bold;
+}
+.bodyTimeline{
+    width: 47vw;
+    font-weight: bold;
+    margin: 0.5em;
+}
+.likesTimeline{
+    width: 15vw;
+    color:black;
+    font-weight: bold;
+}
+
+.timelineLeft{
+    width: 24.5vw;
+    height: 94vh;
+    margin-top: 7vh; 
+    position: fixed;
+    left: 0%;
+}
+
+.timelineLeftUp{
+    width: 23.5vw;
+    height: 40vh;
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color:black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vh;
+    left: 0%;
+}
+
+.timelineLeftDown{
+    width: 23.5vw;
+    height: 50vh;
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color:black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vh;
+    margin-top: 0.5vw;
+    left: 0%;
+}
+
+.timelineRight{
+    width: 22vw;
+    height: 94vh;
+    margin-top: 7vh;
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color:black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1vh;
+    position: fixed;
+    right: 0%;
+}
+.timelineCenter{
+    width: 50vw;
+    height: 100%;
+    margin-top: 6vh;
+}
+.timelineProfileUp{
+    width: 23.5vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

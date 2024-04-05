@@ -1,5 +1,5 @@
 .registerDesign {
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
 
     display: flex;
@@ -7,8 +7,9 @@
     justify-content: center;
     align-items: center;
 
-    background-color: rgb(111,163,202);
+    background-color: rgb(111, 163, 202);
 }
+
 .registerCardDesign {
     height: 75vh;
     width: 40vw;
@@ -18,7 +19,36 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5em;
-    
+
     background-color: rgb(250, 248, 248);
-    box-shadow: 1px 1px 10px black ;
+    box-shadow: 1px 1px 10px black;
+}
+
+.headerRegisterDesing {
+    height: 20vh;
+    width: 100vw;
+    background-color: rgb(111, 163, 202);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerCardUp {
+    height: 3vh;
+    width: 39vw;
+    color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.registerCardDown {
+    height: 72vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

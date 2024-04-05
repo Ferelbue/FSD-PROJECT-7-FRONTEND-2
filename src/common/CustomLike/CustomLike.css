@@ -2,7 +2,7 @@
 .likeDesign {
 
     font-weight: bold;
-    color: white;
+    color: black;
 
     transition: 0.4s;
     margin: 1em;
@@ -13,6 +13,6 @@
     cursor: pointer;
     
     transition: 0.4s;
-    color: black;
+    color: darkgray;
     font-size: large;
 }

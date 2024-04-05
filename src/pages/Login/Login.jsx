@@ -58,9 +58,8 @@ export const Login = () => {
 
       dispatch(login({ credentials: passport }));
 
-      setTimeout(() => {
-        navigate("/timeline")
-      }, 500)
+      navigate("/timeline")
+
     }
   };
 
@@ -114,7 +113,7 @@ export const Login = () => {
           INSTAGEEKS!
         </div>
         <div className="loginFooter" >
-     
+
         </div>
       </div>
     </>
