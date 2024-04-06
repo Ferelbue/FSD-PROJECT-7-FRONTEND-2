@@ -166,3 +166,28 @@ export const deletePost = async (postId, token) => {
     throw error;
   }
 };
+
+export const getUsers = async (token,criteria) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users?firstName=${criteria}`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data;
+
+  } catch (error) {
+    return error;
+  }
+};

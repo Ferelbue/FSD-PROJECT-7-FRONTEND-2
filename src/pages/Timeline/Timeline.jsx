@@ -1,12 +1,15 @@
 
 import { useState, useEffect } from "react";
 import './Timeline.css';
-import { getPosts, getUserPosts, getUserProfile, updatePost } from "../../services/apiCalls";
+import { getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { updateCriteria } from "../../app/slices/searchSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
+import { searchData } from "../../app/slices/searchSlice";
+
 
 export const Timeline = () => {
   const [profileData, setProfileData] = useState();
@@ -14,8 +17,24 @@ export const Timeline = () => {
   const [error, setError] = useState();
 
   const rdxUser = useSelector(userData);
+  const searchRdx = useSelector(searchData);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [criteria, setCriteria] = useState("")
+
+  useEffect(() => {
+
+    const bringUsers = async () => {
+      let fetched;
+      if (searchRdx.criteria !== "") {
+        fetched = await getUsers(rdxUser.credentials.token,searchRdx.criteria);
+      }
+      console.log(fetched)
+    };
+
+    bringUsers();
+  }, [searchRdx.criteria]);
+
 
 
   useEffect(() => {

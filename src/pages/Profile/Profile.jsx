@@ -4,21 +4,12 @@ import './Profile.css';
 import { getUserProfile } from "../../services/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
-import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [profileData, setProfileData] = useState();
   const [error, setError] = useState();
 
   const rdxUser = useSelector(userData);
-  const navigate = useNavigate(userData);
-
-  useEffect(() => {
-    if (rdxUser.credentials === "") {
-      navigate("/login");
-    }
-
-  }, [rdxUser]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
