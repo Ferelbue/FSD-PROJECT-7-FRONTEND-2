@@ -21,15 +21,19 @@ export const Timeline = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [criteria, setCriteria] = useState("")
+  const [usersFetched, setUsersFetched] = useState();
+
 
   useEffect(() => {
-
     const bringUsers = async () => {
-      let fetched;
       if (searchRdx.criteria !== "") {
-        fetched = await getUsers(rdxUser.credentials.token,searchRdx.criteria);
+        try {
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria);
+          setUsersFetched(usersData);
+        } catch (error) {
+          setError(error);
+        }
       }
-      console.log(fetched)
     };
 
     bringUsers();
@@ -98,9 +102,7 @@ export const Timeline = () => {
 
   return (
     <div className='timelineDesign'>
-
       <div className='timelineLeft'>
-
         <div className='timelineLeftUp'>
           {profileData && (
             <>
@@ -113,14 +115,10 @@ export const Timeline = () => {
                   <p>{profileData.data.email}</p>
                 </div>
               </div>
-
               <div>
-
                 <p>Seguidores: {profileData.data.follower.length}</p>
                 <p>Siguiendo: {profileData.data.following.length}</p>
               </div>
-
-
             </>
           )}
         </div>
@@ -134,6 +132,23 @@ export const Timeline = () => {
               value={criteria || ""}
               onChangeFunction={(e) => searchHandler(e)}
             />
+          </div>
+          <div>
+            {usersFetched?.success && usersFetched?.data?.length > 0 ? (
+              <div className="searchUsers">
+                {usersFetched.data.map((user) => {
+                  return (
+                    <div key={user._id} onClick={() => manageDetail(user)}>
+                      <img src={user.image} alt={`${user.firstName}`} />
+                      {user.firstName} {user.lastName}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div>No hay usuarios</div>
+            )}
+
           </div>
         </div>
 
