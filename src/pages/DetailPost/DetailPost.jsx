@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import './Timeline.css';
+import './DetailPost.css';
 import { getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
 
 
-export const Timeline = () => {
+export const DetailPost = () => {
   const [profileData, setProfileData] = useState();
   const [followersData, setFollowersData] = useState();
   const [postsData, setPostsData] = useState();

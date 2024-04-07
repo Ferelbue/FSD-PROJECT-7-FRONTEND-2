@@ -7,6 +7,7 @@ import { Profile } from '../Profile/Profile';
 import { LogOut } from '../LogOut/LogOut';
 import { Posts } from '../Posts/Posts';
 import { Timeline } from '../Timeline/Timeline';
+import { DetailPost } from '../DetailPost/DetailPost';
 
 export const Body = () => {
 
@@ -20,6 +21,7 @@ export const Body = () => {
             <Route path="/logout" element={<LogOut />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/timeline" element={<Timeline />} />
+            <Route path="/detailPost" element={<DetailPost />} />
         </Routes>
     )
 }

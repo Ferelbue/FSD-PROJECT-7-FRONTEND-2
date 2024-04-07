@@ -191,3 +191,28 @@ export const getUsers = async (token,criteria) => {
     return error;
   }
 };
+
+export const getFollowers = async (token) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/followers`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data;
+
+  } catch (error) {
+    return error;
+  }
+};

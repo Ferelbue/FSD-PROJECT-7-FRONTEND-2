@@ -36,20 +36,15 @@ export const Header = () => {
       {rdxUser?.credentials?.token ? (
         <>
         <div className="headerDesign">
-          <div className="inputHeader">
-            <CustomInput
-              className={`inputSearch`}
-              type="text"
-              placeholder="search a user...."
-              name="user"
-              value={criteria || ""}
-              onChangeFunction={(e) => searchHandler(e)}
-            />
+          <div className="logoHeader">
+            LOGO
           </div>
-          <div className="menu">
+          <div className="menuHeader">
             <CustomLink title="Timeline" destination="/timeline" />
             <CustomLink title={`${rdxUser?.credentials?.user?.userName}`} destination="/profile" />
             <CustomLink title="Posts" destination="/posts" />
+            </div>
+            <div className="rightHeader">
             <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }))}>
               log out
             </div>

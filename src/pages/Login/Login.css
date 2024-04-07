@@ -112,16 +112,7 @@
   background-color: red;
   transition: 0.4s;
 }
-.logoHeader {
-  width: 30vw;
-  height: 30vh;
-  margin-left: 2em;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: start;
 
-}
 .menu2 {
   width: 70vw;
   height: 30vh;
