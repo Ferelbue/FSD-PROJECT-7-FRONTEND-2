@@ -119,6 +119,9 @@ export const DetailPost = () => {
     }
   };
 
+  console.log("kaka", postsData);
+
+
   return (
     <div className='timelineDesign'>
       <div className='timelineLeft'>
@@ -191,14 +194,20 @@ export const DetailPost = () => {
                         <p>{post.title}</p>
                         <p>{post.description}</p>
                       </div>
-                      <div className="likesTimeline">
+                      <div className="likesDetail">
                         <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-                        <p>{post.comments}</p>
+                        <CustomLike title={`COMMENTARYS: ${post.comments.length}`} />
+                        {post.comments.map((commentary) => (
+                          <div key={commentary._id}>
+                            <p>{commentary.commentatorName}</p>
+                            <p>{commentary.commentary}</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   );
                 }
-                return null; // Retorna null si no se cumple la condición
+                return null;
               })
             }
 

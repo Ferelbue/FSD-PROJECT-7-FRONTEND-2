@@ -4,7 +4,9 @@
   
     border: 0.2em solid black;
     border-radius: 0.5em;
-    margin: 1.5em;
+    margin-bottom: 1.5em;
+    background-color: white;
+    color: black;
   }
   
   .inputDesignError {

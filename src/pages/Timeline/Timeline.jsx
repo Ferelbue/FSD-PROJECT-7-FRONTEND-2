@@ -189,8 +189,8 @@ export const Timeline = () => {
 
       <div className='timelineCenter'>
         {postsData && postsData.data.map((post, index) => (
-          <div key={index} className='timelineCardDesign' onClick={() => handlePost(post._id)}>
-            <div className="bodyTimeline">
+          <div key={index} className='timelineCardDesign'>
+            <div className="bodyTimeline" onClick={() => handlePost(post._id)}>
               <img className="imagePost" src={post.image} alt={`${post._id}`} />
               <p>{post.title.toUpperCase()}</p>
               <p>{post.description}</p>

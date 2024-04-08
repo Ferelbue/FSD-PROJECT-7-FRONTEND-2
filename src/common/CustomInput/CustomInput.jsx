@@ -1,16 +1,15 @@
-
 import "./CustomInput.css";
 
-export const CustomInput = ({className, type, placeholder, name, value, onChangeFunction, onBlurFunction}) => {
-    
+export const CustomInput = ({ className, type, placeholder, name, disabled, value, onChangeFunction, onBlurFunction }) => {
+
     return (
-        <input 
+        <input
             className={className}
             type={type}
             placeholder={placeholder}
             name={name}
+            disabled={disabled}
             value={value}
-            // emit, recibimos la funcion por props que está en el padre!
             onChange={onChangeFunction}
             onBlur={onBlurFunction}
         />

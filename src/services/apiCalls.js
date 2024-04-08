@@ -71,7 +71,6 @@ export const getUserProfile = async (token) => {
     if (!response.ok) {
       throw new Error(data.message);
     }
-    console.log(data)
     return data;
 
   } catch (error) {
@@ -150,6 +149,7 @@ export const updatePost = async (postId, token) => {
 
 export const deletePost = async (postId, token) => {
   try {
+    console.log("HOLA")
     const response = await fetch(`${root}posts/${postId}`, {
       method: 'DELETE',
       headers: {
@@ -157,6 +157,7 @@ export const deletePost = async (postId, token) => {
         "Authorization": `Bearer ${token}`
       },
     });
+    
     if (!response.ok) {
       throw new Error('No se pudo eliminar el post');
     }
@@ -212,6 +213,31 @@ export const getFollowers = async (token) => {
 
     return data;
 
+  } catch (error) {
+    return error;
+  }
+};
+
+export const updateProfile = async (token, data) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(`${root}users/profile`, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
   } catch (error) {
     return error;
   }

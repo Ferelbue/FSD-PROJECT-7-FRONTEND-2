@@ -40,12 +40,16 @@
     margin: 0.5em;
 }
 
+
 .likesTimeline {
     width: 10vw;
     color: black;
     font-weight: bold;
 }
-
+.prueba{
+    width: 10vw;
+    height: 10vh;
+}
 .timelineLeft {
     width: 24.5vw;
     height: 94vh;
