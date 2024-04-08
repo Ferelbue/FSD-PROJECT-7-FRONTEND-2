@@ -10,6 +10,7 @@ import { updateDetail } from "../../app/slices/postSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
+import { detailData } from "../../app/slices/postSlice";
 
 
 export const DetailPost = () => {
@@ -19,6 +20,7 @@ export const DetailPost = () => {
   const [error, setError] = useState();
 
   const rdxUser = useSelector(userData);
+  const rdxDetail = useSelector(detailData);
   const searchRdx = useSelector(searchData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -117,17 +119,6 @@ export const DetailPost = () => {
     }
   };
 
-  const handlePost = async (postId) => {
-    try {
-      console.log(postId)
-      dispatch(updateDetail(postId));
-      // navigate("/profile")
-
-    } catch (error) {
-      setError(error);
-    }
-  };
-
   return (
     <div className='timelineDesign'>
       <div className='timelineLeft'>
@@ -188,22 +179,34 @@ export const DetailPost = () => {
       </div>
 
       <div className='timelineCenter'>
-        {postsData && postsData.data.map((post, index) => (
-          <div key={index} className='timelineCardDesign' onClick={() => handlePost(post._id)}>
-            <div className="bodyTimeline">
-              <img className="imagePost" src={post.image} alt={`${post._id}`} />
-              <p>{post.title.toUpperCase()}</p>
-              <p>{post.description}</p>
-            </div>
-            <div className="likesTimeline">
-              <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-              <CustomLike title={`COMMENTS: ${post.comments.length}`} />
-            </div>
+        <div className='timelineCardDesign2'>
+          <div className="bodyTimeline">
+            {
+              postsData?.data?.map((post) => {
+                if (post._id === rdxDetail.detail) {
+                  return (
+                    <div key={post._id}>
+                      <div className="bodyTimeline">
+                        <img className="imagePost" src={post.image} alt={"fgh"} />
+                        <p>{post.title}</p>
+                        <p>{post.description}</p>
+                      </div>
+                      <div className="likesTimeline">
+                        <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
+                        <p>{post.comments}</p>
+                      </div>
+                    </div>
+                  );
+                }
+                return null; // Retorna null si no se cumple la condición
+              })
+            }
+
           </div>
-        ))}
+        </div>
       </div>
 
-      <div className='timelineRight'>
+      <div className='timelineRight2'>
         <div className="timelineRightUp">
           MY FOLLOWERS
         </div>

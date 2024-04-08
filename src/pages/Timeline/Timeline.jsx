@@ -119,9 +119,9 @@ export const Timeline = () => {
 
   const handlePost = async (postId) => {
     try {
-      console.log(postId)
-      dispatch(updateDetail(postId));
-      // navigate("/profile")
+
+      dispatch(updateDetail({ detail: postId }))
+      navigate("/detailPost")
 
     } catch (error) {
       setError(error);

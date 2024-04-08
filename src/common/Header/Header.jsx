@@ -5,6 +5,7 @@ import { updateCriteria } from "../../app/slices/searchSlice";
 import { useEffect, useState } from "react";
 import { CustomLink } from "../CustomLink/CustomLink";
 import { CustomInput } from "../CustomInput/CustomInput";
+import { updateDetail } from "../../app/slices/postSlice";
 
 
 export const Header = () => {
@@ -35,29 +36,29 @@ export const Header = () => {
     <>
       {rdxUser?.credentials?.token ? (
         <>
-        <div className="headerDesign">
-          <div className="logoHeader">
-            LOGO
-          </div>
-          <div className="menuHeader">
-            <CustomLink title="Timeline" destination="/timeline" />
-            <CustomLink title={`${rdxUser?.credentials?.user?.userName}`} destination="/profile" />
-            <CustomLink title="Posts" destination="/posts" />
+          <div className="headerDesign">
+            <div className="logoHeader">
+              LOGO
+            </div>
+            <div className="menuHeader">
+              <CustomLink title="Timeline" destination="/timeline" />
+              <CustomLink title={`${rdxUser?.credentials?.user?.userName}`} destination="/profile" />
+              <CustomLink title="Posts" destination="/posts" />
             </div>
             <div className="rightHeader">
-            <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }))}>
-              log out
+              <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }), updateDetail({ detail: "" }))}>
+                log out
+              </div>
             </div>
-          </div>
           </div>
         </>
       ) : (
         <>
-        <div>
-          
-        </div>
+          <div>
 
-        
+          </div>
+
+
         </>
       )}
     </>

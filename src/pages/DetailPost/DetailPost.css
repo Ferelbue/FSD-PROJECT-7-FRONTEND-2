@@ -10,8 +10,8 @@
     background-color: white;
 }
 
-.timelineCardDesign {
-    height: 50vh;
+.timelineCardDesign2 {
+    height: 91vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
@@ -91,9 +91,9 @@
     left: 0%;
 }
 
-.timelineRight {
+.timelineRight2 {
     width: 22.5vw;
-    height: 92vh;
+    height: 91vh;
     margin-top: 7vh;
     border-radius: 0.5em;
     border-width: 0.05em;
