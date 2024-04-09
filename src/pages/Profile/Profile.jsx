@@ -12,12 +12,14 @@ import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { updateDetail } from "../../app/slices/postSlice";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
+import { NewPost } from "../../common/NewPost/NewPost";
 
 export const Profile = () => {
 
   const [followersData, setFollowersData] = useState();
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
+  const [modal, setModal] = useState(false);
   const rdxUser = useSelector(userData);
   const searchRdx = useSelector(searchData);
   const dispatch = useDispatch();
@@ -201,6 +203,14 @@ export const Profile = () => {
     }
   };
 
+  const handleModal = async () => {
+    try {
+      setModal(true)
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return (
     <div className='profileDesign'>
       <div className='profileLeft'>
@@ -312,7 +322,7 @@ export const Profile = () => {
         </div>
       </div>
 
-      <div className='profileCenter'>
+      <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
         {postsData && postsData.data.map((post, index) => (
           <div key={index} className='profilePostCardDesign'>
             {index === 0 ? <div className="titlePost">MY POSTS</div> : null}
@@ -377,7 +387,7 @@ export const Profile = () => {
 
       </div>
 
-      <div className='profileRight'>
+      <div className={`profileRight ${modal === true ? "profileRight2" : ""}`} >
         <div className="profileRightUp">
           MY PICTURES
         </div>
@@ -385,18 +395,31 @@ export const Profile = () => {
           {postsData && postsData.data.map((post, index) => (
             (index % 2 === 0) ? (
               <div className="placePictureOdd" key={post._id} >
-                <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)}/>
+                <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
               </div>
             )
               : (
                 <div className="placePictureEven" key={post._id}>
-                  <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)}/>
+                  <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
                 </div>
               )
           ))
           }
         </div>
       </div>
+
+      <NewPost
+        className={`test1234`}
+        src={"../../public/newPost.png"}
+        alt={"asd"}
+        onClick={() => handleModal()}
+      />
+      {modal &&
+        <div className="modalDesign">
+          <div className="modalCardDesign">
+          </div>
+        </div>
+      }
     </div>
   );
 };

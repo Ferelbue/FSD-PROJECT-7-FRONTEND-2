@@ -10,6 +10,7 @@ import { updateDetail } from "../../app/slices/postSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
+import { NewPost } from "../../common/NewPost/NewPost";
 
 
 export const Timeline = () => {
@@ -17,7 +18,7 @@ export const Timeline = () => {
   const [followersData, setFollowersData] = useState();
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
-
+  const [modal, setModal] = useState(false);
   const rdxUser = useSelector(userData);
   const searchRdx = useSelector(searchData);
   const dispatch = useDispatch();
@@ -128,6 +129,14 @@ export const Timeline = () => {
     }
   };
 
+  const handleModal = async () => {
+    try {
+      setModal(true)
+    } catch (error) {
+      setError(error);
+    }
+  };
+  
   return (
     <div className='timelineDesign'>
       <div className='timelineLeft'>
@@ -187,7 +196,7 @@ export const Timeline = () => {
         </div>
       </div>
 
-      <div className='timelineCenter'>
+      <div className={`timelineCenter ${modal === true ? "timelineCenter2" : ""}`} >
         {postsData && postsData.data.map((post, index) => (
           <div key={index} className='timelineCardDesign'>
             <div className="bodyTimeline" onClick={() => handlePost(post._id)}>
@@ -203,7 +212,7 @@ export const Timeline = () => {
         ))}
       </div>
 
-      <div className='timelineRight'>
+      <div className={`timelineRight ${modal === true ? "timelineRight2" : ""}`} >
         <div className="timelineRightUp">
           MY FOLLOWERS
         </div>
@@ -231,6 +240,18 @@ export const Timeline = () => {
           )}
         </div>
       </div>
+      <NewPost
+        className={`test1234`}
+        src={"../../public/newPost.png"}
+        alt={"asd"}
+        onClick={() => handleModal()}
+      />
+      {modal &&
+        <div className="modalDesign">
+          <div className="modalCardDesign">
+          </div>
+        </div>
+      }
     </div>
   );
 };
