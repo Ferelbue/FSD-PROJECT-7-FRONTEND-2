@@ -242,3 +242,31 @@ export const updateProfile = async (token, data) => {
     return error;
   }
 };
+
+export const updateUserPosts = async (token, postId, data) => {
+  console.log(token,"token")
+  console.log(postId, "post")
+  console.log(data,"data")
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(`${root}posts/${postId}`, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

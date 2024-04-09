@@ -110,18 +110,9 @@
     border-style: solid;
     border-color: black;
 }
-.inputDescriptionPostDesign{
-    width: 48vw;
-    height: 15vh;
-    background-color: white;
-    color: black;
-    border-radius: 0.5em;
-    border-width: 0.1em;
-    border-style: solid;
-    border-color: black;
-}
+
 .inputEdit{
-    background-color: aqua;
+    background-color: aqua !important;
 }
 .likesTimeline {
     width: 10vw;

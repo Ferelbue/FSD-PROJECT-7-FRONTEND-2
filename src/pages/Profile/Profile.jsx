@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import './Profile.css';
-import { deletePost, getFollowers, getUserPosts, getUserProfile, updatePost, updateProfile } from "../../services/apiCalls";
+import { deletePost, getFollowers, getUserPosts, getUserProfile, updateUserPosts, updateProfile } from "../../services/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { searchData, updateCriteria } from "../../app/slices/searchSlice";
@@ -11,6 +11,7 @@ import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { updateDetail } from "../../app/slices/postSlice";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
+import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 
 export const Profile = () => {
 
@@ -108,7 +109,7 @@ export const Profile = () => {
     };
 
     fetchUserPosts();
-  }, []);
+  }, [postUpdated]);
 
   useEffect(() => {
     if (rdxUser.credentials === "") {
@@ -119,7 +120,7 @@ export const Profile = () => {
 
 
   const updateData = async () => {
-
+    console.log("1")
     try {
       const fetched = await updateProfile(rdxUser.credentials.token, user)
       setUser({
@@ -128,6 +129,7 @@ export const Profile = () => {
         image: fetched.data.image,
         lastName: fetched.data.lastName,
       })
+      console.log("2")
 
       setWrite("disabled")
 
@@ -152,33 +154,40 @@ export const Profile = () => {
 
 
 
-  const handleEdit = (index, postId) => {
-    setEditIndex(index);
-    console.log(postsData);
-    console.log(postId);
-    setWritePost("")
-    for (let i = 0; i < postsData.data.length; i++) {
-      if (postsData.data[i]._id === postId) {
-        console.log("este", postsData.data[i].image);
-        setPost({
-          description: postsData.data[i].description,
-          image: postsData.data[i].image,
-          title: postsData.data[i].title,
-        });
-        break;
+  const handleEdit = async (index, postId) => {
+    try {
+
+        setEditIndex(index);
+        setWritePost("")
+        
+
+
+      for (let i = 0; i < postsData.data.length; i++) {
+        if (postsData.data[i]._id === postId) {
+          console.log("este", postsData.data[i].image);
+          setPost({
+            description: postsData.data[i].description,
+            image: postsData.data[i].image,
+            title: postsData.data[i].title,
+          });
+          break;
+        }
       }
+    } catch (error) {
+      console.log(error)
     }
   };
 
-  const updateUserPost = (index) => {
+  const updateUserPost = async (postId) => {
     try {
-      // const fetched = await updateProfile(rdxUser.credentials.token, post)
-      // setUser({
-      //   email: fetched.data.email,
-      //   firstName: fetched.data.firstName,
-      //   image: fetched.data.image,
-      //   lastName: fetched.data.lastName,
-      // })
+      console.log(postId, "asd")
+      const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
+      console.log(fetched, "fecheo")
+      setPost({
+        description: fetched.data.description,
+        image: fetched.data.image,
+        title: fetched.data.title,
+      })
 
       setWritePost("disabled")
       setEditIndex(-1);
@@ -302,7 +311,7 @@ export const Profile = () => {
         {postsData && postsData.data.map((post, index) => (
           <div key={index} className='profilePostCardDesign'>
             {index === 0 ? <div className="titlePost">MY POST</div> : null}
-            <div className="bodyPostProfile" onClick={() => handlePost(post._id)}>
+            <div className="bodyPostProfile">
               <img className="imagePostProfile" src={post.image} alt={`${post._id}`} />
               <div>
                 <CustomInput
@@ -324,16 +333,16 @@ export const Profile = () => {
                   placeholder={""}
                   name={"title"}
                   disabled={writePost}
-                  value={index === editIndex ? postUpdated.title || "" : post.title.toUpperCase()  || ""}
+                  value={index === editIndex ? postUpdated.title || "" : post.title.toUpperCase() || ""}
                   onChangeFunction={(e) => inputHandlerPost(e)}
 
                 />
                 <div className="error">{userError.imageError}</div>
               </div>
               <div>
-                <CustomInput
+                <CustomTextArea
                   className={`inputDescriptionPostDesign ${index === editIndex ? "inputEdit" : ""}`}
-                  type={"text"}
+                  type={"textarea"}
                   placeholder={""}
                   name={"description"}
                   disabled={writePost}
@@ -353,7 +362,7 @@ export const Profile = () => {
                 <CustomButton
                   className={writePost === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
                   title={(writePost === "") && (index === editIndex) ? "Confirm" : "Edit"}
-                  functionEmit={writePost === "" ? updateUserPost : () => handleEdit(index, post._id)}
+                  functionEmit={writePost === "" ? () => updateUserPost(post._id) : () => handleEdit(index, post._id)}
                 />
 
               </div>
