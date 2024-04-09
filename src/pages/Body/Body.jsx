@@ -8,6 +8,7 @@ import { LogOut } from '../LogOut/LogOut';
 import { Posts } from '../Posts/Posts';
 import { Timeline } from '../Timeline/Timeline';
 import { DetailPost } from '../DetailPost/DetailPost';
+import { PostNew } from '../PostNew/PostNew';
 
 export const Body = () => {
 
@@ -22,6 +23,7 @@ export const Body = () => {
             <Route path="/posts" element={<Posts />} />
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/detailPost" element={<DetailPost />} />
+            <Route path="/postNew" element={<PostNew />} />
         </Routes>
     )
 }

@@ -119,9 +119,6 @@ export const DetailPost = () => {
     }
   };
 
-  console.log("kaka", postsData);
-
-
   return (
     <div className='timelineDesign'>
       <div className='timelineLeft'>

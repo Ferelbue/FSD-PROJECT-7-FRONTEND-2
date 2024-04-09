@@ -1,0 +1,56 @@
+.postNewDesign {
+    height: 100vh;
+    width: 98.5vw;
+    
+    background-color: rgba(232, 225, 225, 0.5); 
+    z-index: 9;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.postNewCardDesign {
+    height: 75vh;
+    width: 40vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5em;
+    opacity: 99% !important;
+    background-color: rgb(250, 248, 248);
+    box-shadow: 1px 1px 10px black;
+}
+
+.headerRegisterDesing {
+    height: 20vh;
+    width: 100vw;
+    background-color: rgb(111, 163, 202);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerCardUp {
+    height: 3vh;
+    width: 39vw;
+    color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.registerCardDown {
+    height: 72vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

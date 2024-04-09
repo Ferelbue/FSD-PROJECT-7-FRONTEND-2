@@ -8,6 +8,7 @@
     align-items: start;
 
     background-color: white;
+    z-index: 1;
 }
 
 .profileCardDesign {
@@ -55,7 +56,7 @@
 
 .bodyPostProfile {
     width: 50vw;
-    height: 47vh;
+    height: 40vh;
     font-size: small;
     margin: 0.5em;
 
@@ -112,7 +113,7 @@
 }
 
 .inputEdit{
-    background-color: aqua !important;
+    background-color: rgb(192, 247, 192) !important;
 }
 .likesTimeline {
     width: 10vw;
@@ -299,4 +300,13 @@
     background-color: azure;
     color: black;
     border-radius: 0.5em;
+  }
+
+  .pictureOdd{
+    height: 10vh;
+    cursor: pointer;
+  }
+  .pictureEven{
+    height: 20vh;
+    cursor: pointer;
   }

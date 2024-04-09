@@ -151,17 +151,11 @@ export const Profile = () => {
       setError(error);
     }
   };
-
-
-
   const handleEdit = async (index, postId) => {
     try {
 
-        setEditIndex(index);
-        setWritePost("")
-        
-
-
+      setEditIndex(index);
+      setWritePost("")
       for (let i = 0; i < postsData.data.length; i++) {
         if (postsData.data[i]._id === postId) {
           console.log("este", postsData.data[i].image);
@@ -195,6 +189,17 @@ export const Profile = () => {
       console.log(error)
     }
   }
+
+  const handlePost = async (postId) => {
+    try {
+
+      dispatch(updateDetail({ detail: postId }))
+      navigate("/detailPost")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   return (
     <div className='profileDesign'>
@@ -310,7 +315,7 @@ export const Profile = () => {
       <div className='profileCenter'>
         {postsData && postsData.data.map((post, index) => (
           <div key={index} className='profilePostCardDesign'>
-            {index === 0 ? <div className="titlePost">MY POST</div> : null}
+            {index === 0 ? <div className="titlePost">MY POSTS</div> : null}
             <div className="bodyPostProfile">
               <img className="imagePostProfile" src={post.image} alt={`${post._id}`} />
               <div>
@@ -374,30 +379,22 @@ export const Profile = () => {
 
       <div className='profileRight'>
         <div className="profileRightUp">
-          MY FOLLOWERS
+          MY PICTURES
         </div>
         <div className="profileRightDown">
-          {followersData?.success && followersData?.data?.length > 0 ? (
-            <div className="searchUsers2">
-              {followersData.data.map((user) => {
-                return (
-                  <div className="userSearched2" key={user._id} onClick={() => manageDetail(user)}>
-                    <div className="test12">
-                      <img className="test22" src={user.image} alt={`${user.firstName}`} />
-                    </div>
-                    <div className="test32">
-                      <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
-                    </div>
-                    <div className="test4">
-                      <p>FRIEND REQUEST</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="searchUsers">No hay usuarios</div>
-          )}
+          {postsData && postsData.data.map((post, index) => (
+            (index % 2 === 0) ? (
+              <div className="placePictureOdd" key={post._id} >
+                <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)}/>
+              </div>
+            )
+              : (
+                <div className="placePictureEven" key={post._id}>
+                  <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)}/>
+                </div>
+              )
+          ))
+          }
         </div>
       </div>
     </div>
