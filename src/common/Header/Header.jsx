@@ -15,22 +15,8 @@ export const Header = () => {
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(rdxUser, " credenciales pasaporte");
-  }, [rdxUser]);
 
-  const [criteria, setCriteria] = useState("")
 
-  const searchHandler = (e) => {
-    setCriteria(e.target.value)
-  }
-
-  useEffect(() => {
-    if (criteria !== "") {
-      //guardo en redux.....
-      dispatch(updateCriteria(criteria))
-    }
-  }, [criteria])
 
   return (
     <>

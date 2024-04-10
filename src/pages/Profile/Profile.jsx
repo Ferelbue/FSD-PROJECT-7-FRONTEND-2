@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import './Profile.css';
-import { deletePost, getFollowers, getUserPosts, getUserProfile, updateUserPosts, updateProfile } from "../../services/apiCalls";
+import { deletePost, getFollowers, getUserPosts, getUserProfile, updateUserPosts, updateProfile, createNewPost } from "../../services/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { userData } from "../../app/slices/userSlice";
+import { userData, logout } from "../../app/slices/userSlice";
 import { searchData, updateCriteria } from "../../app/slices/searchSlice";
 import { useNavigate } from "react-router-dom"
 import { validame } from "../../utils/functions";
@@ -13,6 +13,7 @@ import { updateDetail } from "../../app/slices/postSlice";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { NewPost } from "../../common/NewPost/NewPost";
+
 
 export const Profile = () => {
 
@@ -29,6 +30,7 @@ export const Profile = () => {
   const [usersFetched, setUsersFetched] = useState();
   const [write, setWrite] = useState("disabled");
   const [writePost, setWritePost] = useState("disabled");
+  const [writeModal, setWriteModal] = useState("disabled");
   const [password, setPassword] = useState();
   const [editIndex, setEditIndex] = useState(-1);
   const [user, setUser] = useState({
@@ -49,7 +51,6 @@ export const Profile = () => {
     description: "",
     image: "",
     title: "",
-
   });
 
   const inputHandler = (e) => {
@@ -81,6 +82,12 @@ export const Profile = () => {
     const fetchUserProfile = async () => {
       try {
         const fetched = await getUserProfile(rdxUser.credentials.token);
+
+        if (fetched === "JWT NOT VALID OR MALFORMED") {
+          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+          navigate("/login")
+        }
+
         setTimeout(() => {
           setLoadedData(true);
         }, 1000);
@@ -91,9 +98,10 @@ export const Profile = () => {
           lastName: fetched.data.lastName,
         });
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
+
 
     if (!loadedData) {
       fetchUserProfile();
@@ -104,6 +112,10 @@ export const Profile = () => {
     const fetchUserPosts = async () => {
       try {
         const data = await getUserPosts(rdxUser.credentials.token);
+        if (data === "JWT NOT VALID OR MALFORMED") {
+          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+          navigate("/login")
+        }
         setPostsData(data);
       } catch (error) {
         setError(error);
@@ -125,6 +137,12 @@ export const Profile = () => {
     console.log("1")
     try {
       const fetched = await updateProfile(rdxUser.credentials.token, user)
+
+      if (fetched === "JWT NOT VALID OR MALFORMED") {
+        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+        navigate("/login")
+      }
+
       setUser({
         email: fetched.data.email,
         firstName: fetched.data.firstName,
@@ -147,6 +165,10 @@ export const Profile = () => {
       console.log("HOLA")
 
       const data = await getUserPosts(rdxUser.credentials.token);
+      if (data === "JWT NOT VALID OR MALFORMED") {
+        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+        navigate("/login")
+      }
       setPostsData(data);
 
     } catch (error) {
@@ -178,7 +200,12 @@ export const Profile = () => {
     try {
       console.log(postId, "asd")
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
-      console.log(fetched, "fecheo")
+
+      if (fetched === "JWT NOT VALID OR MALFORMED") {
+        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+        navigate("/login")
+      }
+
       setPost({
         description: fetched.data.description,
         image: fetched.data.image,
@@ -203,16 +230,44 @@ export const Profile = () => {
     }
   };
 
+  const handleBack = async () => {
+    try {
+      setModal(false)
+      setWriteModal("disable")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   const handleModal = async () => {
     try {
       setModal(true)
+      setWriteModal("")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const createPost = async () => {
+    try {
+      const fetched = await createNewPost(rdxUser.credentials.token, postUpdated)
+      setPost({
+        description: "",
+        image: "",
+        title: "",
+      });
+      setModal(false)
+      setWriteModal("disable")
+
     } catch (error) {
       setError(error);
     }
   };
 
   return (
-    <div className='profileDesign'>
+    <div className={`profileDesign ${modal === true ? "profileDesign2" : ""}`} >
       <div className='profileLeft'>
 
         <div className='profileLeftUp'>
@@ -323,11 +378,11 @@ export const Profile = () => {
       </div>
 
       <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
-        {postsData && postsData.data.map((post, index) => (
+        {postsData && postsData?.data?.map((post, index) => (
           <div key={index} className='profilePostCardDesign'>
             {index === 0 ? <div className="titlePost">MY POSTS</div> : null}
             <div className="bodyPostProfile">
-              <img className="imagePostProfile" src={post.image} alt={`${post._id}`} />
+              <img className="imagePostProfile" src={index === editIndex ? postUpdated.image : post.image} alt={`${post._id}`} />
               <div>
                 <CustomInput
                   className={`inputTitlePostDesign ${index === editIndex ? "inputEdit" : ""}`}
@@ -392,7 +447,7 @@ export const Profile = () => {
           MY PICTURES
         </div>
         <div className="profileRightDown">
-          {postsData && postsData.data.map((post, index) => (
+          {postsData && postsData?.data?.map((post, index) => (
             (index % 2 === 0) ? (
               <div className="placePictureOdd" key={post._id} >
                 <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
@@ -415,8 +470,67 @@ export const Profile = () => {
         onClick={() => handleModal()}
       />
       {modal &&
-        <div className="modalDesign">
-          <div className="modalCardDesign">
+        <div className="modalProfileDesign">
+          <div className="modalProfileCardDesign">
+            <div className="profileModalTitle">
+              NEW POST
+            </div>
+            <div className="profileModalBody">
+              <div className="imageModal">
+
+              <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
+              </div>
+              <div>
+                <CustomInput
+                  className={`inputTitlePostDesign`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"image"}
+                  disabled={writeModal}
+                  value={postUpdated.image}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+
+                />
+                <div className="error">{userError.imageError}</div>
+              </div>
+              <div>
+                <CustomInput
+                  className={`inputTitlePostDesign`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"title"}
+                  disabled={writeModal}
+                  value={postUpdated.title}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+
+                />
+                <div className="error">{userError.imageError}</div>
+              </div>
+              <div>
+                <CustomTextArea
+                  className={`inputDescriptionPostDesign`}
+                  type={"textarea"}
+                  placeholder={""}
+                  name={"description"}
+                  disabled={writeModal}
+                  value={postUpdated.description}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+                />
+                <div className="error">{userError.imageError}</div>
+                <div className="modalButtons">
+                  <CustomButton
+                    className={"customButtonDesign"}
+                    title={"SEND"}
+                    functionEmit={() => createPost()}
+                  />
+                  <CustomButton
+                    className={"customButtonDesign"}
+                    title={"BACK"}
+                    functionEmit={() => handleBack()}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       }
