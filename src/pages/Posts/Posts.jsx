@@ -4,14 +4,22 @@ import { deletePost, getUserPosts, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Posts = () => {
 
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
   const [flag, setFlag] = useState(false);
-
+  const navigate = useNavigate();
   const rdxUser = useSelector(userData);
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   useEffect(() => {
     const fetchUserPosts = async () => {

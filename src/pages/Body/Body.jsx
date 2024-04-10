@@ -7,19 +7,23 @@ import { Profile } from '../Profile/Profile';
 import { LogOut } from '../LogOut/LogOut';
 import { Posts } from '../Posts/Posts';
 import { Timeline } from '../Timeline/Timeline';
+import { DetailPost } from '../DetailPost/DetailPost';
+import { PostNew } from '../PostNew/PostNew';
 
 export const Body = () => {
 
     return(
         <Routes>
-            <Route path="*" element={<Navigate to={"/"} replace />} />
-            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Navigate to={"/login"} replace />} />
+            <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/timeline" element={<Timeline />} />
+            <Route path="/detailPost" element={<DetailPost />} />
+            <Route path="/postNew" element={<PostNew />} />
         </Routes>
     )
 }

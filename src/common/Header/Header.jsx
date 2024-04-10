@@ -5,6 +5,7 @@ import { updateCriteria } from "../../app/slices/searchSlice";
 import { useEffect, useState } from "react";
 import { CustomLink } from "../CustomLink/CustomLink";
 import { CustomInput } from "../CustomInput/CustomInput";
+import { updateDetail } from "../../app/slices/postSlice";
 
 
 export const Header = () => {
@@ -14,62 +15,37 @@ export const Header = () => {
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(rdxUser, " credenciales pasaporte");
-  }, [rdxUser]);
 
-  const [criteria, setCriteria] = useState("")
 
-  const searchHandler = (e) => {
-    setCriteria(e.target.value)
-  }
-
-  useEffect(() => {
-    if (criteria !== "") {
-      //guardo en redux.....
-      dispatch(updateCriteria(criteria))
-    }
-  }, [criteria])
 
   return (
-    <div className="headerDesign">
-      <div className="logoHeader">
-
-      </div>
-
+    <>
       {rdxUser?.credentials?.token ? (
         <>
-          <div className="inputHeader">
-            <CustomInput
-              className={`inputSearch`}
-              type="text"
-              placeholder="search a user...."
-              name="user"
-              value={criteria || ""}
-              onChangeFunction={(e) => searchHandler(e)}
-            />
-          </div>
-          <div className="menu">
-            <CustomLink title="Timeline" destination="/timeline" />
-            <CustomLink title={`${rdxUser?.credentials?.user?.userName}`} destination="/profile" />
-            <CustomLink title="Posts" destination="/posts" />
-            <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }))} destination="/logout">
-              log out
+          <div className="headerDesign">
+            <div className="logoHeader">
+              LOGO
+            </div>
+            <div className="menuHeader">
+              <CustomLink title="HOME" destination="/timeline" />
+              <CustomLink title={`${rdxUser?.credentials?.user?.userName.toUpperCase()} PROFILE`} destination="/profile" />
+            </div>
+            <div className="rightHeader">
+              <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }), updateDetail({ detail: "" }))}>
+                log out
+              </div>
             </div>
           </div>
         </>
       ) : (
         <>
-        <div className="inputHeader">
+          <div>
 
-        </div>
-        <div className="menu">
-          <CustomLink title="Home" destination="/" />
-          <CustomLink title="Login" destination="/login" />
-          <CustomLink title="Register" destination="/register" />
-        </div>
+          </div>
+
+
         </>
       )}
-    </div>
+    </>
   );
 };

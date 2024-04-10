@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { decodeToken } from "react-jwt";
 import { CustomInput } from "../../common/CustomInput/CustomInput";
+import { CustomLink } from "../../common/CustomLink/CustomLink";
 import { validame } from "../../utils/functions";
 import "./Login.css";
 import { loginMe } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../../app/slices/userSlice";
+import { CustomRegister } from "../../common/CustomRegister/CustomRegister";
+
 
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [msgError, setMsgError] = useState("");
-  
+
   const rdxUser = useSelector(userData);
 
   const [credenciales, setCredenciales] = useState({
@@ -55,43 +58,63 @@ export const Login = () => {
 
       dispatch(login({ credentials: passport }));
 
-      setTimeout(() => {
-        navigate("/")
-      }, 500)
+      navigate("/timeline")
+
     }
   };
 
   return (
     <>
       <div className="loginDesign">
-        {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
 
-        <CustomInput
-          className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
-            }`}
-          type="email"
-          placeholder="write your email...."
-          name="email"
-          value={credenciales.email || ""}
-          onChangeFunction={(e) => inputHandler(e)}
-          onBlurFunction={(e) => checkError(e)}
-        />
-        <div className="error">{userError.emailError}</div>
-        <CustomInput
-          className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
-            }`}
-          type="password"
-          name="password"
-          value={credenciales.password || ""}
-          placeholder="write your password...."
-          onChangeFunction={(e) => inputHandler(e)}
-          onBlurFunction={(e) => checkError(e)}
-        />
-        <div className="error">{userError.passwordError}</div>
-        <div className="customButtonDesign" onClick={logMe}>
-          Log me!
+        <div className="headerloginDesign">
+          <div className="logoHeader">
+            <CustomLink title="LOGO" destination="/" />
+          </div>
+          <div className="menu2">
+            <div className="menuInputHeader">
+              <div className="inputError">
+                <CustomInput
+                  className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
+                    }`}
+                  type="email"
+                  placeholder="write your email...."
+                  name="email"
+                  value={credenciales.email || ""}
+                  onChangeFunction={(e) => inputHandler(e)}
+                  onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="errorHeader">{userError.emailError}</div>
+              </div>
+              <div className="inputError">
+                <CustomInput
+                  className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
+                    }`}
+                  type="password"
+                  name="password"
+                  value={credenciales.password || ""}
+                  placeholder="write your password...."
+                  onChangeFunction={(e) => inputHandler(e)}
+                  onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="errorHeader">{userError.passwordError}</div>
+              </div>
+              <div className="customButtonHeaderDesign" onClick={logMe}>
+                Log me!
+              </div>
+            </div>
+            <div className="registerHeader">
+              <div className="error">{msgError}</div>
+              <CustomRegister className="linkRegister" title="Not registered yet? Register here" destination="/register" />
+            </div>
+          </div>
         </div>
-        <div className="error">{msgError}</div>
+        <div className="loginBody" >
+          INSTAGEEKS!
+        </div>
+        <div className="loginFooter" >
+
+        </div>
       </div>
     </>
   );

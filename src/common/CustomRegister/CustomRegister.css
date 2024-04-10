@@ -1,18 +1,16 @@
 
-.likeDesign {
-
-    font-weight: bold;
-    color: black;
+.navigateRegisterDesign {
+    color: white;
 
     transition: 0.4s;
-    margin: 1em;
     /* width: 5em; */
+    font-size: large;
 }
 
-.likeDesign:hover {
+.navigateRegisterDesign:hover {
     cursor: pointer;
     
     transition: 0.4s;
-    color: darkgray;
+    color: black;
     font-size: large;
 }

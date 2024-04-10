@@ -1,41 +1,388 @@
 .profileDesign {
-    height: 84vh;
+    height: auto;
+    width: 98.5vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+
+    background-color: white;
+    z-index: 1;
+}
+.profileDesign2 {
+    height: auto;
     width: 100vw;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 
-    background-color: rgb(111,163,202);
+    background-color: white;
+    z-index: 1;
 }
-
-
 .profileCardDesign {
-    height: 40vh;
+    height: 92vh;
     width: 50vw;
-    border-radius: 1em;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    margin-top: 0.5em;
+    font-size: 1.2vw !important;
+    overflow: hidden;
+    cursor: pointer;
+}
+.profilePostCardDesign {
+    height: 50vh;
+    width: 50vw;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    font-size: 1.2vw !important;
+    overflow: hidden;
+    cursor: pointer;
+}
+.title {
+    font-weight: bold;
+}
+
+.bodyPostProfile {
+    width: 50vw;
+    height: 40vh;
+    font-size: small;
+    margin: 0.5em;
+
+}
+.bodyPostControlProfile {
+    width: 50vw;
+    height: 3vh;
+    font-size: small;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.inputDesignAvaiable{
+    background-color: rgb(192, 247, 192);
+}
+.titlePost{
+    height: 5vh;
+    width: 20vw;
+    height: 4vh;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}
+.bodyPostDeleteControlProfile {
+    width: 25vw;
+    height: 3vh;
+    font-size: small;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.bodyPostLikeControlProfile {
+    width: 25vw;
+    height: 3vh;
+    font-size: small;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.inputTitlePostDesign{
+    width: 48vw;
+    background-color: white;
+    color: black;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: black;
+}
+
+.inputEdit{
+    background-color: rgb(192, 247, 192) !important;
+}
+.likesTimeline {
+    width: 10vw;
+    color: black;
+    font-weight: bold;
+}
+
+.profileLeft {
+    width: 24.5vw;
+    height: 94vh;
+    margin-top: 7vh;
+    position: fixed;
+    left: 0%;
+}
+.profileLeftTitle{
+    height: 5vh;
+    width: 20vw;
+    height: 4vh;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.profileModalBody{
+    height: 70vh;
+
+}
+.profileModalTitle{
+    height: 5vh;
+    width: 20vw;
+    height: 4vh;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+}
+
+.profileLeftUp {
+    width: 23.5vw;
+    height: 92vh;
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: black;
+
+    opacity: 90%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vh;
+    left: 0%;
+}
+
+.profileLeftBody{
+    width: 23.5vw;
+    height: 92vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vh;
+    left: 0%;
+}
+
+.profileRight {
+    width: 22.5vw;
+    height: 92vh;
+    margin-top: 7vh;
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: black;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1vh;
+    position: fixed;
+    right: 0.3%;
+}
+.profileRight2 {
+
+    right: 1%;
+}
+
+.profileCenter {
+    width: 50vw;
+    height: 100%;
+    margin-top: 6vh;
+}
+.profileCenter2 {
+    width: 50vw;
+    height: 100%;
+    margin-top: 6vh;
+    position: fixed;
+}
+.imageModal{
+    width: 50vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.imagePostProfile{
+    width: 15vw;
+    height: 20vh;
+}
+
+.profileProfileUp {
+    width: 23.5vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchUsers,
+.searchUsers2 {
+    width: 22vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.userSearched,
+.userSearched2 {
+
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: black;
+    margin-top: 0.5em;
+    width: 22vw;
+    height: 8vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.test1,
+.test12 {
+    width: 4vw;
+    height: 7vh;
+    margin-left: 1vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.test2,
+.test22 {
+    width: 4vw;
+    height: 6vh;
+    margin-top: 0.3em;
+}
+
+.test3,
+.test32 {
+    width: 10vw;
+    height: 7vh;
+
+    margin-left: 1vw;
+    margin-top: 0.3em;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.test4,
+.test42 {
+    width: 5vw;
+    height: 7vh;
+
+    margin-left: 1vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: small;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.profileRightUp{
+    height: 4vh;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.profileRightDown{
+    height: 90vh;
+    overflow: hidden;
+}
+.imagePost{
+    width: 20vw;
+    height: 20vh;
+}
+.imageProfileUser{
+    width: 20vw;
+    height: 20vh;
+}
+.inputSearch {
+    width: 20vw;
+    height: 4vh;
+    background-color: azure;
+    color: black;
+    border-radius: 0.5em;
+  }
+
+  .pictureOdd{
+    height: 10vh;
+    cursor: pointer;
+  }
+  .pictureEven{
+    height: 20vh;
+    cursor: pointer;
+  }
+
+  .modalProfileDesign {
+    height: 100vh;
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    background-color: crimson;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000;
 }
 
-.pruebaImg {
-    height: 19vh;
-    width: 9.5vw;
-    border-radius: 1em;
+.modalProfileCardDesign {
+    height: 75vh;
+    width: 55vw;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 0.5em;
 
-    background-image: url('../../img/pers1.png');
+    background-color: rgb(250, 248, 248);
+    box-shadow: 1px 1px 10px black;
+    z-index: 1000;
 }
-.prueba{
-    height: 5em;
-    width: 5em;
-
+.modalButtons{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

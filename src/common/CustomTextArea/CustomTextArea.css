@@ -1,0 +1,22 @@
+.inputDescriptionPostDesign{
+  width: 48vw;
+  height: 15vh;
+  resize:none;
+  margin: 1em;
+  background-color: white;
+  color: black;
+  border-radius: 0.5em;
+  border-width: 0.1em;
+  border-style: solid;
+  border-color: black;
+  flex-wrap: wrap;
+}
+  
+  .inputDesignError {
+    border: 0.2em solid red;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+  }

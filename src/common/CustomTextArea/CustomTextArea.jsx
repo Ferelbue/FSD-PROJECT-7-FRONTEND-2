@@ -1,9 +1,9 @@
-import "./CustomInput.css";
+import "./CustomTextArea.css";
 
-export const CustomInput = ({ className, type, placeholder, name, disabled, value, onChangeFunction, onBlurFunction }) => {
+export const CustomTextArea = ({ className, type, placeholder, name, disabled, value, onChangeFunction, onBlurFunction }) => {
 
     return (
-        <input
+        <textarea
             className={className}
             type={type}
             placeholder={placeholder}

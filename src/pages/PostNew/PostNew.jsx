@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CustomInput } from "../../common/CustomInput/CustomInput";
-import "./Register.css";
+import "./PostNew.css";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { validame } from "../../utils/functions";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerMe } from "../../services/apiCalls";
 import { userData } from "../../app/slices/userSlice";
 
-export const Register = () => {
+export const PostNew = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -73,14 +73,10 @@ export const Register = () => {
 
   return (
     <>
-      <div className="headerRegisterDesing">
-        LOGO INSTAGEEKS
-      </div>
-      <div className="registerDesign">
-        {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-        <div className="registerCardDesign">
+      <div className="postNewDesign">
+        <div className="postNewCardDesign">
           <div className="registerCardUp">
-            Registro
+            NEW POST
           </div>
 
           <div className="registerCardDown">
