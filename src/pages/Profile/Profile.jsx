@@ -447,8 +447,8 @@ export const Profile = () => {
           MY PICTURES
         </div>
         <div className="profileRightDown">
-          {postsData && postsData?.data?.map((post, index) => (
-            (index % 2 === 0) ? (
+          {postsData && postsData?.data?.reverse().map((post, index) => (
+            ((index) % 2 === 0) ? (
               <div className="placePictureOdd" key={post._id} >
                 <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
               </div>

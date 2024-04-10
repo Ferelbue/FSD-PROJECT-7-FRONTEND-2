@@ -316,7 +316,7 @@ export const followUser = async (userId, token) => {
     const response = await fetch(`${root}users/follow/${userId}`, options);
 
     const data = await response.json();
-
+    console.log("esto", data)
     if (!data.success) {
       throw new Error(data.message);
     }
