@@ -24,6 +24,7 @@ export const Timeline = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [criteria, setCriteria] = useState("")
+  const [nameCriteria, setNameCriteria] = useState("")
   const [usersFetched, setUsersFetched] = useState();
 
 
@@ -96,7 +97,7 @@ export const Timeline = () => {
 
   useEffect(() => {
     const searching = setTimeout(() => {
-      dispatch(updateCriteria(criteria));
+      dispatch(updateCriteria(nameCriteria));
     }, 375);
 
     return () => clearTimeout(searching);
@@ -104,6 +105,8 @@ export const Timeline = () => {
 
   const searchHandler = (e) => {
     setCriteria(e.target.value)
+    setNameCriteria(e.target.value.toLowerCase())
+    
   }
 
   const handleLike = async (postId) => {
