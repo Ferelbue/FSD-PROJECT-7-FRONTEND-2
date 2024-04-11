@@ -9,6 +9,7 @@ import { Posts } from '../Posts/Posts';
 import { Timeline } from '../Timeline/Timeline';
 import { DetailPost } from '../DetailPost/DetailPost';
 import { PostNew } from '../PostNew/PostNew';
+import { FollowProfile } from '../FollowProfile/FollowProfile';
 
 export const Body = () => {
 
@@ -19,6 +20,7 @@ export const Body = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/followprofile" element={<FollowProfile />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/timeline" element={<Timeline />} />

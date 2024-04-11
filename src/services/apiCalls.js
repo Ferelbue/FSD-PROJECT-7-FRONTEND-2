@@ -326,3 +326,53 @@ export const followUser = async (userId, token) => {
     return error;
   }
 };
+
+export const getUserPostById = async (token, userId) => {
+  // console.log(token)
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/posts/${userId}`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+};
+
+export const getUserProfileById = async (token, userId) => {
+  // console.log(token)
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/profile/${userId}`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+};

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userData, logout } from "../../app/slices/userSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { updateDetail } from "../../app/slices/postSlice";
+import { updateFollow } from "../../app/slices/followSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
@@ -161,6 +162,16 @@ export const Timeline = () => {
       setError(error);
     }
   };
+  const manageDetail = async (userRdx) => {
+    try {
+      console.log(userRdx)
+      dispatch(updateFollow({ follow: userRdx }))
+
+      navigate("/followprofile")
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const handleFollow = async (userId) => {
     try {
@@ -282,11 +293,11 @@ export const Timeline = () => {
             <div className="searchUsers2">
               {profileData.data.follower.map((user, index) => {
                 return (
-                  <div className="userSearched1" key={`follower_${index}_${user._id}`} onClick={() => manageDetail(user)}>
+                  <div className="userSearched1" key={`follower_${index}_${user._id}`}>
                     <div className="test12">
-                      <img className="test22" src={user.image} alt={`${user.firstName}`} />
+                      <img className="test22" src={user.image} alt={`${user.firstName}`}/>
                     </div>
-                    <div className="test32">
+                    <div className="test32"  onClick={() => manageDetail(user._id)} >
                       <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
                     </div>
                   </div>
@@ -304,16 +315,16 @@ export const Timeline = () => {
           </div>
           {profileData?.success && profileData?.data?.following?.length >= 0 ? (
             <div className="searchUsers3">
-              {profileData.data.following.map((follow, index) => {
+              {profileData.data.following.map((user, index) => {
                 return (
-                  <div className="userSearched3" key={`follow_${index}_${follow._id}`} >
+                  <div className="userSearched3" key={`follow_${index}_${user._id}`} onClick={() => manageDetail(user._id)}>
                     <div className="test12">
-                      <img className="test22" src={follow.image} alt={`${follow.firstName}`} onClick={() => manageDetail(follow)} />
+                      <img className="test22" src={user.image} alt={`${user.firstName}`} />
                     </div>
                     <div className="test32">
-                      <p>{follow.firstName.toUpperCase()}&nbsp;{follow.lastName.toUpperCase()}</p>
+                      <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
                     </div>
-                    <div className="test4" onClick={() => handleFollow(follow._id)}>
+                    <div className="test4" onClick={() => handleFollow(user._id)}>
                         <p>UNFOLLOW USER</p>
                       </div>
                   </div>
