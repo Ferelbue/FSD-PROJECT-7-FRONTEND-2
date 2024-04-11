@@ -14,7 +14,7 @@ import { searchData } from "../../app/slices/searchSlice";
 import { NewPost } from "../../common/NewPost/NewPost";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
-
+import Spinner from 'react-bootstrap/Spinner';
 
 
 export const Timeline = () => {
@@ -75,7 +75,11 @@ export const Timeline = () => {
           { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
           navigate("/login")
         }
-        setPostsData(data);
+        setTimeout(() => {
+
+          setPostsData(data);
+        }, 1000);
+
       } catch (error) {
         setError(error);
       }
@@ -170,7 +174,7 @@ export const Timeline = () => {
     try {
 
       const fetched = await followUser(userId, rdxUser.credentials.token);
-       setFollowUser(fetched)
+      setFollowUser(fetched)
     } catch (error) {
       setError(error);
     }
@@ -194,29 +198,40 @@ export const Timeline = () => {
 
   return (
     <div className='timelineDesign'>
+
       <div className='timelineLeft'>
         <div className='timelineLeftUp'>
           <div className="titleMyInformation">
             MY INFORMATION
           </div>
-          {profileData && (
+
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
             <>
-              <div className="timelineProfileUp">
-                <div>
-                  <img className="prueba" src={profileData.data.image} alt="pers1" />
-                </div>
-                <div>
-                  <p>{profileData.data.firstName.toUpperCase()} {profileData.data.lastName.toUpperCase()}</p>
-                  <p>{profileData.data.email}</p>
-                </div>
-              </div>
-              <div>
-                <p>Seguidores: {profileData.data.follower.length}</p>
-                <p>Siguiendo: {profileData.data.following.length}</p>
-              </div>
+              {profileData && (
+                <>
+                  <div className="timelineProfileUp">
+                    <div>
+                      <img className="prueba" src={profileData.data.image} alt="pers1" />
+                    </div>
+                    <div>
+                      <p>{profileData.data.firstName.toUpperCase()} {profileData.data.lastName.toUpperCase()}</p>
+                      <p>{profileData.data.email}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p>Seguidores: {profileData.data.follower.length}</p>
+                    <p>Siguiendo: {profileData.data.following.length}</p>
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>
+
 
         <div className='timelineLeftDown'>
           <div className="titleMyInformation">
@@ -259,46 +274,65 @@ export const Timeline = () => {
       </div>
 
       <div className={`timelineCenter ${modal === true ? "timelineCenter2" : ""}`} >
-        {postsData && postsData?.data?.slice().reverse().map((post, index) => (
-          <div key={index} className='timelineCardDesign'>
-            {index === 0 ? <div className="titlePostTimeline">TIME-LINE</div> : null}
-            <div className="bodyCardTimeline">
-              <div className="bodyTimeline" onClick={() => handlePost(post._id)}>
-                <img className="imagePost" src={post.image} alt={`${post._id}`} />
-                <p>{post.title.toUpperCase()}</p>
-                <p>{post.description}</p>
-              </div>
-              <div className="likesTimeline">
-                <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-                <CustomLike title={`COMMENTS: ${post.comments.length}`} />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+        {!postsData ? (
+          <div className='timelineTest'>
 
+            <p>TIME-LINE</p>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        ) : (
+          <div>
+            {postsData && postsData?.data?.slice().reverse().map((post, index) => (
+              <div key={index} className='timelineCardDesign'>
+                {index === 0 ? <div className="titlePostTimeline">TIME-LINE</div> : null}
+                <div className="bodyCardTimeline">
+                  <div className="bodyTimeline" onClick={() => handlePost(post._id)}>
+                    <img className="imagePost" src={post.image} alt={`${post._id}`} />
+                    <p>{post.title.toUpperCase()}</p>
+                    <p>{post.description}</p>
+                  </div>
+                  <div className="likesTimeline">
+                    <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
+                    <CustomLike title={`COMMENTS: ${post.comments.length}`} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <div className={`timelineRight ${modal === true ? "timelineRight2" : ""}`} >
         <div className="timelineRightBodyUp">
           <div className="timelineRightTitleUp">
             FOLLOWERS
           </div>
-          {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
-            <div className="searchUsers2">
-              {profileData.data.follower.map((user, index) => {
-                return (
-                  <div className="userSearched1" key={`follower_${index}_${user._id}`}>
-                    <div className="test12">
-                      <img className="test22" src={user.image} alt={`${user.firstName}`}/>
-                    </div>
-                    <div className="test32"  onClick={() => manageDetail(user._id)} >
-                      <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           ) : (
-            <div className="searchUsers">No hay usuarios</div>
+            <>
+              {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
+                <div className="searchUsers2">
+                  {profileData.data.follower.map((user, index) => {
+                    return (
+                      <div className="userSearched1" key={`follower_${index}_${user._id}`}>
+                        <div className="test12">
+                          <img className="test22" src={user.image} alt={`${user.firstName}`} />
+                        </div>
+                        <div className="test32" onClick={() => manageDetail(user._id)} >
+                          <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="searchUsers">No hay usuarios</div>
+              )}
+            </>
           )}
         </div>
 
@@ -306,26 +340,34 @@ export const Timeline = () => {
           <div className="timelineRightTitleUp">
             FOLLOWING
           </div>
-          {profileData?.success && profileData?.data?.following?.length >= 0 ? (
-            <div className="searchUsers3">
-              {profileData.data.following.map((user, index) => {
-                return (
-                  <div className="userSearched3" key={`follow_${index}_${user._id}`} onClick={() => manageDetail(user._id)}>
-                    <div className="test12">
-                      <img className="test22" src={user.image} alt={`${user.firstName}`} />
-                    </div>
-                    <div className="test32">
-                      <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
-                    </div>
-                    <div className="test4" onClick={() => handleFollow(user._id)}>
-                        <p>UNFOLLOW USER</p>
-                      </div>
-                  </div>
-                );
-              })}
-            </div>
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           ) : (
-            <div className="searchUsers">No hay usuarios</div>
+            <>
+              {profileData?.success && profileData?.data?.following?.length >= 0 ? (
+                <div className="searchUsers3">
+                  {profileData.data.following.map((user, index) => {
+                    return (
+                      <div className="userSearched3" key={`follow_${index}_${user._id}`}>
+                        <div className="test12">
+                          <img className="test22" src={user.image} alt={`${user.firstName}`} />
+                        </div>
+                        <div className="test32"  onClick={() => manageDetail(user._id)}>
+                          <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                        </div>
+                        <div className="test4" onClick={() => handleFollow(user._id)}>
+                          <p>UNFOLLOW USER</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="searchUsers">No hay usuarios</div>
+              )}
+            </>
           )}
         </div>
       </div>

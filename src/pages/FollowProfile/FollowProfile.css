@@ -1,5 +1,6 @@
 .profileDesign {
     height: auto;
+    min-height: 100vh;
     width: 98.5vw;
 
     display: flex;

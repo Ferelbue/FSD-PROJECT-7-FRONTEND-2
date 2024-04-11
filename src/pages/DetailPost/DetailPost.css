@@ -1,17 +1,17 @@
-.timelineDesign {
-    height: 100%;
-    width: 98.5vw;
+.detailPostDesign {
+    height: 100vh;
+    width: 95vw;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: start;
-
     background-color: white;
+    
 }
 
 .timelineCardDesign2 {
-    height: 91vh;
+    height: 92vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;

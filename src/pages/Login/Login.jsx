@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../../app/slices/userSlice";
 import { CustomRegister } from "../../common/CustomRegister/CustomRegister";
+import { updateName } from "../../app/slices/nameSlice";
 
 
 export const Login = () => {
@@ -47,9 +48,9 @@ export const Login = () => {
   const logMe = async () => {
 
     const fetched = await loginMe(credenciales);
-
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
+      console.log(decodificado)
 
       const passport = {
         token: fetched.token,
@@ -57,6 +58,7 @@ export const Login = () => {
       };
 
       dispatch(login({ credentials: passport }));
+      dispatch(updateName({ name: decodificado.userName }))
 
       navigate("/timeline")
 

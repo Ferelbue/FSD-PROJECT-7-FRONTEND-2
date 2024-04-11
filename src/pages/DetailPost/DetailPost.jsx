@@ -1,12 +1,11 @@
 
 import { useState, useEffect } from "react";
 import './DetailPost.css';
-import { createNewPost, getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
+import { createNewPost, followUser, getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
-import { updateDetail } from "../../app/slices/postSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
@@ -14,6 +13,7 @@ import { detailData } from "../../app/slices/postSlice";
 import { NewPost } from "../../common/NewPost/NewPost";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
+import { updateFollow } from "../../app/slices/followSlice";
 
 
 export const DetailPost = () => {
@@ -28,6 +28,7 @@ export const DetailPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [criteria, setCriteria] = useState("")
+  const [followUserData, setFollowUser] = useState();
   const [usersFetched, setUsersFetched] = useState();
   const [writeModal, setWriteModal] = useState("disabled");
   const [postUpdated, setPost] = useState({
@@ -108,7 +109,7 @@ export const DetailPost = () => {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [followUserData]);
 
   useEffect(() => {
     const searching = setTimeout(() => {
@@ -168,10 +169,34 @@ export const DetailPost = () => {
     }
   };
 
+  const manageDetail = async (userRdx) => {
+    try {
+      console.log(userRdx._id, "esto")
+      dispatch(updateFollow({ follow: userRdx._id }))
+
+      navigate("/followprofile")
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const handleFollow = async (userId) => {
+    try {
+      console.log(userId)
+      const fetched = await followUser(userId, rdxUser.credentials.token);
+      setFollowUser(fetched)
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return (
-    <div className='timelineDesign'>
+    <div className='detailPostDesign'>
       <div className='timelineLeft'>
         <div className='timelineLeftUp'>
+          <div className="timelineRightTitleUp">
+            MY INFORMATION
+          </div>
           {profileData && (
             <>
               <div className="timelineProfileUp">
@@ -206,15 +231,15 @@ export const DetailPost = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user) => {
                   return (
-                    <div className="userSearched" key={user._id} onClick={() => manageDetail(user)}>
+                    <div className="userSearched" key={user._id}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
                       <div className="test3">
                         <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
                       </div>
-                      <div className="test4">
-                        <p>FRIEND REQUEST</p>
+                      <div className="test4" onClick={() => handleFollow(user._id)}>
+                        <p>FOLLOW USER</p>
                       </div>
                     </div>
                   );
@@ -229,7 +254,11 @@ export const DetailPost = () => {
 
       <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
         <div className='timelineCardDesign2'>
+          <div className="titleDetailPost">
+            DETAIL POST
+          </div>
           <div className="bodyTimeline">
+
             {
               postsData?.data?.map((post) => {
                 if (post._id === rdxDetail.detail) {
@@ -274,7 +303,7 @@ export const DetailPost = () => {
                     <div className="test12">
                       <img className="test22" src={user.image} alt={`${user.firstName}`} />
                     </div>
-                    <div className="test32">
+                    <div className="test32" onClick={() => manageDetail(user._id)}>
                       <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
                     </div>
                   </div>
@@ -294,12 +323,15 @@ export const DetailPost = () => {
             <div className="searchUsers3">
               {profileData.data.following.map((follow, index) => {
                 return (
-                  <div className="userSearched3" key={`follow_${index}_${follow._id}`} onClick={() => manageDetail(follow)}>
+                  <div className="userSearched3" key={`follow_${index}_${follow._id}`}>
                     <div className="test12">
                       <img className="test22" src={follow.image} alt={`${follow.firstName}`} />
                     </div>
-                    <div className="test32">
+                    <div className="test32"  onClick={() => manageDetail(follow)}>
                       <p>{follow.firstName.toUpperCase()}&nbsp;{follow.lastName.toUpperCase()}</p>
+                    </div>
+                    <div className="test4" onClick={() => handleFollow(follow._id)}>
+                      <p>UNFOLLOW USER</p>
                     </div>
                   </div>
                 );
