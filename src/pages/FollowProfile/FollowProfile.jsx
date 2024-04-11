@@ -87,14 +87,10 @@ export const FollowProfile = () => {
     setNameCriteria(e.target.value.toLowerCase())
   }
 
-
-  const handlePostClick = (index) => {
-
+  const handlePostClick = (index, ) => {
       centerRef.current.children[index].scrollIntoView({ behavior: 'smooth' });
     }
   
-
-
   return (
     <div className={`profileDesign`} >
       <div className='timelineLeft'>
@@ -185,11 +181,9 @@ export const FollowProfile = () => {
         </div>
         <div className="profileRightDown">
           {postsData && postsData?.data?.map((post, index) => (
-
             <div className="placePictureEven" key={post._id}>
               <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
             </div>
-
           ))
           }
         </div>
@@ -201,71 +195,6 @@ export const FollowProfile = () => {
         alt={"asd"}
         onClick={() => handleModal()}
       />
-      {modal &&
-        <div className="modalProfileDesign">
-          <div className="modalProfileCardDesign">
-            <div className="profileModalTitle">
-              NEW POST
-            </div>
-            <div className="profileModalBody">
-              <div className="imageModal">
-
-                <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"image"}
-                  disabled={writeModal}
-                  value={postUpdated.image}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-
-                />
-                <div className="error">{userError.imageError}</div>
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"title"}
-                  disabled={writeModal}
-                  value={postUpdated.title}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-
-                />
-                <div className="error">{userError.imageError}</div>
-              </div>
-              <div>
-                <CustomTextArea
-                  className={`inputDescriptionPostDesign`}
-                  type={"textarea"}
-                  placeholder={""}
-                  name={"description"}
-                  disabled={writeModal}
-                  value={postUpdated.description}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-                />
-                <div className="error">{userError.imageError}</div>
-                <div className="modalButtons">
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"SEND"}
-                    functionEmit={() => createPost()}
-                  />
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"BACK"}
-                    functionEmit={() => handleBack()}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import "./Header.css";
 import { useSelector, useDispatch } from "react-redux";
 import { userData, logout } from "../../app/slices/userSlice";
+import { updateName} from "../../app/slices/nameSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { useEffect, useState } from "react";
 import { CustomLink } from "../CustomLink/CustomLink";
@@ -12,17 +13,11 @@ import { updateFollow } from "../../app/slices/followSlice";
 export const Header = () => {
   //Instancia de conexion a modo lectura
   const rdxUser = useSelector(userData);
-
+  const rdxName = useSelector(updateName);
+  
+  console.log(rdxName,"asdasdasdsad")
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
-
-  window.addEventListener("beforeunload", () => {
-    
-      { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-      navigate("/login")
-    
-  });
-
 
   return (
     <>
@@ -34,7 +29,7 @@ export const Header = () => {
             </div>
             <div className="menuHeader">
               <CustomLink title="HOME" destination="/timeline" />
-              <CustomLink title={`${rdxUser?.credentials?.user?.userName.toUpperCase()} PROFILE`} destination="/profile" />
+              <CustomLink title={`${rdxName.payload.name.name.toUpperCase()} PROFILE`} destination="/profile" />
             </div>
             <div className="rightHeader">
               <div className="out-design" onClick={() => dispatch(logout({ credentials: "" }), updateDetail({ detail: "" }), updateFollow({ follow: "" }))}>

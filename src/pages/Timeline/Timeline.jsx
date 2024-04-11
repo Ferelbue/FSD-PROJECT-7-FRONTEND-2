@@ -89,10 +89,6 @@ export const Timeline = () => {
       try {
         const data = await getUserProfile(rdxUser.credentials.token);
 
-        if (data === "JWT NOT VALID OR MALFORMED") {
-          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-          navigate("/login")
-        }
         setProfileData(data);
 
 
@@ -123,10 +119,7 @@ export const Timeline = () => {
       await updatePost(postId, rdxUser.credentials.token);
 
       const updatedPostsData = await getPosts(rdxUser.credentials.token);
-      if (updatedPostsData === "JWT NOT VALID OR MALFORMED") {
-        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-        navigate("/login")
-      }
+
       setPostsData(updatedPostsData);
     } catch (error) {
       setError(error);

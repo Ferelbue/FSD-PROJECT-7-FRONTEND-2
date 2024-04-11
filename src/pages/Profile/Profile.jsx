@@ -13,6 +13,7 @@ import { updateDetail } from "../../app/slices/postSlice";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { NewPost } from "../../common/NewPost/NewPost";
+import { updateName } from "../../app/slices/nameSlice";
 
 
 export const Profile = () => {
@@ -83,10 +84,6 @@ export const Profile = () => {
       try {
         const fetched = await getUserProfile(rdxUser.credentials.token);
 
-        if (fetched === "JWT NOT VALID OR MALFORMED") {
-          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-          navigate("/login")
-        }
 
         setTimeout(() => {
           setLoadedData(true);
@@ -112,10 +109,7 @@ export const Profile = () => {
     const fetchUserPosts = async () => {
       try {
         const data = await getUserPosts(rdxUser.credentials.token);
-        if (data === "JWT NOT VALID OR MALFORMED") {
-          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-          navigate("/login")
-        }
+
         setPostsData(data);
       } catch (error) {
         setError(error);
@@ -137,20 +131,13 @@ export const Profile = () => {
     console.log("1")
     try {
       const fetched = await updateProfile(rdxUser.credentials.token, user)
-
-      if (fetched === "JWT NOT VALID OR MALFORMED") {
-        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-        navigate("/login")
-      }
-
       setUser({
         email: fetched.data.email,
         firstName: fetched.data.firstName,
         image: fetched.data.image,
         lastName: fetched.data.lastName,
       })
-      console.log("2")
-
+      dispatch(updateName({ name: user.firstName }))
       setWrite("disabled")
 
     } catch (error) {
@@ -165,10 +152,7 @@ export const Profile = () => {
       console.log("HOLA")
 
       const data = await getUserPosts(rdxUser.credentials.token);
-      if (data === "JWT NOT VALID OR MALFORMED") {
-        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-        navigate("/login")
-      }
+
       setPostsData(data);
 
     } catch (error) {
@@ -200,12 +184,7 @@ export const Profile = () => {
     try {
       console.log(postId, "asd")
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
-
-      if (fetched === "JWT NOT VALID OR MALFORMED") {
-        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-        navigate("/login")
-      }
-
+      
       setPost({
         description: fetched.data.description,
         image: fetched.data.image,

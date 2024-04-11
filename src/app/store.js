@@ -9,12 +9,14 @@ import userSlice from "./slices/userSlice";
 import searchSlice from "./slices/searchSlice";
 import detailSlice from "./slices/postSlice";
 import followSlice from "./slices/followSlice";
+import nameSlice from "./slices/nameSlice";
 
 const reducers = combineReducers({
   user: userSlice,
   search: searchSlice,
   detail: detailSlice,
   follow: followSlice,
+  name: nameSlice,
 });
 
 const persistConfig = {
