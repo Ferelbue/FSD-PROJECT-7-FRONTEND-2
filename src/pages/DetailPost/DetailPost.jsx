@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import './DetailPost.css';
-import { getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
+import { createNewPost, getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
 import { detailData } from "../../app/slices/postSlice";
+import { NewPost } from "../../common/NewPost/NewPost";
+import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 
 
 export const DetailPost = () => {
@@ -18,7 +21,7 @@ export const DetailPost = () => {
   const [followersData, setFollowersData] = useState();
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
-
+  const [modal, setModal] = useState(false);
   const rdxUser = useSelector(userData);
   const rdxDetail = useSelector(detailData);
   const searchRdx = useSelector(searchData);
@@ -26,7 +29,19 @@ export const DetailPost = () => {
   const navigate = useNavigate();
   const [criteria, setCriteria] = useState("")
   const [usersFetched, setUsersFetched] = useState();
+  const [writeModal, setWriteModal] = useState("disabled");
+  const [postUpdated, setPost] = useState({
+    description: "",
+    image: "",
+    title: "",
+  });
 
+  const inputHandlerPost = (e) => {
+    setPost((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   useEffect(() => {
     const bringUsers = async () => {
@@ -107,6 +122,24 @@ export const DetailPost = () => {
     setCriteria(e.target.value)
   }
 
+  const handleModal = async () => {
+    try {
+      setModal(true)
+      setWriteModal("")
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const handleBack = async () => {
+    try {
+      setModal(false)
+      setWriteModal("disable")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
   const handleLike = async (postId) => {
     try {
 
@@ -114,6 +147,22 @@ export const DetailPost = () => {
 
       const updatedPostsData = await getPosts(rdxUser.credentials.token);
       setPostsData(updatedPostsData);
+    } catch (error) {
+      setError(error);
+    }
+  };
+  const createPost = async () => {
+    try {
+      const fetched = await createNewPost(rdxUser.credentials.token, postUpdated)
+      setPost({
+        description: "",
+        image: "",
+        title: "",
+      });
+      setModal(false)
+      setWriteModal("disable")
+      navigate("/profile")
+
     } catch (error) {
       setError(error);
     }
@@ -178,7 +227,7 @@ export const DetailPost = () => {
         </div>
       </div>
 
-      <div className='timelineCenter'>
+      <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
         <div className='timelineCardDesign2'>
           <div className="bodyTimeline">
             {
@@ -212,24 +261,45 @@ export const DetailPost = () => {
         </div>
       </div>
 
-      <div className='timelineRight2'>
-        <div className="timelineRightUp">
-          MY FOLLOWERS
-        </div>
-        <div className="timelineRightDown">
-          {followersData?.success && followersData?.data?.length > 0 ? (
+      <div className={`timelineRight ${modal === true ? "timelineRight2" : ""}`} >
+        <div className="timelineRightBodyUp">
+          <div className="timelineRightTitleUp">
+            FOLLOWERS
+          </div>
+          {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
             <div className="searchUsers2">
-              {followersData.data.map((user) => {
+              {profileData.data.follower.map((user, index) => {
                 return (
-                  <div className="userSearched2" key={user._id} onClick={() => manageDetail(user)}>
+                  <div className="userSearched1" key={`follower_${index}_${user._id}`} onClick={() => manageDetail(user)}>
                     <div className="test12">
                       <img className="test22" src={user.image} alt={`${user.firstName}`} />
                     </div>
                     <div className="test32">
                       <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
                     </div>
-                    <div className="test4">
-                      <p>FRIEND REQUEST</p>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="searchUsers">No hay usuarios</div>
+          )}
+        </div>
+
+        <div className="timelineRightBodyDown">
+          <div className="timelineRightTitleUp">
+            FOLLOWING
+          </div>
+          {profileData?.success && profileData?.data?.following?.length >= 0 ? (
+            <div className="searchUsers3">
+              {profileData.data.following.map((follow, index) => {
+                return (
+                  <div className="userSearched3" key={`follow_${index}_${follow._id}`} onClick={() => manageDetail(follow)}>
+                    <div className="test12">
+                      <img className="test22" src={follow.image} alt={`${follow.firstName}`} />
+                    </div>
+                    <div className="test32">
+                      <p>{follow.firstName.toUpperCase()}&nbsp;{follow.lastName.toUpperCase()}</p>
                     </div>
                   </div>
                 );
@@ -240,6 +310,77 @@ export const DetailPost = () => {
           )}
         </div>
       </div>
+      <NewPost
+        className={`test1234`}
+        src={"../../public/newPost.png"}
+        alt={"asd"}
+        onClick={() => handleModal()}
+      />
+      {modal &&
+        <div className="modalDesign">
+          <div className="modalCardDesign">
+            <div className="profileModalTitle">
+              NEW POST
+            </div>
+            <div className="profileModalBody">
+              <div className="imageModal">
+                <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
+              </div>
+              <div>
+
+                <CustomInput
+                  className={`inputTitlePostDesign`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"image"}
+                  disabled={writeModal}
+                  value={postUpdated.image}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+
+                />
+
+              </div>
+              <div>
+                <CustomInput
+                  className={`inputTitlePostDesign`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"title"}
+                  disabled={writeModal}
+                  value={postUpdated.title}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+
+                />
+
+              </div>
+              <div>
+                <CustomTextArea
+                  className={`inputDescriptionPostDesign`}
+                  type={"textarea"}
+                  placeholder={""}
+                  name={"description"}
+                  disabled={writeModal}
+                  value={postUpdated.description}
+                  onChangeFunction={(e) => inputHandlerPost(e)}
+                />
+
+                <div className="modalButtons">
+                  <CustomButton
+                    className={"customButtonDesign"}
+                    title={"SEND"}
+                    functionEmit={() => createPost()}
+                  />
+                  <CustomButton
+                    className={"customButtonDesign"}
+                    title={"BACK"}
+                    functionEmit={() => handleBack()}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
     </div>
   );
 };

@@ -448,16 +448,16 @@ export const Profile = () => {
         </div>
         <div className="profileRightDown">
           {postsData && postsData?.data?.reverse().map((post, index) => (
-            ((index) % 2 === 0) ? (
-              <div className="placePictureOdd" key={post._id} >
-                <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
-              </div>
-            )
-              : (
+            // ((index) % 2 === 0) ? (
+            //   <div className="placePictureOdd" key={post._id} >
+            //     <img className="pictureOdd" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
+            //   </div>
+            // )
+            //   : (
                 <div className="placePictureEven" key={post._id}>
                   <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
                 </div>
-              )
+              // )
           ))
           }
         </div>

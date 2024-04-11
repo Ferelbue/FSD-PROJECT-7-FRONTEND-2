@@ -15,7 +15,9 @@ export const Header = () => {
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
 
-
+  // window.addEventListener("beforeunload", () => {
+  //   dispatch(logout({ credentials: "" }))
+  // });
 
 
   return (

@@ -101,7 +101,7 @@ export const Timeline = () => {
     };
 
     fetchUserProfile();
-  }, [profileData]);
+  }, [profileData, followUserData]);
 
   useEffect(() => {
     const searching = setTimeout(() => {
@@ -164,11 +164,9 @@ export const Timeline = () => {
 
   const handleFollow = async (userId) => {
     try {
-      // setFollowUser(userId,"esto es")
 
-      console.log(userId)
       const fetched = await followUser(userId, rdxUser.credentials.token);
-      console.log(fetched)
+       setFollowUser(fetched)
     } catch (error) {
       setError(error);
     }
@@ -308,13 +306,16 @@ export const Timeline = () => {
             <div className="searchUsers3">
               {profileData.data.following.map((follow, index) => {
                 return (
-                  <div className="userSearched3" key={`follow_${index}_${follow._id}`} onClick={() => manageDetail(follow)}>
+                  <div className="userSearched3" key={`follow_${index}_${follow._id}`} >
                     <div className="test12">
-                      <img className="test22" src={follow.image} alt={`${follow.firstName}`} />
+                      <img className="test22" src={follow.image} alt={`${follow.firstName}`} onClick={() => manageDetail(follow)} />
                     </div>
                     <div className="test32">
                       <p>{follow.firstName.toUpperCase()}&nbsp;{follow.lastName.toUpperCase()}</p>
                     </div>
+                    <div className="test4" onClick={() => handleFollow(follow._id)}>
+                        <p>UNFOLLOW USER</p>
+                      </div>
                   </div>
                 );
               })}
