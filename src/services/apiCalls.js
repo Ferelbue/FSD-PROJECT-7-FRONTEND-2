@@ -159,7 +159,7 @@ export const deletePost = async (postId, token) => {
         "Authorization": `Bearer ${token}`
       },
     });
-    
+
     if (!response.ok) {
       throw new Error('No se pudo eliminar el post');
     }
@@ -170,7 +170,7 @@ export const deletePost = async (postId, token) => {
   }
 };
 
-export const getUsers = async (token,criteria) => {
+export const getUsers = async (token, criteria, pag, limit) => {
 
   const options = {
     method: "GET",
@@ -181,7 +181,7 @@ export const getUsers = async (token,criteria) => {
   };
 
   try {
-    const response = await fetch(`${root}users?firstName=${criteria}`, options);
+    const response = await fetch(`${root}users?firstName=${criteria}&page=${pag}&limit=${limit}`, options);
 
     const data = await response.json();
     if (!response.ok) {
@@ -246,9 +246,9 @@ export const updateProfile = async (token, data) => {
 };
 
 export const updateUserPosts = async (token, postId, data) => {
-  console.log(token,"token")
+  console.log(token, "token")
   console.log(postId, "post")
-  console.log(data,"data")
+  console.log(data, "data")
   const options = {
     method: "PUT",
     headers: {
@@ -274,8 +274,8 @@ export const updateUserPosts = async (token, postId, data) => {
 };
 
 export const createNewPost = async (token, data) => {
-  console.log(token,"token")
-  console.log(data,"data")
+  console.log(token, "token")
+  console.log(data, "data")
 
   const options = {
     method: "POST",
@@ -377,7 +377,7 @@ export const getUserProfileById = async (token, userId) => {
   }
 };
 
-export const deleteUserById = async (token,userId) => {
+export const deleteUserById = async (token, userId) => {
   try {
     const response = await fetch(`${root}users/${userId}`, {
       method: 'DELETE',
