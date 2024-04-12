@@ -65,6 +65,19 @@ export const Login = () => {
     }
   };
 
+  useEffect(() => {
+
+    if (rdxUser.credentials !== "") {
+
+
+        navigate("/timeline")
+
+
+
+    }
+
+  }, []);
+
   return (
     <>
       <div className="loginDesign">

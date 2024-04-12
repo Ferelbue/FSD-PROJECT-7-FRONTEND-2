@@ -8,16 +8,23 @@ import { CustomLink } from "../CustomLink/CustomLink";
 import { CustomInput } from "../CustomInput/CustomInput";
 import { updateDetail } from "../../app/slices/postSlice";
 import { updateFollow } from "../../app/slices/followSlice";
+import { useNavigate } from "react-router-dom"
 
 
 export const Header = () => {
-  //Instancia de conexion a modo lectura
+
   const rdxUser = useSelector(userData);
   const rdxName = useSelector(updateName);
-
-  console.log(rdxName, "asdasdasdsad")
-  //Instancia de conexion a modo escritura
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+      dispatch(logout({ credentials: "" }));
+      navigate("/")
+  };
+
+
+
 
   return (
     <>
@@ -32,12 +39,7 @@ export const Header = () => {
               <CustomLink title={`${rdxName.payload.name.name.toUpperCase()} PROFILE`} destination="/profile" />
             </div>
             <div className="rightHeader">
-              <div className="out-design" onClick={() => {
-                dispatch(logout({ credentials: "" }));
-                dispatch(updateDetail({ detail: "" }));
-                dispatch(updateFollow({ follow: "" }));
-                dispatch(updateName({ name: "" }));
-              }}>
+              <div className="out-design" onClick={() => handleLogout()} >
                 log out
               </div>
             </div>

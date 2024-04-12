@@ -1,5 +1,5 @@
 
-// const root = "https://fsd-project-5-backend-2-dev-jmsx.1.us-1.fl0.io/api/";
+// const root = "https://fsd-project-5-backend-2.onrender.com/api/";
 const root = "http://localhost:4000/api/";
 
 export const loginMe = async (credenciales) => {

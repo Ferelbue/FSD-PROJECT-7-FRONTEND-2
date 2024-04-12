@@ -8,6 +8,7 @@ import { userData, logout } from "../../app/slices/userSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { updateDetail } from "../../app/slices/postSlice";
 import { updateFollow } from "../../app/slices/followSlice";
+import { updateName } from "../../app/slices/nameSlice";
 import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { searchData } from "../../app/slices/searchSlice";
@@ -63,6 +64,10 @@ export const Timeline = () => {
 
   useEffect(() => {
     if (rdxUser.credentials === "") {
+      dispatch(logout({ credentials: "" }));
+      dispatch(updateDetail({ detail: "" }));
+      dispatch(updateFollow({ follow: "" }));
+      dispatch(updateName({ name: "" }));
       navigate("/login");
     }
   }, [rdxUser]);
@@ -71,10 +76,7 @@ export const Timeline = () => {
     const fetchPosts = async () => {
       try {
         const data = await getPosts(rdxUser.credentials.token);
-        if (data === "JWT NOT VALID OR MALFORMED") {
-          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-          navigate("/login")
-        }
+
         setTimeout(() => {
 
           setPostsData(data);
