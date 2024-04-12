@@ -1,10 +1,141 @@
 .adminUsersDesign {
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    width: 99vw;
     background-color: rgb(240, 171, 171);
     z-index: 9;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: start;
+    margin-top:5vh;
+
+}
+.filtersAdmin{
+    height: 50vh;
+    width: 25vw;
+    background-color: rgb(155, 70, 152);
+    margin-top: 5em;
+    margin-right: 1.5em;
+
+}
+.searchAdminUsers{
+    height: auto;
+    width: 70vw;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    
+}
+.firstAdminRow{
+    width: 70vw;
+    border-width: 0.05em;
+    border-bottom-width: 0.05em;
+    border-top: 0.05em;
+    background-color: rgb(111, 163, 202);
+    border: solid;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    
+}
+.userAdminSearched{
+    width: 70vw;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: azure;
+    border: solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    
+}
+.usersAdminIndex{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.image{
+    height: 5vh;
+}
+.usersAdminImage{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminName{
+    height: 8vh;
+    width: 13vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminLast{
+    height: 8vh;
+    width: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminEmail{
+    height: 8vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminRole{
+    height: 8vh;
+    width: 7vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminDelete{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.image:hover{
+    height: 6vh;
 }

@@ -44,7 +44,7 @@ export const Header = () => {
           </div>
         </>
       ) : (
-        (rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName === "admin") ? (
+        (rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName !== "admin") ? (
           <>
             <div className="headerDesign">
               <div className="logoHeader">

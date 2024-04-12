@@ -376,3 +376,22 @@ export const getUserProfileById = async (token, userId) => {
     return error.message;
   }
 };
+
+export const deleteUserById = async (token,userId) => {
+  try {
+    const response = await fetch(`${root}users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    if (!response.ok) {
+      throw new Error('No se pudo eliminar el post');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al actualizar el post:', error);
+    throw error;
+  }
+};
