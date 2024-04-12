@@ -23,7 +23,21 @@ export const AdminUsers = () => {
   const [criteria, setCriteria] = useState("")
   const [pag, setPag] = useState(1)
   const [limit, setLimit] = useState(10)
+  const [numberUsers, setNumberUsers] = useState()
 
+
+  useEffect(() => {
+    const bringUsers = async () => {
+      try {
+        const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "");
+        setNumberUsers(usersData.data.length)
+        console.log(numberUsers)
+      } catch (error) {
+        setError(error);
+      }
+    };
+    bringUsers();
+  }, []);
 
   useEffect(() => {
     const bringUsers = async () => {
@@ -32,6 +46,7 @@ export const AdminUsers = () => {
         const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, pag, limit);
         setUsersFetched(usersData);
         setUserDelete(false)
+
       } catch (error) {
         setError(error);
       }
@@ -74,8 +89,10 @@ export const AdminUsers = () => {
     <>
       <div className="adminUsersDesign">
         <div className="filtersAdmin">
-          FILTROS
           <div className="inputHeader">
+            <div className="pagText">
+              FILTER BY NAME
+            </div>
             <CustomInput
               className={`inputSearch`}
               type="text"
@@ -83,22 +100,27 @@ export const AdminUsers = () => {
               value={criteria || ""}
               onChangeFunction={(e) => searchHandler(e)}
             />
-            <CustomNumber
-              className={`pagSearch`}
-              type="number"
-              placeholder="Number of user showed..."
-              value={pag || ""}
-              min="0"
-              defaultValue="1"
-              onChangeFunction={(e) => searchHandler2(e)}
+            <div className="pagText">
+              FILTER BY EMAIL
+            </div>
+            <CustomInput
+              className={`inputSearch`}
+              type="text"
+              placeholder="search a user...."
+              value={criteria || ""}
+              onChangeFunction={(e) => searchHandler(e)}
             />
+            <div className="pagText">
+              Nº USERS DISPLAYED
+            </div>
             <CustomNumber
-              className={`limitSearch`}
+              className={`limitSearch inputAdmin`}
               type="number"
               placeholder=""
               name="user"
               value={limit || ""}
-              min="0"
+              min="1"
+              max={(Math.ceil((numberUsers/ pag)))}
               defaultValue="10"
               onChangeFunction={(e) => searchHandler3(e)}
             />
@@ -158,6 +180,19 @@ export const AdminUsers = () => {
                 </div>
               );
             })}
+            <CustomNumber
+              className={`pagSearch`}
+              type="number"
+              placeholder="Number of user showed..."
+              value={pag || ""}
+              min="1"
+              max={Math.ceil((numberUsers/ limit))}
+              defaultValue="1"
+              onChangeFunction={(e) => searchHandler2(e)}
+            />
+            <div className="pagText">
+              PAG
+            </div>
           </div>
         ) : (
           <div className="searchAdminUsers">

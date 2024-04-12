@@ -1,6 +1,6 @@
 import "./CustomNumber.css";
 
-export const CustomNumber = ({ className, type, placeholder, name, disabled, value, min, defaultvalue, onChangeFunction, onBlurFunction }) => {
+export const CustomNumber = ({ className, type, placeholder, name, disabled, value, min, max, defaultvalue, onChangeFunction, onBlurFunction }) => {
 
     return (
         <input
@@ -11,6 +11,7 @@ export const CustomNumber = ({ className, type, placeholder, name, disabled, val
             disabled={disabled}
             value={value}
             min={min}
+            max={max}
             defaultValue={defaultvalue}
             onChange={onChangeFunction}
         />
