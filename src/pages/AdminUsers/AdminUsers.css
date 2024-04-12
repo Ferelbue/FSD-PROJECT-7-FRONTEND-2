@@ -1,0 +1,10 @@
+.adminUsersDesign {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(240, 171, 171);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

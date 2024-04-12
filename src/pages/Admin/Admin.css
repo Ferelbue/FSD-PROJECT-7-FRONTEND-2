@@ -1,0 +1,34 @@
+.adminDesign {
+    height: 100vh;
+    width: 100vw;
+    background-color: whitesmoke;
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.adminUsersCard {
+    height: 40vh;
+    width: 20vw;
+    background-color: rgb(225, 166, 166);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    cursor: pointer;
+}
+.adminPostsCard {
+    height: 40vh;
+    width: 20vw;
+    background-color: rgb(193, 199, 236);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    cursor: pointer;
+}

@@ -10,6 +10,9 @@ import { Timeline } from '../Timeline/Timeline';
 import { DetailPost } from '../DetailPost/DetailPost';
 import { PostNew } from '../PostNew/PostNew';
 import { FollowProfile } from '../FollowProfile/FollowProfile';
+import { Admin } from '../Admin/Admin';
+import { AdminUsers } from '../AdminUsers/AdminUsers';
+import { AdminPosts } from '../AdminPosts/AdminPosts';
 
 export const Body = () => {
 
@@ -26,6 +29,9 @@ export const Body = () => {
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/detailPost" element={<DetailPost />} />
             <Route path="/postNew" element={<PostNew />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/adminUsers" element={<AdminUsers />} />
+            <Route path="/adminPosts" element={<AdminPosts />} />
         </Routes>
     )
 }
