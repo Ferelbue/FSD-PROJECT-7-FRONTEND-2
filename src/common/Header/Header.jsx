@@ -19,16 +19,13 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-      dispatch(logout({ credentials: "" }));
-      navigate("/")
+    dispatch(logout({ credentials: "" }));
+    navigate("/")
   };
-
-
-
 
   return (
     <>
-      {rdxUser?.credentials?.token ? (
+      {(rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName === "user") ? (
         <>
           <div className="headerDesign">
             <div className="logoHeader">
@@ -36,9 +33,10 @@ export const Header = () => {
             </div>
             <div className="menuHeader">
               <CustomLink title="HOME" destination="/timeline" />
-              <CustomLink title={`${rdxName.payload.name.name.toUpperCase()} PROFILE`} destination="/profile" />
+              <CustomLink title={`${rdxName?.payload?.name?.name.toUpperCase()} PROFILE`} destination="/profile" />
             </div>
             <div className="rightHeader">
+              
               <div className="out-design" onClick={() => handleLogout()} >
                 log out
               </div>
@@ -46,13 +44,30 @@ export const Header = () => {
           </div>
         </>
       ) : (
-        <>
-          <div>
-
-          </div>
-
-
-        </>
+        (rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName === "admin") ? (
+          <>
+            <div className="headerDesign">
+              <div className="logoHeader">
+                LOGO
+              </div>
+              <div className="menuHeader">
+                <CustomLink title="HOME" destination="/timeline" />
+                <CustomLink title={`${rdxName?.payload?.name?.name.toUpperCase()} PROFILE`} destination="/profile" />
+              </div>
+              <div className="rightHeader">
+              <CustomLink title="ADMIN" destination="/admin" />
+                <div className="out-design" onClick={() => handleLogout()} >
+                  log out
+                </div>
+              </div>
+            </div>
+          </>
+        )
+          : (
+            <>
+              { }
+            </>
+          )
       )}
     </>
   );

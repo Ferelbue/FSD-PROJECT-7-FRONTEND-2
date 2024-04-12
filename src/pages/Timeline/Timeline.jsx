@@ -95,6 +95,10 @@ export const Timeline = () => {
       try {
         const data = await getUserProfile(rdxUser.credentials.token);
 
+        if (data === "JWT NOT VALID OR MALFORMED") {
+          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+          navigate("/")
+        }
         setProfileData(data);
 
 
@@ -217,23 +221,22 @@ export const Timeline = () => {
                 <>
                   <div className="timelineProfileUp">
                     <div>
-                      <img className="prueba" src={profileData.data.image} alt="pers1" />
+                      <img className="prueba" src={profileData?.data?.image} alt="pers1" />
                     </div>
                     <div>
-                      <p>{profileData.data.firstName.toUpperCase()} {profileData.data.lastName.toUpperCase()}</p>
-                      <p>{profileData.data.email}</p>
+                      <p>{profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}</p>
+                      <p>{profileData?.data?.email}</p>
                     </div>
                   </div>
                   <div>
-                    <p>Seguidores: {profileData.data.follower.length}</p>
-                    <p>Siguiendo: {profileData.data.following.length}</p>
+                    <p>Seguidores: {profileData?.data?.follower.length}</p>
+                    <p>Siguiendo: {profileData?.data?.following.length}</p>
                   </div>
                 </>
               )}
             </>
           )}
         </div>
-
 
         <div className='timelineLeftDown'>
           <div className="titleMyInformation">
