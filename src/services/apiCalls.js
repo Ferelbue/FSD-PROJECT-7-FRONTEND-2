@@ -106,7 +106,6 @@ export const getUserPosts = async (token) => {
 };
 
 export const getPosts = async (token, criteria, limit, pag) => {
-  console.log("hola", limit, pag)
   const options = {
     method: "GET",
     headers: {
@@ -122,6 +121,7 @@ export const getPosts = async (token, criteria, limit, pag) => {
       throw new Error(data.message);
     }
 
+    console.log(data)
     return data;
 
   } catch (error) {

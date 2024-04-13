@@ -16,7 +16,7 @@ import { NewPost } from "../../common/NewPost/NewPost";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import Spinner from 'react-bootstrap/Spinner';
-
+import dayjs from "dayjs";
 
 export const Timeline = () => {
   const [profileData, setProfileData] = useState();
@@ -76,7 +76,10 @@ export const Timeline = () => {
     const fetchPosts = async () => {
       try {
         const data = await getPosts(rdxUser.credentials.token, "", "", "");
-
+        if (data === "JWT NOT VALID OR MALFORMED") {
+          { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+          navigate("/")
+        }
         setTimeout(() => {
 
           setPostsData(data);
@@ -88,7 +91,7 @@ export const Timeline = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [postUpdated]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -130,7 +133,12 @@ export const Timeline = () => {
 
       const updatedPostsData = await getPosts(rdxUser.credentials.token, "", "", "");
 
+      if (data === "JWT NOT VALID OR MALFORMED") {
+        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+        navigate("/")
+      }
       setPostsData(updatedPostsData);
+
     } catch (error) {
       setError(error);
     }
@@ -303,15 +311,43 @@ export const Timeline = () => {
               <div key={index} className='timelineCardDesign'>
                 {index === 0 ? <div className="titlePostTimeline">TIME-LINE</div> : null}
                 <div className="bodyCardTimeline">
-                  <div className="bodyTimeline" onClick={() => handlePost(post._id)}>
-                    <img className="imagePost" src={post.image} alt={`${post._id}`} />
-                    <p>{post.title.toUpperCase()}</p>
-                    <p>{post.description}</p>
+
+                  <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
+                    <div className="bodyDate1Timeline">
+                      
+                    </div>
+                    <div className="bodyDate2Timeline">
+
+                      {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
+                    </div>
                   </div>
-                  <div className="likesTimeline">
-                    <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-                    <CustomLike title={`COMMENTS: ${post.comments.length}`} />
+
+                  <div className="bodyTitleTimeline" onClick={() => handlePost(post._id)}>
+                    {post.title.toUpperCase()}
                   </div>
+
+                  <div className="bodyImageTimeline" onClick={() => handlePost(post._id)}>
+                    <img className="image1Post" src={post.image} alt={`${post._id}`} />
+                  </div>
+
+                  <div className="bodyDescriptionTimeline" onClick={() => handlePost(post._id)}>
+                    {post.description}
+                  </div>
+
+                  <div className="bodyLikeTimeline">
+                    <div className="bodyLike1Timeline">
+
+                    </div>
+                    <div className="bodyLike2Timeline">
+                      <div className="bodyLike3Timeline">
+                      {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)}/>
+                      </div>
+                      <div className="bodyLike4Timeline">
+                      <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -350,6 +386,23 @@ export const Timeline = () => {
             </>
           )}
         </div>
+
+
+        {/* <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}> */}
+
+        {/* <p></p>
+                    
+
+                    <p></p> */}
+
+        {/* <div className="likesTimeline">
+                    <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
+                    <CustomLike title={`COMMENTS: ${post.comments.length}`} />
+                  </div> */}
+
+
+
+
 
         <div className="timelineRightBodyDown">
           <div className="timelineRightTitleUp">

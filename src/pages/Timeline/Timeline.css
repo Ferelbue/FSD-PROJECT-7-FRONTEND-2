@@ -9,14 +9,16 @@
 
     background-color: white;
 }
-.titlePostTimeline{
-    height:3vh;
+
+.titlePostTimeline {
+    height: 3vh;
     width: 20vw;
     margin-top: 0.5em;
     font-weight: bold;
-    color: rgb(61,88,139);
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    color: rgb(61, 88, 139);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .timelineCardDesign {
     height: 50vh;
     width: 50vw;
@@ -34,20 +36,17 @@
     margin: 0.5em;
     font-size: 1.2vw !important;
     overflow: hidden;
-    cursor: pointer;
 }
+
 .timelineTest {
     height: 92vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
-    border-style: solid;
-    border-color: black;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0.5em;
@@ -55,27 +54,112 @@
     overflow: hidden;
     cursor: pointer;
 }
-.bodyCardTimeline{
 
+.bodyCardTimeline {
+    height: 50vh;
+    width: 50vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .title {
     font-weight: bold;
 }
 
-.bodyTimeline {
-    width: 40vw;
-    height: 46.5vh;
+.bodyDateTimeline {
+    height: 2vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: small;
-    margin: 0.5em;
 }
 
+.bodyDate1Timeline {
+    width: 40vw;
+}
 
+.bodyDate2Timeline {
+    width: 10vw;
+    font-weight: bold;
+}
+
+.bodyTitleTimeline {
+    height: 4vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bodyTitle1Timeline {
+    width: 40vw;
+}
+
+.bodyTitle2Timeline {
+    width: 10vw;
+}
+.bodyLikeTimeline {
+    height: 3vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.bodyLike1Timeline {
+    height: 3vh;
+    width: 40vw;
+}
+
+.bodyLike2Timeline {
+    height: 3vh;
+    width: 11vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    font-weight: bold;
+}
+.bodyLike3Timeline {
+    height: 3vh;
+    width: 5vw;
+    border: solid;
+
+    border-right-width: 0.1em;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
+    cursor: pointer;
+}
+.bodyLike4Timeline {
+    height: 3vh;
+    width: 5vw;
+}
+.bodyImageTimeline {
+    height: 28vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+}
+.bodyDescriptionTimeline {
+    height: 8vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+}
 .likesTimeline {
     width: 10vw;
     color: black;
@@ -85,33 +169,36 @@
 .prueba {
     width: 15vw;
     height: 18vh;
-    box-shadow: 0px 0px 37px 0px rgba(0,0,0,0.36);
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
 }
+
 .timelineProfileDown2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
 }
+
 .timelineProfileDown3 {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.followersDiv{
+
+.followersDiv {
     width: 11vw;
     margin: 0.2em;
-    background-color: rgb(61,88,139);
+    background-color: rgb(61, 88, 139);
     color: white;
     border-radius: 0.5em;
 }
 
-.followingsDiv{
+.followingsDiv {
     width: 11vw;
     margin: 0.2em;
-    background-color: rgb(61,88,139);
+    background-color: rgb(61, 88, 139);
     color: white;
     border-radius: 0.5em;
 }
@@ -193,6 +280,7 @@
     margin-top: 0.7em;
 
 }
+
 .timelineProfileCenter {
     width: 23.5vw;
     height: 15vh;
@@ -227,6 +315,7 @@
     overflow: auto;
     overflow-x: hidden;
 }
+
 .searchUsers2::-webkit-scrollbar,
 .searchUsers3::-webkit-scrollbar {
     width: 0.5px;
@@ -249,6 +338,7 @@
     justify-content: start;
     align-items: center;
 }
+
 .userSearched3 {
 
     border-radius: 0.5em;
@@ -263,6 +353,7 @@
     justify-content: start;
     align-items: center;
 }
+
 .test1,
 .test12 {
     width: 4vw;
@@ -298,7 +389,8 @@
     justify-content: start;
     align-items: center;
 }
-.test32:hover{
+
+.test32:hover {
     text-decoration: underline;
 }
 
@@ -306,8 +398,8 @@
 .test42 {
     width: 7vw;
     height: 7vh;
-    color:rgb(111, 163, 202);
-    
+    color: rgb(111, 163, 202);
+
     overflow: hidden;
     display: flex;
     justify-content: start;
@@ -316,17 +408,19 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
 .titleDetailPost,
 .timelineRightTitleUp {
     height: 4vh;
     font-weight: bold;
-    color: rgb(61,88,139);
+    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .titleMyInformation {
     height: 4vh;
     font-weight: bold;
-    color: rgb(61,88,139);
+    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -366,9 +460,15 @@
     align-items: center;
 }
 
-.imagePost {
+.image1Post {
     width: 20vw;
-    height: 20vh;
+    height: 28vh;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
+    border-radius: 0.3em;
+}
+.image2Post {
+    width: 2vw;
+    height: 3vh;
 }
 
 .inputSearch {
