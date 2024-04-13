@@ -7,7 +7,7 @@ import { userData } from "../../app/slices/userSlice";
 import { validame } from "../../utils/functions";
 import { searchData } from "../../app/slices/searchSlice";
 import { userByData, updateUserBy } from "../../app/slices/userBySlice";
-import { deletePost, deleteUserById, getPosts, getUserProfileById, getUsers, updateProfile, updateUserById } from "../../services/apiCalls";
+import { deletePost, getPosts } from "../../services/apiCalls";
 import pot from "../../../public/pot.png"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { updateCriteria } from "../../app/slices/searchSlice";
@@ -32,34 +32,9 @@ export const AdminPosts = () => {
   const [write, setWrite] = useState("disabled");
   const [updateUser, setUpdateUser] = useState("");
 
-
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    role: ""
-  });
-
   const [userError, setUserError] = useState({
     roleError: "",
   });
-
-  const inputHandler = (e) => {
-    setUser((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const checkError = (e) => {
-    console.log(e.target.name, e.target.value)
-    const error = validame(e.target.name, e.target.value);
-
-    setUserError((prevState) => ({
-      ...prevState,
-      [e.target.name + "Error"]: error,
-
-    }));
-  };
 
   useEffect(() => {
     if (rdxUser.credentials === "") {
@@ -72,9 +47,9 @@ export const AdminPosts = () => {
   useEffect(() => {
     const bringUsers = async () => {
       try {
-        const postsData = await getPosts(rdxUser.credentials.token, searchRdx.criteria, "", "");
+        const postsData = await getPosts(rdxUser.credentials.token,"","");
+        console.log("asdasd")
         setNumberPosts(postsData.data.length)
-        console.log(postsData.data)
       } catch (error) {
         setError(error);
       }
@@ -84,20 +59,23 @@ export const AdminPosts = () => {
   }, []);
 
   useEffect(() => {
-    const bringUsers = async () => {
+    const bringPosts = async () => {
 
       try {
-        const postsData = await getPosts(rdxUser.credentials.token,limit,pag);
+        console.log(rdxUser.credentials.token,criteria, limit, pag)
+        const postsData = await getPosts(rdxUser.credentials.token, searchRdx.criteria, limit, pag);
         setPostsFetched(postsData);
         setUserDelete(false)
+        console.log(postsData)
 
       } catch (error) {
         setError(error);
       }
     };
 
-    bringUsers();
-  }, [searchRdx.criteria, pag, limit, userDelete]);
+    bringPosts();
+  }, [pag, limit, userDelete, criteria]);
+
 
   const handleDelete = async (postId) => {
     try {
@@ -108,6 +86,7 @@ export const AdminPosts = () => {
       setError(error);
     }
   };
+
 
   useEffect(() => {
     const searching = setTimeout(() => {
@@ -127,44 +106,16 @@ export const AdminPosts = () => {
   const searchHandler3 = (e) => {
     setLimit(e.target.value)
   }
-  const handleModify = async (userId) => {
-    try {
-      dispatch(updateUserBy({ userBy: userId }))
-      const fetched = await getUserProfileById(rdxUser.credentials.token, userId);
-      console.log(fetched)
-      setUser({
-        firstName: fetched.data.firstName,
-        lastName: fetched.data.lastName,
-        role: fetched.data.role,
-      });
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  const updateData = async () => {
 
-    try {
-      console.log(rdxBy)
-      const fetchedUpdated = await updateUserById(rdxUser.credentials.token, rdxBy.userBy, user)
-      setUpdateUser(fetchedUpdated)
-      setWrite("disabled")
-      setUser({
-        firstName: "",
-        lastName: "",
-        role: "",
-      });
-    } catch (error) {
-      console.log(error)
-    }
-  }
   return (
     <>
       <div className="adminUsersDesign">
         <div className="leftUsersAdmin">
           <div className="filtersAdmin">
             <div className="inputHeader">
+
               <div className="pagText">
-                FILTER BY NAME
+                FILTER BY TITLE
               </div>
               <CustomInput
                 className={`inputSearch`}
@@ -174,17 +125,7 @@ export const AdminPosts = () => {
                 onChangeFunction={(e) => searchHandler(e)}
               />
               <div className="pagText">
-                FILTER BY EMAIL
-              </div>
-              <CustomInput
-                className={`inputSearch`}
-                type="text"
-                placeholder="search a user...."
-                value={criteria || ""}
-                onChangeFunction={(e) => searchHandler(e)}
-              />
-              <div className="pagText">
-                Nº USERS DISPLAYED
+                Nº POSTS DISPLAYED
               </div>
               <CustomNumber
                 className={`limitSearch inputAdmin`}
@@ -201,7 +142,7 @@ export const AdminPosts = () => {
           </div>
           <div className="detailAdmin">
 
-            <div className="pagText">
+            {/* <div className="pagText">
               <div className="inputUserFormat">
                 <div>
                   <div className="inputUser">NAME:</div>
@@ -266,7 +207,7 @@ export const AdminPosts = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -276,38 +217,35 @@ export const AdminPosts = () => {
         {postsFetched?.success && postsFetched?.data?.length > 0 ? (
           <div className="searchAdminUsers">
             <div className="firstAdminRow">
-              <div className="usersAdminIndex">
+              <div className="usersAdminIndex2">
                 INDEX
               </div>
-              <div className="usersAdminImage">
+              <div className="usersAdminImage2">
                 IMAGE
               </div>
-              <div className="usersAdminName">
-                FIRST NAME
+              <div className="usersAdminName2">
+                USER
               </div>
-              <div className="usersAdminLast">
-                LAST NAME
+              <div className="usersAdminTitle">
+                TITLE
               </div>
-              <div className="usersAdminEmail">
-                EMAIL
+              <div className="usersAdminDescription2">
+                DESCRIPTION
               </div>
-              <div className="usersAdminRole">
-                ROLE
-              </div>
-              <div className="usersAdminDelete">
+              <div className="usersAdminDelete2">
                 DELETE
               </div>
             </div>
             {postsFetched.data.map((post, index) => {
               return (
                 <div className="userAdminSearched" key={post._id}>
-                  <div className="usersAdminIndex">
+                  <div className="usersAdminIndex2">
                     {index + 1}
                   </div>
-                  <div className="usersAdminImage">
+                  <div className="usersAdminImage2">
                     <img className="image" src={post.image} alt={`${post._id}`} onClick={() => handleModify(user._id)} />
                   </div>
-                  <div className="usersAdminName">
+                  <div className="usersAdminName2">
                     {post?.userId?.firstName}
                   </div>
                   <div className="usersAdminTitle">
@@ -316,8 +254,8 @@ export const AdminPosts = () => {
                   <div className="usersAdminDescription">
                     {post.description}
                   </div>
-                  <div className="usersAdminDelete" onClick={() => handleDelete(post._id)}>
-                    <img className="image2" src={pot} alt={`${user.firstName}`} />
+                  <div className="usersAdminDelete2" onClick={() => handleDelete(post._id)}>
+                    <img className="image2" src={pot} alt={`${post.firstName}`} />
                   </div>
                 </div>
               );

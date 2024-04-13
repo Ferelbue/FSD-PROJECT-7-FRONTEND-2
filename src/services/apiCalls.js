@@ -105,8 +105,8 @@ export const getUserPosts = async (token) => {
   }
 };
 
-export const getPosts = async (token,limit,pag) => {
-
+export const getPosts = async (token, criteria, limit, pag) => {
+  console.log("hola", limit, pag)
   const options = {
     method: "GET",
     headers: {
@@ -116,8 +116,7 @@ export const getPosts = async (token,limit,pag) => {
   };
 
   try {
-    const response = await fetch(`${root}posts?limit=${limit}&page=${pag}`, options);
-
+    const response = await fetch(`${root}posts?title=${criteria}&page=${pag}&limit=${limit}`, options);
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

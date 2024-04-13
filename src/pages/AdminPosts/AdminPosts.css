@@ -98,12 +98,33 @@
     justify-content: center;
     align-items: center;
 }
+.usersAdminIndex2{
+    height: 12vh;
+    width:3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .image2,
 .image{
     height: 5vh;
 }
 .usersAdminImage{
     height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminImage2{
+    height: 12vh;
     width: 4vw;
     display: flex;
     flex-direction: row;
@@ -128,9 +149,34 @@
     border-bottom: 0;
     border-top: 0;
 }
+.usersAdminName2{
+    height: 12vh;
+    width: 7vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
 .usersAdminLast{
     height: 8vh;
     width: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminTitle{
+    height: 12vh;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,6 +199,7 @@
     border-bottom: 0;
     border-top: 0;
 }
+
 .usersAdminRole{
     height: 8vh;
     width: 7vw;
@@ -166,10 +213,12 @@
     border-bottom: 0;
     border-top: 0;
 }
-.usersAdminTitle{
-    height: 8vh;
-    width: 7vw;
-    display: flex;
+
+.usersAdminDescription{
+    height: 12vh;
+    width: 33vw;
+    padding: 0.6em;
+    display: inline-block;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -180,9 +229,10 @@
     border-top: 0;
     overflow: hidden;
 }
-.usersAdminDescription{
-    height: 8vh;
-    width: 7vw;
+.usersAdminDescription2{
+    height: 12vh;
+    width: 33vw;
+    padding: 0.6em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -196,6 +246,15 @@
 }
 .usersAdminDelete{
     height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.usersAdminDelete2{
+    height: 12vh;
     width: 4vw;
     display: flex;
     flex-direction: row;
