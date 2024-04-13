@@ -1,5 +1,5 @@
 
-// const root = "https://fsd-project-5-backend-2-dev-jmsx.1.us-1.fl0.io/api/";
+// const root = "https://fsd-project-5-backend-2.onrender.com/api/";
 const root = "http://localhost:4000/api/";
 
 export const loginMe = async (credenciales) => {
@@ -105,8 +105,8 @@ export const getUserPosts = async (token) => {
   }
 };
 
-export const getPosts = async (token) => {
-
+export const getPosts = async (token, criteria, limit, pag) => {
+  console.log("aaaaaaaaaaaaaaaa")
   const options = {
     method: "GET",
     headers: {
@@ -116,13 +116,13 @@ export const getPosts = async (token) => {
   };
 
   try {
-    const response = await fetch(`${root}posts`, options);
-
+    const response = await fetch(`${root}posts?title=${criteria}&page=${pag}&limit=${limit}`, options);
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
     }
 
+    console.log(data)
     return data;
 
   } catch (error) {
@@ -159,7 +159,7 @@ export const deletePost = async (postId, token) => {
         "Authorization": `Bearer ${token}`
       },
     });
-    
+
     if (!response.ok) {
       throw new Error('No se pudo eliminar el post');
     }
@@ -170,7 +170,7 @@ export const deletePost = async (postId, token) => {
   }
 };
 
-export const getUsers = async (token,criteria) => {
+export const getUsers = async (token, criteria, pag, limit) => {
 
   const options = {
     method: "GET",
@@ -181,7 +181,7 @@ export const getUsers = async (token,criteria) => {
   };
 
   try {
-    const response = await fetch(`${root}users?firstName=${criteria}`, options);
+    const response = await fetch(`${root}users?firstName=${criteria}&page=${pag}&limit=${limit}`, options);
 
     const data = await response.json();
     if (!response.ok) {
@@ -246,9 +246,9 @@ export const updateProfile = async (token, data) => {
 };
 
 export const updateUserPosts = async (token, postId, data) => {
-  console.log(token,"token")
+  console.log(token, "token")
   console.log(postId, "post")
-  console.log(data,"data")
+  console.log(data, "data")
   const options = {
     method: "PUT",
     headers: {
@@ -274,8 +274,8 @@ export const updateUserPosts = async (token, postId, data) => {
 };
 
 export const createNewPost = async (token, data) => {
-  console.log(token,"token")
-  console.log(data,"data")
+  console.log(token, "token")
+  console.log(data, "data")
 
   const options = {
     method: "POST",
@@ -317,6 +317,103 @@ export const followUser = async (userId, token) => {
 
     const data = await response.json();
     console.log("esto", data)
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getUserPostById = async (token, userId) => {
+  // console.log(token)
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/posts/${userId}`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+};
+
+export const getUserProfileById = async (token, userId) => {
+  // console.log(token)
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/profile/${userId}`, options);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+};
+
+export const deleteUserById = async (token, userId) => {
+  try {
+    const response = await fetch(`${root}users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    if (!response.ok) {
+      throw new Error('No se pudo eliminar el post');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al actualizar el post:', error);
+    throw error;
+  }
+};
+
+export const updateUserById = async (token, userId, data) => {
+  console.log(token, "token")
+  console.log(userId, "post")
+  console.log(data, "data")
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(`${root}users/${userId}/role`, options);
+
+    const data = await response.json();
+
     if (!data.success) {
       throw new Error(data.message);
     }

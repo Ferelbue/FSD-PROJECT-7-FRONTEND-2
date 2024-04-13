@@ -1,5 +1,6 @@
 .profileDesign {
     height: auto;
+    min-height: 100vh;
     width: 98.5vw;
 
     display: flex;
@@ -45,13 +46,13 @@
     cursor: pointer;
 }
 
-.profilePostCardDesign2 {
-    height: 60vh;
+.profilePostCardDesign {
+    height: 50vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
     border-style: solid;
-    border-color: lightgray;
+    border-color: black;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -69,201 +70,13 @@
     font-weight: bold;
 }
 
-.bodyPostProfile2 {
+.bodyPostProfile {
     width: 50vw;
-    height: 60vh;
+    height: 40vh;
     font-size: small;
     margin: 0.5em;
-}
 
-.bodyDateProfile {
-    height: 3vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
-
-.bodyDate1Profile {
-    height: 3vh;
-    width: 40vw;
-}
-
-.bodyDate2Profile {
-    height: 3vh;
-    width: 10vw;
-    font-weight: bold;
-}
-
-.bodyTitleTextProfile {
-    height: 3vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
-.bodyTitleText1Profile {
-    height: 3vh;
-    width: 10vw;
-}
-
-.bodyTitleText2Profile {
-    height: 3vh;
-    width: 40vw;
-}
-
-.bodyTitleProfile {
-    height: 5vh;
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyTitle1Profile {
-    height: 5vh;
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyTitle2Profile {
-    height: 5vh;
-    width: 10vw;
-}
-
-.bodyImageTextProfile {
-    height: 3vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
-.bodyImageText1Profile {
-    height: 3vh;
-    width: 10vw;
-}
-
-.bodyImageText2Profile {
-    height: 3vh;
-    width: 40vw;
-}
-
-.bodyImageProfile {
-    height: 18vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyImage1Profile {
-    height: 18vh;
-    width: 20vw;
-}
-
-.bodyImage2Profile {
-    height: 18vh;
-    width: 30vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.imagePostProfile2 {
-    width: 10vw;
-    height: 18vh;
-}
-
-.bodyDescriptionTextProfile {
-    height: 3vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
-.bodyDescriptionText1Profile {
-    height: 3vh;
-    width: 10vw;
-}
-
-.bodyDescriptionText2Profile {
-    height: 3vh;
-    width: 40vw;
-}
-
-.bodyDescriptionProfile {
-    height: 12vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyDescription1Profile {
-    height: 12vh;
-    width: 50vw;
-}
-
-.bodyDescription2Profile {
-    height: 12vh;
-    width: 10vw;
-}
-
-.bodyBotomProfile {
-    height: 7vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyBotom1Profile {
-    height: 7vh;
-    width: 12.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyBotom2Profile {
-    height: 7vh;
-    width: 12.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyBotom3Profile {
-    height: 7vh;
-    width: 12.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bodyBotom4Profile {
-    height: 7vh;
-    width: 12.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .bodyPostControlProfile {
     width: 50vw;
@@ -279,70 +92,13 @@
 
 .inputDesignAvaiable {
     background-color: rgb(192, 247, 192);
-    color: black;
-}
-
-.inputDesign2 {
-    height: 5vh;
-    width: 20vw;
-    border-radius: 0.3em;
-    background-color: rgb(229, 229, 229);
-}
-
-.error2 {
-
-    margin-bottom: 1em;
-}
-
-.inputUser {
-    margin-top: 1.5em;
-    font-weight: bold;
-}
-
-.inputImageUser {
-    font-weight: bold;
-
-}
-
-.customButtonDesign2 {
-    height: 3em;
-    width: 15em;
-    border-radius: 0.5em;
-    border: solid 0.2em;
-    border-color: rgb(61, 88, 139);
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3em;
-}
-
-.cardUserDown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.customButtonDesign2:hover {
-    cursor: pointer;
-    transition: 0.2s;
-    background-color: rgb(61, 88, 139);
-    border: solid 0.2em;
-    border-color: white;
-    height: 3.5em;
-    width: 16em;
 }
 
 .titlePost {
-    height: 4vh;
+    height: 5vh;
     width: 20vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 4vh;
     font-weight: bold;
-    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -371,7 +127,6 @@
 .inputTitlePostDesign {
     width: 48vw;
     background-color: white;
-    margin-right: 0.5em;
     color: black;
     border-radius: 0.5em;
     border-width: 0.1em;
@@ -381,11 +136,6 @@
 
 .inputEdit {
     background-color: rgb(192, 247, 192) !important;
-}
-
-.customButtonDesign {
-    height: 5vh;
-    width: 5vw;
 }
 
 .likesTimeline {
@@ -407,7 +157,6 @@
     width: 20vw;
     height: 4vh;
     font-weight: bold;
-    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
@@ -426,14 +175,14 @@
     color: black;
 }
 
-.profileLeftUp1 {
+.profileLeftUp {
     width: 23.5vw;
     height: 92vh;
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: lightgray;
-    background-color: whitesmoke;
+    border-color: black;
+
     opacity: 90%;
     color: black;
     display: flex;
@@ -456,15 +205,14 @@
     left: 0%;
 }
 
-.profileRight12,
-.profileRight12 {
+.profileRight {
     width: 22.5vw;
     height: 92vh;
     margin-top: 7vh;
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: lightgray;
+    border-color: black;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -581,7 +329,6 @@
     width: 5vw;
     height: 7vh;
 
-
     overflow: hidden;
     display: flex;
     justify-content: start;
@@ -591,27 +338,20 @@
     cursor: pointer;
 }
 
-.imagesUser {
-    height: 15vh;
-}
-
-.imgUsr {
-    margin: 2em;
-    border-radius: 0.5em;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.36);
-    border-radius: 0.5em;
-}
-
 .profileRightUp {
     height: 4vh;
     font-weight: bold;
-    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .profileRightDown {
     height: 90vh;
-    overflow: hidden;
+    overflow: auto;
+
+}
+
+.profileRightDown::-webkit-scrollbar {
+    width: 0.5px;
 }
 
 .imagePost {
@@ -622,7 +362,6 @@
 .imageProfileUser {
     width: 20vw;
     height: 20vh;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
 }
 
 .inputSearch {

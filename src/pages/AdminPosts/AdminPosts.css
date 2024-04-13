@@ -1,0 +1,277 @@
+.adminPostsDesign {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(148, 183, 240);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.inputDesignAvaiable{
+    background-color: rgb(211, 244, 196);
+}
+
+.leftUsersAdmin{
+    height: 95vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    position: fixed;
+    left:1%;
+}
+.filtersAdmin{
+    height: 35vh;
+    width: 25vw;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: whitesmoke;
+    left:1%;
+}
+.detailAdmin{
+    height: 52vh;
+    width: 25vw;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: whitesmoke;
+    margin-top: 0.5em;
+    left:1%;
+}
+
+.pagText{
+    margin-top: 1em;
+}
+.inputAdmin{
+    margin:0;
+}
+.inputHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.searchAdminUsers{
+    height: auto;
+    width: 70vw;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    margin-left: 27vw;
+    
+}
+.firstAdminRow{
+    width: 70vw;
+    border-width: 0.05em;
+    border-bottom-width: 0.05em;
+    border-top: 0.05em;
+    background-color: rgb(111, 163, 202);
+    border: solid;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    
+}
+.userAdminSearched{
+    width: 70vw;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: azure;
+    border: solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.usersAdminIndex{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.usersAdminIndex2{
+    height: 12vh;
+    width:3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.image2,
+.image{
+    height: 5vh;
+}
+.usersAdminImage{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminImage2{
+    height: 12vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminName{
+    height: 8vh;
+    width: 13vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminName2{
+    height: 12vh;
+    width: 7vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminLast{
+    height: 8vh;
+    width: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminTitle{
+    height: 12vh;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+.usersAdminEmail{
+    height: 8vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.usersAdminRole{
+    height: 8vh;
+    width: 7vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.usersAdminDescription{
+    height: 12vh;
+    width: 33vw;
+    padding: 0.6em;
+    display: inline-block;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+    overflow: hidden;
+}
+.usersAdminDescription2{
+    height: 12vh;
+    width: 33vw;
+    padding: 0.6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-left-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom: 0;
+    border-top: 0;
+    overflow: hidden;
+}
+.usersAdminDelete{
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.usersAdminDelete2{
+    height: 12vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.image2:hover{
+    height: 6vh;
+}
+
+.limitSearch,
+.pagSearch{
+    height: 4vh;
+    width: 5vw;
+    margin-top: 1em;
+    background-color: white;
+    color: black;
+    border-radius: 0.5em;
+}

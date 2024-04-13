@@ -1,6 +1,6 @@
 .headerDesign {
   height: 6vh;
-  width: 99.5vw;
+  width: 100vw;
 
   background-color: rgb(61,88,139);
   display: flex;
@@ -34,6 +34,7 @@
   width: 15vw;
   height: 6vh;
   display: flex;
+  margin-right: 1em;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;

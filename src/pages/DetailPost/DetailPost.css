@@ -1,47 +1,133 @@
-.timelineDesign {
-    height: 100%;
+.detailPostDesign {
+    height: auto;
+    min-height: 100vh;
     width: 98.5vw;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: start;
-
     background-color: white;
+
 }
 
-.timelineCardDesign2 {
-    height: 91vh;
+.timelineCardDesign3 {
+    height: 92vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0.5em;
     font-size: 1.2vw !important;
     overflow: hidden;
-    cursor: pointer;
+}
+
+.titlePostTimeline4 {
+    height: 3vh;
+    width: 50vw;
+    top: 90%;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 1.5em;
+    color: rgb(61, 88, 139);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.commentPost {
+    border-radius: 0.3em;
+    border-width: 0.05em;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: rgb(229, 229, 229);
+    margin-top: 0.5em;
+    width: 45vw;
+    height: auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.textComment {
+    font-weight: normal;
+
+}
+
+.titleCommentarys {
+    width: 50vw;
+    height: 2vh;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    font-weight: bold;
+    font-size: small;
+    margin-left: 1em;
 }
 
 .title {
     font-weight: bold;
 }
 
-.bodyTimeline {
-    width: 40vw;
+.bodyDetail {
+    width: 50vw;
+    height: 40vh;
     font-size: small;
-    margin: 0.5em;
 }
 
-.likesTimeline {
+.titleDetailPost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.title1DetailPost {
     width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.title2DetailPost {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.title3DetailPost {
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.likesDetail {
+    margin-top: 1em;
+    width: 50vw;
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: auto;
     color: black;
     font-weight: bold;
 }
@@ -128,8 +214,9 @@
 
 .searchUsers,
 .searchUsers2 {
-    width: 22vw;
+    width: 23vw;
     height: 40vh;
+    margin-left: 1em;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -156,7 +243,6 @@
 .test12 {
     width: 4vw;
     height: 7vh;
-    margin-left: 1vw;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -198,16 +284,19 @@
     text-decoration: underline;
     cursor: pointer;
 }
-.timelineRightUp{
+
+.timelineRightUp {
     height: 4vh;
     font-weight: bold;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.timelineRightDown{
+
+.timelineRightDown {
     height: 90vh;
 
 }
-.imagePost{
+
+.imagePost {
     width: 20vw;
     height: 20vh;
 }

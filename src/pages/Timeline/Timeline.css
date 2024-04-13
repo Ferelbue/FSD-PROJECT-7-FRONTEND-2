@@ -1,6 +1,6 @@
 .timelineDesign {
-    height: 100vh;
-    width: 100vw;
+    height: auto;
+    width: 98.5vw;
 
     display: flex;
     flex-direction: row;
@@ -9,19 +9,23 @@
 
     background-color: white;
 }
-.titlePostTimeline{
-    height:3vh;
+
+.titlePostTimeline {
+    height: 3vh;
     width: 20vw;
+    margin-top: 0.5em;
     font-weight: bold;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    color: rgb(61, 88, 139);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .timelineCardDesign {
     height: 50vh;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -32,29 +36,137 @@
     margin: 0.5em;
     font-size: 1.2vw !important;
     overflow: hidden;
-    cursor: pointer;
 }
-.bodyCardTimeline{
 
+.timelineTest {
+    height: 92vh;
+    width: 50vw;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    background-color: whitesmoke;
+    opacity: 90%;
+    color: black;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 0.5em;
+    font-size: 1.2vw !important;
+    overflow: hidden;
+    cursor: pointer;
+}
 
+.bodyCardTimeline {
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .title {
     font-weight: bold;
 }
 
-.bodyTimeline {
-    width: 40vw;
-    height: 46.5vh;
+.bodyDateTimeline {
+    height: 2vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: small;
-    margin: 0.5em;
 }
 
+.bodyDate1Timeline {
+    width: 10vw;
 
+}
+.bodyDate3Timeline {
+    width: 30vw;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.bodyDate2Timeline {
+    width: 10vw;
+    font-weight: bold;
+}
+
+.bodyTitleTimeline {
+    height: 4vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bodyTitle1Timeline {
+    width: 40vw;
+}
+
+.bodyTitle2Timeline {
+    width: 10vw;
+}
+.bodyLikeTimeline {
+    height: 3vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.bodyLike1Timeline {
+    height: 3vh;
+    width: 40vw;
+}
+
+.bodyLike2Timeline {
+    height: 3vh;
+    width: 11vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    font-weight: bold;
+}
+.bodyLike3Timeline {
+    height: 3vh;
+    width: 5vw;
+    border: solid;
+
+    border-right-width: 0.1em;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
+    cursor: pointer;
+}
+.bodyLike4Timeline {
+    height: 3vh;
+    width: 5vw;
+}
+.bodyImageTimeline {
+    height: 28vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+}
+.bodyDescriptionTimeline {
+    height: 8vh;
+    width: 50vw;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+}
 .likesTimeline {
     width: 10vw;
     color: black;
@@ -62,8 +174,41 @@
 }
 
 .prueba {
-    width: 10vw;
-    height: 10vh;
+    width: 15vw;
+    height: 18vh;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
+}
+
+.timelineProfileDown2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.timelineProfileDown3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.followersDiv {
+    width: 11vw;
+    margin: 0.2em;
+    background-color: rgb(61, 88, 139);
+    color: white;
+    border-radius: 0.5em;
+}
+
+.followingsDiv {
+    width: 11vw;
+    margin: 0.2em;
+    background-color: rgb(61, 88, 139);
+    color: white;
+    border-radius: 0.5em;
 }
 
 .timelineLeft {
@@ -74,13 +219,13 @@
     left: 0%;
 }
 
-.timelineLeftUp {
+.timelineLeftUp1 {
     width: 23.5vw;
     height: 40vh;
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -88,17 +233,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 0.5vh;
-    left: 0%;
+    margin-left: 1vh;
 }
 
-.timelineLeftDown {
+.timelineLeftDown2 {
     width: 23.5vw;
     height: 50vh;
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -106,8 +250,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 0.5vh;
-    margin-top: 0.5vw;
+    margin-left: 1vh;
+    margin-top: 1vw;
     left: 0%;
 }
 
@@ -136,17 +280,31 @@
 
 .timelineProfileUp {
     width: 23.5vw;
-    height: 50vh !important;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 0.7em;
+
+}
+
+.timelineProfileCenter {
+    width: 23.5vw;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .searchUsers,
 .searchUsers2 {
-    width: 22vw;
+    width: 23vw;
     height: 40vh;
+    margin: 0.5em;
+    margin-left: 1em;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -165,20 +323,22 @@
     overflow: auto;
     overflow-x: hidden;
 }
+
 .searchUsers2::-webkit-scrollbar,
 .searchUsers3::-webkit-scrollbar {
     width: 0.5px;
 }
 
-
+.userSearched4,
 .userSearched,
 .userSearched1,
 .userSearched2 {
 
-    border-radius: 0.5em;
+    border-radius: 0.3em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
+    background-color: rgb(229, 229, 229);
     margin-top: 0.5em;
     width: 21.5vw;
     height: 8vh;
@@ -186,19 +346,22 @@
     justify-content: start;
     align-items: center;
 }
+
 .userSearched3 {
 
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
+    background-color: rgb(229, 229, 229);
     margin-top: 0.5em;
-    width: 21.5vw;
+    width: 22vw;
     height: 8vh;
     display: flex;
     justify-content: start;
     align-items: center;
 }
+
 .test1,
 .test12 {
     width: 4vw;
@@ -213,7 +376,12 @@
 .test22 {
     width: 4vw;
     height: 6vh;
+    border-radius: 2em;
     margin-top: 0.3em;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: rgb(189, 185, 185);
+
 }
 
 .test3,
@@ -228,15 +396,29 @@
     display: flex;
     justify-content: start;
     align-items: center;
+}
+.test321 {
+    width: 18vw;
+    height: 7vh;
 
+    margin-left: 1vw;
+    margin-top: 0.3em;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.test32:hover {
+    text-decoration: underline;
 }
 
 .test4,
 .test42 {
-    width: 5vw;
+    width: 7vw;
     height: 7vh;
+    color: rgb(111, 163, 202);
 
-    margin-left: 1vw;
     overflow: hidden;
     display: flex;
     justify-content: start;
@@ -246,14 +428,18 @@
     cursor: pointer;
 }
 
+.titleDetailPost,
 .timelineRightTitleUp {
     height: 4vh;
     font-weight: bold;
+    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .titleMyInformation {
     height: 4vh;
     font-weight: bold;
+    color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -263,8 +449,9 @@
     height: 39vh;
     border-radius: 0.5em;
     border-width: 0.05em;
+    padding-left: 0.7em;
     border-style: solid;
-    border-color: black;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -281,7 +468,8 @@
     border-radius: 0.5em;
     border-width: 0.05em;
     border-style: solid;
-    border-color: black;
+    border-style: solid;
+    border-color: lightgray;
     background-color: whitesmoke;
     opacity: 90%;
     color: black;
@@ -291,9 +479,15 @@
     align-items: center;
 }
 
-.imagePost {
+.image1Post {
     width: 20vw;
-    height: 20vh;
+    height: 28vh;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
+    border-radius: 0.3em;
+}
+.image2Post {
+    width: 2vw;
+    height: 3vh;
 }
 
 .inputSearch {
@@ -326,7 +520,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5em;
-
     background-color: rgb(250, 248, 248);
     box-shadow: 1px 1px 10px black;
     z-index: 1000;
