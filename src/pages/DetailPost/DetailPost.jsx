@@ -71,7 +71,7 @@ export const DetailPost = () => {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        const data = await getPosts(rdxUser.credentials.token);
+        const data = await getPosts(rdxUser.credentials.token,"","","");
         setPostsData(data);
       } catch (error) {
         setError(error);

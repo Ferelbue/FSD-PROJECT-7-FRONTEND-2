@@ -49,7 +49,7 @@ export const Timeline = () => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
-          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria);
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "", "");
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -75,7 +75,7 @@ export const Timeline = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts(rdxUser.credentials.token);
+        const data = await getPosts(rdxUser.credentials.token, "", "", "");
 
         setTimeout(() => {
 
@@ -128,7 +128,7 @@ export const Timeline = () => {
 
       await updatePost(postId, rdxUser.credentials.token);
 
-      const updatedPostsData = await getPosts(rdxUser.credentials.token);
+      const updatedPostsData = await getPosts(rdxUser.credentials.token, "", "", "");
 
       setPostsData(updatedPostsData);
     } catch (error) {
@@ -206,7 +206,7 @@ export const Timeline = () => {
     <div className='timelineDesign'>
 
       <div className='timelineLeft'>
-        <div className='timelineLeftUp'>
+        <div className='timelineLeftUp1'>
           <div className="titleMyInformation">
             MY INFORMATION
           </div>
@@ -223,14 +223,24 @@ export const Timeline = () => {
                     <div>
                       <img className="prueba" src={profileData?.data?.image} alt="pers1" />
                     </div>
+                  </div>
+                  <div className="timelineProfileCenter">
                     <div>
-                      <p>{profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}</p>
-                      <p>{profileData?.data?.email}</p>
+                      <div>
+                        {profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}
+                      </div>
+                      {profileData?.data?.email}
                     </div>
                   </div>
-                  <div>
-                    <p>Seguidores: {profileData?.data?.follower.length}</p>
-                    <p>Siguiendo: {profileData?.data?.following.length}</p>
+                  <div className="timelineProfileDown2">
+                    <div className="timelineProfileDown3">
+                      <div className="followersDiv">
+                        FOLLOWERS: {profileData?.data?.follower.length}
+                      </div>
+                      <div className="followingsDiv">
+                        FOLLLOWING: {profileData?.data?.following.length}
+                      </div>
+                    </div>
                   </div>
                 </>
               )}
@@ -238,7 +248,7 @@ export const Timeline = () => {
           )}
         </div>
 
-        <div className='timelineLeftDown'>
+        <div className='timelineLeftDown2'>
           <div className="titleMyInformation">
             SEARCH A USER
           </div>
@@ -257,15 +267,15 @@ export const Timeline = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user) => {
                   return (
-                    <div className="userSearched" key={user._id}>
+                    <div className="userSearched4" key={user._id}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
                       <div className="test3">
-                        <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                        {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                       </div>
                       <div className="test4" onClick={() => handleFollow(user._id)}>
-                        <p>FOLLOW USER</p>
+                        FOLLOW USER
                       </div>
                     </div>
                   );
@@ -328,7 +338,7 @@ export const Timeline = () => {
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
                         <div className="test32" onClick={() => manageDetail(user._id)} >
-                          <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                         </div>
                       </div>
                     );
@@ -359,11 +369,11 @@ export const Timeline = () => {
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
-                        <div className="test32"  onClick={() => manageDetail(user._id)}>
-                          <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                        <div className="test32" onClick={() => manageDetail(user._id)}>
+                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                         </div>
                         <div className="test4" onClick={() => handleFollow(user._id)}>
-                          <p>UNFOLLOW USER</p>
+                          UNFOLLOW USER
                         </div>
                       </div>
                     );
