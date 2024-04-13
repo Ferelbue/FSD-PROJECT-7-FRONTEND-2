@@ -75,7 +75,7 @@ export const Timeline = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await getPosts(rdxUser.credentials.token);
+        const data = await getPosts(rdxUser.credentials.token,"","");
 
         setTimeout(() => {
 

@@ -105,7 +105,7 @@ export const getUserPosts = async (token) => {
   }
 };
 
-export const getPosts = async (token) => {
+export const getPosts = async (token,limit,pag) => {
 
   const options = {
     method: "GET",
@@ -116,7 +116,7 @@ export const getPosts = async (token) => {
   };
 
   try {
-    const response = await fetch(`${root}posts`, options);
+    const response = await fetch(`${root}posts?limit=${limit}&page=${pag}`, options);
 
     const data = await response.json();
     if (!response.ok) {

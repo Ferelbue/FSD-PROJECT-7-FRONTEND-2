@@ -68,27 +68,6 @@ export const AdminUsers = () => {
 
   }, [rdxUser]);
 
-  // const handleEdit = async (index, postId) => {
-  //   try {
-
-  //     setEditIndex(index);
-  //     setWritePost("")
-  //     for (let i = 0; i < postsData.data.length; i++) {
-  //       if (postsData.data[i]._id === postId) {
-  //         console.log("este", postsData.data[i].image);
-  //         setPost({
-  //           description: postsData.data[i].description,
-  //           image: postsData.data[i].image,
-  //           title: postsData.data[i].title,
-  //         });
-  //         break;
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
-
   useEffect(() => {
     const bringUsers = async () => {
       try {
