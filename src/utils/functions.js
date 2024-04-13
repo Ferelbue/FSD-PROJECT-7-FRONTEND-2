@@ -47,6 +47,13 @@ export const validame = (type, value) => {
 
       return "";
 
+    case "role":
+
+      if (value !== "user" && value !== "admin") {
+        return "Incorrect role";
+      }
+
+      return "";
 
     default:
   }

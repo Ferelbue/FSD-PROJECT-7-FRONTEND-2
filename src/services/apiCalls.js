@@ -395,3 +395,31 @@ export const deleteUserById = async (token, userId) => {
     throw error;
   }
 };
+
+export const updateUserById = async (token, userId, data) => {
+  console.log(token, "token")
+  console.log(userId, "post")
+  console.log(data, "data")
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(`${root}users/${userId}/role`, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

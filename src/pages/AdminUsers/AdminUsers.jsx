@@ -4,16 +4,20 @@ import "./AdminUsers.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { validame } from "../../utils/functions";
 import { searchData } from "../../app/slices/searchSlice";
-import { deleteUserById, getUsers } from "../../services/apiCalls";
+import { userByData, updateUserBy } from "../../app/slices/userBySlice";
+import { deleteUserById, getUserProfileById, getUsers, updateProfile, updateUserById } from "../../services/apiCalls";
 import pot from "../../../public/pot.png"
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { CustomNumber } from "../../common/CustomNumber copy/CustomNumber";
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 
 export const AdminUsers = () => {
   const navigate = useNavigate();
   const rdxUser = useSelector(userData);
+  const rdxBy = useSelector(userByData);
   const searchRdx = useSelector(searchData);
   const dispatch = useDispatch();
   const [error, setError] = useState();
@@ -24,14 +28,72 @@ export const AdminUsers = () => {
   const [pag, setPag] = useState(1)
   const [limit, setLimit] = useState(10)
   const [numberUsers, setNumberUsers] = useState()
+  const [loadedData, setLoadedData] = useState(false);
+  const [write, setWrite] = useState("disabled");
+  const [updateUser, setUpdateUser] = useState("");
 
+
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    role: ""
+  });
+
+  const [userError, setUserError] = useState({
+    roleError: "",
+  });
+
+  const inputHandler = (e) => {
+    setUser((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const checkError = (e) => {
+    console.log(e.target.name, e.target.value)
+    const error = validame(e.target.name, e.target.value);
+
+    setUserError((prevState) => ({
+      ...prevState,
+      [e.target.name + "Error"]: error,
+
+    }));
+  };
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
+
+  // const handleEdit = async (index, postId) => {
+  //   try {
+
+  //     setEditIndex(index);
+  //     setWritePost("")
+  //     for (let i = 0; i < postsData.data.length; i++) {
+  //       if (postsData.data[i]._id === postId) {
+  //         console.log("este", postsData.data[i].image);
+  //         setPost({
+  //           description: postsData.data[i].description,
+  //           image: postsData.data[i].image,
+  //           title: postsData.data[i].title,
+  //         });
+  //         break;
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // };
 
   useEffect(() => {
     const bringUsers = async () => {
       try {
         const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "");
         setNumberUsers(usersData.data.length)
-        console.log(numberUsers)
       } catch (error) {
         setError(error);
       }
@@ -50,12 +112,10 @@ export const AdminUsers = () => {
       } catch (error) {
         setError(error);
       }
-
-
     };
 
     bringUsers();
-  }, [searchRdx.criteria, userDelete, pag, limit]);
+  }, [searchRdx.criteria, userDelete, pag, limit, updateUser]);
 
   const handleDelete = async (userId) => {
     try {
@@ -84,48 +144,150 @@ export const AdminUsers = () => {
   const searchHandler3 = (e) => {
     setLimit(e.target.value)
   }
+  const handleModify = async (userId) => {
+    try {
+      dispatch(updateUserBy({ userBy: userId }))
+      const fetched = await getUserProfileById(rdxUser.credentials.token, userId);
+      console.log(fetched)
+      setUser({
+        firstName: fetched.data.firstName,
+        lastName: fetched.data.lastName,
+        role: fetched.data.role,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const updateData = async () => {
 
+    try {
+      console.log(rdxBy)
+      const fetchedUpdated = await updateUserById(rdxUser.credentials.token, rdxBy.userBy, user)
+      setUpdateUser(fetchedUpdated)
+      setWrite("disabled")
+      setUser({
+        firstName: "",
+        lastName: "",
+        role: "",
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <div className="adminUsersDesign">
-        <div className="filtersAdmin">
-          <div className="inputHeader">
-            <div className="pagText">
-              FILTER BY NAME
+        <div className="leftUsersAdmin">
+          <div className="filtersAdmin">
+            <div className="inputHeader">
+              <div className="pagText">
+                FILTER BY NAME
+              </div>
+              <CustomInput
+                className={`inputSearch`}
+                type="text"
+                placeholder="search a user...."
+                value={criteria || ""}
+                onChangeFunction={(e) => searchHandler(e)}
+              />
+              <div className="pagText">
+                FILTER BY EMAIL
+              </div>
+              <CustomInput
+                className={`inputSearch`}
+                type="text"
+                placeholder="search a user...."
+                value={criteria || ""}
+                onChangeFunction={(e) => searchHandler(e)}
+              />
+              <div className="pagText">
+                Nº USERS DISPLAYED
+              </div>
+              <CustomNumber
+                className={`limitSearch inputAdmin`}
+                type="number"
+                placeholder=""
+                name="user"
+                value={limit || ""}
+                min="1"
+                max={(Math.ceil((numberUsers / pag)))}
+                defaultValue="10"
+                onChangeFunction={(e) => searchHandler3(e)}
+              />
             </div>
-            <CustomInput
-              className={`inputSearch`}
-              type="text"
-              placeholder="search a user...."
-              value={criteria || ""}
-              onChangeFunction={(e) => searchHandler(e)}
-            />
+          </div>
+          <div className="detailAdmin">
+
             <div className="pagText">
-              FILTER BY EMAIL
+              <div className="inputUserFormat">
+                <div>
+                  <div className="inputUser">NAME:</div>
+                </div>
+                <div>
+                  <CustomInput
+                    className={`inputSearch`}
+                    type={"text"}
+                    placeholder={""}
+                    name={"firstName"}
+                    disabled={"disable"}
+                    value={user.firstName || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
+                    onBlurFunction={(e) => checkError(e)}
+                  />
+                  <div className="error">{userError.firstNameError}</div>
+                </div>
+              </div>
+
+              <div className="inputUserFormat">
+                <div>
+                  <div className="inputUser">LAST NAME:</div>
+                </div>
+                <div>
+                  <CustomInput
+                    className={`inputSearch`}
+                    type={"text"}
+                    placeholder={""}
+                    name={"lastName"}
+                    disabled={"disable"}
+                    value={user.lastName || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
+                    onBlurFunction={(e) => checkError(e)}
+                  />
+                  <div className="error">{userError.lastNameError}</div>
+                </div>
+              </div>
+
+              <div className="inputUserFormat">
+                <div>
+                  <div className="inputUser">Role:</div>
+                </div>
+                <div>
+                  <CustomInput
+                    className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
+                      }`}
+                    type={"text"}
+                    placeholder={""}
+                    name={"role"}
+                    disabled={write}
+                    value={user.role || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
+                    onBlurFunction={(e) => checkError(e)}
+                  />
+                  <div className="error">{userError.roleError}</div>
+                </div>
+                <div className="cardUserDown">
+                  <CustomButton
+                    className={write === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
+                    title={write === "" ? "Confirm" : "Edit"}
+                    functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
+                  />
+                </div>
+              </div>
             </div>
-            <CustomInput
-              className={`inputSearch`}
-              type="text"
-              placeholder="search a user...."
-              value={criteria || ""}
-              onChangeFunction={(e) => searchHandler(e)}
-            />
-            <div className="pagText">
-              Nº USERS DISPLAYED
-            </div>
-            <CustomNumber
-              className={`limitSearch inputAdmin`}
-              type="number"
-              placeholder=""
-              name="user"
-              value={limit || ""}
-              min="1"
-              max={(Math.ceil((numberUsers/ pag)))}
-              defaultValue="10"
-              onChangeFunction={(e) => searchHandler3(e)}
-            />
           </div>
         </div>
+
+
 
 
         {usersFetched?.success && usersFetched?.data?.length > 0 ? (
@@ -160,7 +322,7 @@ export const AdminUsers = () => {
                     {index + 1}
                   </div>
                   <div className="usersAdminImage">
-                    <img className="image" src={user.image} alt={`${user.firstName}`} />
+                    <img className="image" src={user.image} alt={`${user.firstName}`} onClick={() => handleModify(user._id)} />
                   </div>
                   <div className="usersAdminName">
                     {user.firstName.toUpperCase()}
@@ -186,7 +348,7 @@ export const AdminUsers = () => {
               placeholder="Number of user showed..."
               value={pag || ""}
               min="1"
-              max={Math.ceil((numberUsers/ limit))}
+              max={Math.ceil((numberUsers / limit))}
               defaultValue="1"
               onChangeFunction={(e) => searchHandler2(e)}
             />
@@ -220,8 +382,9 @@ export const AdminUsers = () => {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        )
+        }
+      </div >
     </>
   );
 };
