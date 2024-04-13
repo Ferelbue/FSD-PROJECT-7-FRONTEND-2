@@ -231,7 +231,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .imagePostProfile{
     width: 15vw;
@@ -249,8 +248,9 @@
 
 .searchUsers,
 .searchUsers2 {
-    width: 22vw;
+    width: 23vw;
     height: 40vh;
+    margin-left: 1em;
     display: flex;
     flex-direction: column;
     justify-content: start;
