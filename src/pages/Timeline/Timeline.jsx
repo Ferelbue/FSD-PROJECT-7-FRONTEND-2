@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 export const Timeline = () => {
   const [profileData, setProfileData] = useState();
   const [postsData, setPostsData] = useState();
+  const [postsUpdatedData, setPostsUpdatedData] = useState();
   const [followUserData, setFollowUser] = useState();
   const [error, setError] = useState();
   const [modal, setModal] = useState(false);
@@ -91,7 +92,7 @@ export const Timeline = () => {
     };
 
     fetchPosts();
-  }, [postUpdated]);
+  }, [postUpdated, postsUpdatedData]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -121,6 +122,7 @@ export const Timeline = () => {
     return () => clearTimeout(searching);
   }, [criteria]);
 
+  
   const searchHandler = (e) => {
     setCriteria(e.target.value)
     setNameCriteria(e.target.value.toLowerCase())
@@ -129,15 +131,13 @@ export const Timeline = () => {
   const handleLike = async (postId) => {
     try {
 
-      await updatePost(postId, rdxUser.credentials.token);
+      const fetched = await updatePost(postId, rdxUser.credentials.token);
+      console.log(fetched,"asdasdasdasdsadsa")
 
-      const updatedPostsData = await getPosts(rdxUser.credentials.token, "", "", "");
+      const res = await getPosts(rdxUser.credentials.token, "", "", "");
 
-      if (data === "JWT NOT VALID OR MALFORMED") {
-        { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
-        navigate("/")
-      }
-      setPostsData(updatedPostsData);
+      setPostsUpdatedData(res);
+      setPostsData(res);
 
     } catch (error) {
       setError(error);
@@ -386,23 +386,6 @@ export const Timeline = () => {
             </>
           )}
         </div>
-
-
-        {/* <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}> */}
-
-        {/* <p></p>
-                    
-
-                    <p></p> */}
-
-        {/* <div className="likesTimeline">
-                    <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-                    <CustomLike title={`COMMENTS: ${post.comments.length}`} />
-                  </div> */}
-
-
-
-
 
         <div className="timelineRightBodyDown">
           <div className="timelineRightTitleUp">

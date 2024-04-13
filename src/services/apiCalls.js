@@ -106,6 +106,7 @@ export const getUserPosts = async (token) => {
 };
 
 export const getPosts = async (token, criteria, limit, pag) => {
+  console.log("aaaaaaaaaaaaaaaa")
   const options = {
     method: "GET",
     headers: {

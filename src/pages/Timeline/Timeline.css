@@ -169,6 +169,7 @@
 .prueba {
     width: 15vw;
     height: 18vh;
+    border-radius: 0.5em;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.36);
 }
 

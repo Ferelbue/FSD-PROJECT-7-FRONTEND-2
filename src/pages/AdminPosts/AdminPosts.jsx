@@ -140,75 +140,7 @@ export const AdminPosts = () => {
               />
             </div>
           </div>
-          <div className="detailAdmin">
 
-            {/* <div className="pagText">
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">NAME:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"firstName"}
-                    disabled={"disable"}
-                    value={user.firstName || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.firstNameError}</div>
-                </div>
-              </div>
-
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">LAST NAME:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"lastName"}
-                    disabled={"disable"}
-                    value={user.lastName || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.lastNameError}</div>
-                </div>
-              </div>
-
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">Role:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
-                      }`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"role"}
-                    disabled={write}
-                    value={user.role || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.roleError}</div>
-                </div>
-                <div className="cardUserDown">
-                  <CustomButton
-                    className={write === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
-                    title={write === "" ? "Confirm" : "Edit"}
-                    functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
-                  />
-                </div>
-              </div>
-            </div> */}
-          </div>
         </div>
 
 

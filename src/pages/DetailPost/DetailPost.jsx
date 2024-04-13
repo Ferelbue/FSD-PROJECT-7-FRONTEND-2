@@ -193,29 +193,51 @@ export const DetailPost = () => {
   return (
     <div className='detailPostDesign'>
       <div className='timelineLeft'>
-        <div className='timelineLeftUp'>
-          <div className="timelineRightTitleUp">
+      <div className='timelineLeftUp1'>
+          <div className="titleMyInformation">
             MY INFORMATION
           </div>
-          {profileData && (
+
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
             <>
-              <div className="timelineProfileUp">
-                <div>
-                  <img className="prueba" src={profileData.data.image} alt="pers1" />
-                </div>
-                <div>
-                  <p>{profileData.data.firstName.toUpperCase()} {profileData.data.lastName.toUpperCase()}</p>
-                  <p>{profileData.data.email}</p>
-                </div>
-              </div>
-              <div>
-                <p>Seguidores: {profileData.data.follower.length}</p>
-                <p>Siguiendo: {profileData.data.following.length}</p>
-              </div>
+              {profileData && (
+                <>
+                  <div className="timelineProfileUp">
+                    <div>
+                      <img className="prueba" src={profileData?.data?.image} alt="pers1" />
+                    </div>
+                  </div>
+                  <div className="timelineProfileCenter">
+                    <div>
+                      <div>
+                        {profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}
+                      </div>
+                      {profileData?.data?.email}
+                    </div>
+                  </div>
+                  <div className="timelineProfileDown2">
+                    <div className="timelineProfileDown3">
+                      <div className="followersDiv">
+                        FOLLOWERS: {profileData?.data?.follower.length}
+                      </div>
+                      <div className="followingsDiv">
+                        FOLLLOWING: {profileData?.data?.following.length}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>
-        <div className='timelineLeftDown'>
+        <div className='timelineLeftDown2'>
+          <div className="titleMyInformation">
+            SEARCH A USER
+          </div>
           <div className="inputHeader">
             <CustomInput
               className={`inputSearch`}
@@ -231,22 +253,22 @@ export const DetailPost = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user) => {
                   return (
-                    <div className="userSearched" key={user._id}>
+                    <div className="userSearched4" key={user._id}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
                       <div className="test3">
-                        <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
+                        {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                       </div>
                       <div className="test4" onClick={() => handleFollow(user._id)}>
-                        <p>FOLLOW USER</p>
+                        FOLLOW USER
                       </div>
                     </div>
                   );
                 })}
               </div>
             ) : (
-              <div className="searchUsers">No hay usuarios</div>
+              <div className="searchUsers">Users not found</div>
             )}
           </div>
         </div>
