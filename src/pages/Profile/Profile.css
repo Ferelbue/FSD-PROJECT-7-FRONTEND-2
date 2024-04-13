@@ -592,11 +592,11 @@
 }
 
 .imagesUser {
-    height: 25vh;
+    height: 15vh;
 }
 
 .imgUsr {
-    margin: 0.5em;
+    margin: 2em;
     border-radius: 0.5em;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.36);
     border-radius: 0.5em;

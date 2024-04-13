@@ -14,7 +14,8 @@ import { NewPost } from "../../common/NewPost/NewPost";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { updateFollow } from "../../app/slices/followSlice";
-
+import Spinner from 'react-bootstrap/Spinner';
+import dayjs from "dayjs";
 
 export const DetailPost = () => {
   const [profileData, setProfileData] = useState();
@@ -71,8 +72,9 @@ export const DetailPost = () => {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        const data = await getPosts(rdxUser.credentials.token,"","","");
+        const data = await getPosts(rdxUser.credentials.token, "", "", "");
         setPostsData(data);
+        console.log(data, "asdasdsadsadsadasd")
       } catch (error) {
         setError(error);
       }
@@ -193,7 +195,7 @@ export const DetailPost = () => {
   return (
     <div className='detailPostDesign'>
       <div className='timelineLeft'>
-      <div className='timelineLeftUp1'>
+        <div className='timelineLeftUp1'>
           <div className="titleMyInformation">
             MY INFORMATION
           </div>
@@ -274,42 +276,91 @@ export const DetailPost = () => {
         </div>
       </div>
 
-      <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
-        <div className='timelineCardDesign2'>
-          <div className="titleDetailPost">
-            DETAIL POST
-          </div>
-          <div className="bodyTimeline">
 
-            {
-              postsData?.data?.map((post) => {
-                if (post._id === rdxDetail.detail) {
-                  return (
-                    <div key={post._id}>
-                      <div className="bodyTimeline">
-                        <img className="imagePost" src={post.image} alt={"fgh"} />
-                        <p>{post.title}</p>
-                        <p>{post.description}</p>
-                      </div>
-                      <div className="likesDetail">
-                        <CustomLike title={`LIKES: ${post.like.length}`} onClick={() => handleLike(post._id)} />
-                        <CustomLike title={`COMMENTARYS: ${post.comments.length}`} />
-                        {post.comments.map((commentary) => (
-                          <div key={commentary._id}>
-                            <p>{commentary.commentatorName}</p>
-                            <p>{commentary.commentary}</p>
+
+      <div className={`timelineCenter ${modal === true ? "timelineCenter2" : ""}`} >
+        {!postsData ? (
+          <div className='timelineTest'>
+
+            <p>TIME-LINE</p>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        ) : (
+          <div>
+            <div className="timelineCardDesign3">
+              <div className="titlePostTimeline4">POST-DETAIL</div>
+              {
+                postsData?.data?.map((post) => {
+                  if (post._id === rdxDetail.detail) {
+                    return (
+                      <div key={post._id}>
+                        <div className="bodyCardTimeline4">
+
+                          <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
+                            <div className="bodyDate1Timeline">
+
+                            </div>
+                            <div className="bodyDate2Timeline">
+
+                              {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
+                            </div>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-                return null;
-              })
-            }
 
+                          <div className="bodyTitleTimeline" onClick={() => handlePost(post._id)}>
+                            {post.title.toUpperCase()}
+                          </div>
+
+                          <div className="bodyImageTimeline" onClick={() => handlePost(post._id)}>
+                            <img className="image1Post" src={post.image} alt={`${post._id}`} />
+                          </div>
+
+                          <div className="bodyDescriptionTimeline" onClick={() => handlePost(post._id)}>
+                            {post.description}
+                          </div>
+
+                          <div className="bodyLikeTimeline">
+                            <div className="bodyLike1Timeline">
+
+                            </div>
+                            <div className="bodyLike2Timeline">
+                              <div className="bodyLike3Timeline">
+                                {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                              </div>
+                              <div className="bodyLike4Timeline">
+                                <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="likesDetail">
+                            {post.comments.map((comment, index) => {
+                              return (
+                                <>
+                                <div className="titleCommentarys"> COMMENTARYS:</div>
+                                  <div className="commentPost" key={`${comment._id}_${index}`}>
+                                    <div>
+                                      {comment?.commentatorId?.firstName.toUpperCase()}
+                                      </div>
+                                      <div className="textComment">
+                                      {comment?.commentary}
+                                    </div>
+                                  </div>
+                                  </>
+                              )
+                            })
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                  return null;
+                })
+              }
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className={`timelineRight ${modal === true ? "timelineRight2" : ""}`} >
@@ -317,23 +368,31 @@ export const DetailPost = () => {
           <div className="timelineRightTitleUp">
             FOLLOWERS
           </div>
-          {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
-            <div className="searchUsers2">
-              {profileData.data.follower.map((user, index) => {
-                return (
-                  <div className="userSearched1" key={`follower_${index}_${user._id}`} onClick={() => manageDetail(user)}>
-                    <div className="test12">
-                      <img className="test22" src={user.image} alt={`${user.firstName}`} />
-                    </div>
-                    <div className="test32" onClick={() => manageDetail(user._id)}>
-                      <p>{user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           ) : (
-            <div className="searchUsers">No hay usuarios</div>
+            <>
+              {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
+                <div className="searchUsers2">
+                  {profileData.data.follower.map((user, index) => {
+                    return (
+                      <div className="userSearched1" key={`${index}_${user._id}`}>
+                        <div className="test12">
+                          <img className="test22" src={user.image} alt={`${user.firstName}`} />
+                        </div>
+                        <div className="test32" onClick={() => manageDetail(user._id)} >
+                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="searchUsers">No hay usuarios</div>
+              )}
+            </>
           )}
         </div>
 
@@ -341,26 +400,34 @@ export const DetailPost = () => {
           <div className="timelineRightTitleUp">
             FOLLOWING
           </div>
-          {profileData?.success && profileData?.data?.following?.length >= 0 ? (
-            <div className="searchUsers3">
-              {profileData.data.following.map((follow, index) => {
-                return (
-                  <div className="userSearched3" key={`follow_${index}_${follow._id}`}>
-                    <div className="test12">
-                      <img className="test22" src={follow.image} alt={`${follow.firstName}`} />
-                    </div>
-                    <div className="test32"  onClick={() => manageDetail(follow)}>
-                      <p>{follow.firstName.toUpperCase()}&nbsp;{follow.lastName.toUpperCase()}</p>
-                    </div>
-                    <div className="test4" onClick={() => handleFollow(follow._id)}>
-                      <p>UNFOLLOW USER</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {!postsData ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           ) : (
-            <div className="searchUsers">No hay usuarios</div>
+            <>
+              {profileData?.success && profileData?.data?.following?.length >= 0 ? (
+                <div className="searchUsers3">
+                  {profileData.data.following.map((user, index) => {
+                    return (
+                      <div className="userSearched3" key={`follow_${index}_${user._id}`}>
+                        <div className="test12">
+                          <img className="test22" src={user.image} alt={`${user.firstName}`} />
+                        </div>
+                        <div className="test32" onClick={() => manageDetail(user._id)}>
+                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
+                        </div>
+                        <div className="test4" onClick={() => handleFollow(user._id)}>
+                          UNFOLLOW USER
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="searchUsers">No hay usuarios</div>
+              )}
+            </>
           )}
         </div>
       </div>

@@ -89,7 +89,7 @@ export const FollowProfile = () => {
     setNameCriteria(e.target.value.toLowerCase())
   }
 
-  const handlePostClick = (index,) => {
+  const handlePostClick = (index, ) => {
     centerRef.current.children[index].scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -98,7 +98,7 @@ export const FollowProfile = () => {
       <div className='timelineLeft'>
         <div className='timelineLeftUp1'>
           <div className="titleMyInformation">
-            {`${postsData?.data[0].userId.firstName.toUpperCase()}`} INFORMATION
+            {`${postsData?.data[0]?.userId?.firstName.toUpperCase()}`} INFORMATION
           </div>
 
           {!postsData ? (
@@ -157,7 +157,7 @@ export const FollowProfile = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user) => {
                   return (
-                    <div className="userSearched4" key={user._id}>
+                    <div className="userSearched4" key={`${index}_${user._id}`}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
@@ -188,13 +188,13 @@ export const FollowProfile = () => {
             </Spinner>
           </div>
         ) : (
-          <div>
+          <div ref={centerRef}>
             {postsData && postsData?.data?.slice().reverse().map((post, index) => (
               <div key={index} className='timelineCardDesign'>
                 {index === 0 ? <div className="titlePostTimeline">{`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;TIME-LINE</div> : null}
                 <div className="bodyCardTimeline">
 
-                  <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
+                  <div className="bodyDateTimeline">
                     <div className="bodyDate1Timeline">
 
                     </div>
@@ -204,15 +204,15 @@ export const FollowProfile = () => {
                     </div>
                   </div>
 
-                  <div className="bodyTitleTimeline" onClick={() => handlePost(post._id)}>
+                  <div className="bodyTitleTimeline">
                     {post.title.toUpperCase()}
                   </div>
 
-                  <div className="bodyImageTimeline" onClick={() => handlePost(post._id)}>
+                  <div className="bodyImageTimeline">
                     <img className="image1Post" src={post.image} alt={`${post._id}`} />
                   </div>
 
-                  <div className="bodyDescriptionTimeline" onClick={() => handlePost(post._id)}>
+                  <div className="bodyDescriptionTimeline">
                     {post.description}
                   </div>
 
@@ -242,21 +242,14 @@ export const FollowProfile = () => {
           {`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;PICTURES
         </div>
         <div className="profileRightDown">
-          {postsData && postsData?.data?.reverse().map((post, index) => (
-            <div className="imgUsr" key={post._id}>
-              <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
+          {postsData && postsData?.data?.map((post, index) => (
+            <div className="placePictureEven" key={post._id}>
+              <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
             </div>
           ))
           }
         </div>
       </div>
-
-      <NewPost
-        className={`test1234`}
-        src={"../../public/newPost.png"}
-        alt={"asd"}
-        onClick={() => handleModal()}
-      />
     </div>
   );
 };

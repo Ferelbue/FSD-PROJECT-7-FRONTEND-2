@@ -122,7 +122,7 @@ export const Timeline = () => {
     return () => clearTimeout(searching);
   }, [criteria]);
 
-  
+
   const searchHandler = (e) => {
     setCriteria(e.target.value)
     setNameCriteria(e.target.value.toLowerCase())
@@ -132,7 +132,7 @@ export const Timeline = () => {
     try {
 
       const fetched = await updatePost(postId, rdxUser.credentials.token);
-      console.log(fetched,"asdasdasdasdsadsa")
+      console.log(fetched, "asdasdasdasdsadsa")
 
       const res = await getPosts(rdxUser.credentials.token, "", "", "");
 
@@ -316,6 +316,9 @@ export const Timeline = () => {
                     <div className="bodyDate1Timeline">
                       
                     </div>
+                    <div className="bodyDate3Timeline">
+                      {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
+                    </div>
                     <div className="bodyDate2Timeline">
 
                       {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
@@ -340,10 +343,10 @@ export const Timeline = () => {
                     </div>
                     <div className="bodyLike2Timeline">
                       <div className="bodyLike3Timeline">
-                      {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)}/>
+                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                       </div>
                       <div className="bodyLike4Timeline">
-                      <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                        <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                       </div>
                     </div>
                   </div>
@@ -354,6 +357,7 @@ export const Timeline = () => {
           </div>
         )}
       </div>
+
       <div className={`timelineRight ${modal === true ? "timelineRight2" : ""}`} >
         <div className="timelineRightBodyUp">
           <div className="timelineRightTitleUp">
@@ -373,7 +377,7 @@ export const Timeline = () => {
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
-                        <div className="test32" onClick={() => manageDetail(user._id)} >
+                        <div className="test321">
                           {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                         </div>
                       </div>

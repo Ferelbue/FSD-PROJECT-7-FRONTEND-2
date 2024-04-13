@@ -25,7 +25,7 @@ export const Header = () => {
 
   return (
     <>
-      {(rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName === "user") ? (
+      {(rdxUser?.credentials !== "" && rdxUser?.credentials?.user?.roleName === "user") ? (
         <>
           <div className="headerDesign">
             <div className="logoHeader">
@@ -33,7 +33,7 @@ export const Header = () => {
             </div>
             <div className="menuHeader">
               <CustomLink title="HOME" destination="/timeline" />
-              <CustomLink title={`${rdxName?.payload?.name?.name.toUpperCase()} PROFILE`} destination="/profile" />
+              <CustomLink title={`${rdxName?.payload?.name?.name} PROFILE`} destination="/profile" />
             </div>
             <div className="rightHeader">
               
@@ -44,7 +44,7 @@ export const Header = () => {
           </div>
         </>
       ) : (
-        (rdxUser?.credentials !== "" && rdxUser?.credentials?.user.roleName !== "admin") ? (
+        (rdxUser?.credentials !== "" && (rdxUser?.credentials?.user?.roleName === "admin" || rdxUser?.credentials?.user?.roleName === "super-admin" )) ? (
           <>
             <div className="headerDesign">
               <div className="logoHeader">
@@ -52,7 +52,7 @@ export const Header = () => {
               </div>
               <div className="menuHeader">
                 <CustomLink title="HOME" destination="/timeline" />
-                <CustomLink title={`${rdxName?.payload?.name?.name.toUpperCase()} PROFILE`} destination="/profile" />
+                <CustomLink title={`${rdxName?.payload?.name?.name} PROFILE`} destination="/profile" />
               </div>
               <div className="rightHeader">
               <CustomLink title="ADMIN" destination="/admin" />
