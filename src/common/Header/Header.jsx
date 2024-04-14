@@ -30,7 +30,7 @@ export const Header = () => {
         <>
           <div className="headerDesign">
             <div className="logoHeader">
-              <img className="imagePost3" src={logo} alt={`${post._id}`} onClick={()=>navigate("/timeline")}/>
+              <img className="imagePost3" src={logo} alt={"logo"} onClick={()=>navigate("/timeline")}/>
             </div>
             <div className="menuHeader">
               <CustomLink title="HOME" destination="/timeline" />

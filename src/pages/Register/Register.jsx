@@ -71,13 +71,6 @@ export const Register = () => {
     }
   };
 
-  useEffect(() => {
-    if (rdxUser.credentials === "") {
-      navigate("/login");
-    }
-
-  }, [rdxUser]);
-
   return (
     <>
       <div className="headerRegisterDesing">

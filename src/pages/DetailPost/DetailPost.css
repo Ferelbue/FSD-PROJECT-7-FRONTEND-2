@@ -12,7 +12,8 @@
 }
 
 .timelineCardDesign3 {
-    height: 92vh;
+    min-height: 92vh;
+    height: auto;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
@@ -27,7 +28,6 @@
     align-items: center;
     margin: 0.5em;
     font-size: 1.2vw !important;
-    overflow: hidden;
 }
 
 .titlePostTimeline4 {
@@ -35,8 +35,8 @@
     width: 50vw;
     top: 90%;
     font-weight: bold;
-    font-size: medium;
-    margin-top: 1.5em;
+    font-size: large;
+    margin-bottom: 1em;
     color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

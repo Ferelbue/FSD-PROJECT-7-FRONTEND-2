@@ -93,6 +93,21 @@ export const FollowProfile = () => {
     return () => clearTimeout(searching);
   }, [criteria]);
 
+  const handleLike = async (postId) => {
+    try {
+
+      console.log(postId, "asdasdasdasdsadsa")
+      const fetched = await updatePost(postId, rdxUser.credentials.token);
+      console.log(fetched, "asdasdasdasdsadsa")
+
+      const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
+      setUsersFetched(usersData);
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   const searchHandler = (e) => {
     setCriteria(e.target.value)
     setNameCriteria(e.target.value.toLowerCase())
