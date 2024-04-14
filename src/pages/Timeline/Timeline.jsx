@@ -17,6 +17,9 @@ import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import Spinner from 'react-bootstrap/Spinner';
 import dayjs from "dayjs";
+import like from "../../../public/like.png";
+import comment from "../../../public/comment.png";
+import newP from "../../../public/newPost.png";
 
 export const Timeline = () => {
   const [profileData, setProfileData] = useState();
@@ -47,10 +50,20 @@ export const Timeline = () => {
   };
 
   useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
           const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "", "");
+          // if (data === "JWT NOT VALID OR MALFORMED") {
+          //   { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+          //   navigate("/")
+          // }
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -71,7 +84,7 @@ export const Timeline = () => {
       dispatch(updateName({ name: "" }));
       navigate("/login");
     }
-  }, [rdxUser]);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -132,7 +145,6 @@ export const Timeline = () => {
     try {
 
       const fetched = await updatePost(postId, rdxUser.credentials.token);
-      console.log(fetched, "asdasdasdasdsadsa")
 
       const res = await getPosts(rdxUser.credentials.token, "", "", "");
 
@@ -235,7 +247,7 @@ export const Timeline = () => {
                   <div className="timelineProfileCenter">
                     <div>
                       <div>
-                        {profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}
+                        {profileData?.data?.firstName} {profileData?.data?.lastName}
                       </div>
                       {profileData?.data?.email}
                     </div>
@@ -314,10 +326,10 @@ export const Timeline = () => {
 
                   <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
                     <div className="bodyDate1Timeline">
-                      
+
                     </div>
                     <div className="bodyDate3Timeline">
-                      {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
+                      {post.userId.firstName}&nbsp;{post.userId.lastName}
                     </div>
                     <div className="bodyDate2Timeline">
 
@@ -343,10 +355,10 @@ export const Timeline = () => {
                     </div>
                     <div className="bodyLike2Timeline">
                       <div className="bodyLike3Timeline">
-                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                       </div>
                       <div className="bodyLike4Timeline">
-                        <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                        <img className="image2Post" src={comment} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                       </div>
                     </div>
                   </div>
@@ -428,75 +440,103 @@ export const Timeline = () => {
       </div>
       <NewPost
         className={`test1234`}
-        src={"../../public/newPost.png"}
+        src={newP}
         alt={"asd"}
         onClick={() => handleModal()}
       />
       {modal &&
         <div className="modalDesign">
           <div className="modalCardDesign">
-            <div className="profileModalTitle">
-              NEW POST
+            <div className="profileModalTitle5">
+              <div className="profileModalTitle1">
+
+              </div>
+              <div className="profileModalTitle2">
+                NEW POST
+              </div>
+              <div className="profileModalTitle3">
+                <CustomButton
+                  className={"customButtonXDesign2"}
+                  title={"X"}
+                  functionEmit={() => handleBack()}
+                />
+              </div>
             </div>
+
             <div className="profileModalBody">
-              <div className="imageModal">
-                <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
-              </div>
-              <div>
 
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"image"}
-                  disabled={writeModal}
-                  value={postUpdated.image}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
+              <div className="newPostTitleTitle">
+                <div className="newPostTitle1Title">
+                  TITLE:
+                </div >
+                <div className="newPostTitle2Title">
+                  <CustomInput
+                    className={`inputTitlePostDesign`}
+                    type={"text"}
+                    placeholder={"Introduce a TITLE"}
+                    name={"title"}
+                    disabled={writeModal}
+                    value={postUpdated.title}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
 
-                />
-
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"title"}
-                  disabled={writeModal}
-                  value={postUpdated.title}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-
-                />
-
-              </div>
-              <div>
-                <CustomTextArea
-                  className={`inputDescriptionPostDesign`}
-                  type={"textarea"}
-                  placeholder={""}
-                  name={"description"}
-                  disabled={writeModal}
-                  value={postUpdated.description}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-                />
-
-                <div className="modalButtons">
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"SEND"}
-                    functionEmit={() => createPost()}
-                  />
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"BACK"}
-                    functionEmit={() => handleBack()}
                   />
                 </div>
+              </div>
+
+              <div className="newPostImageTitle">
+                <div className="newPostImage1Title">
+                  IMAGE:
+                </div >
+                <div className="newPostImage2Title">
+                  <div className="newPostImage4Title">
+                    <img className="imagePostProfile3" src={postUpdated.image} alt={`Paste a URL -->`} />
+                  </div>
+
+                  <div className="newPostImage3Title">
+                    URL:&nbsp;
+                    <CustomInput
+                      className={`inputTitlePostDesign`}
+                      type={"text"}
+                      placeholder={"Introduce a URL from a image"}
+                      name={"image"}
+                      disabled={writeModal}
+                      value={postUpdated.image}
+                      onChangeFunction={(e) => inputHandlerPost(e)}
+
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              <div className="newPostTextTitle">
+                <div className="newPostText1Title">
+                  TEXT:
+                </div >
+                <div className="newPostText2Title">
+                  <CustomTextArea
+                    className={`inputDescriptionPostDesign`}
+                    type={"textarea"}
+                    placeholder={"Introduce a TEXT"}
+                    name={"description"}
+                    disabled={writeModal}
+                    value={postUpdated.description}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
+                  />
+                </div>
+              </div>
+
+              <div className="newPostButonTitle">
+                <CustomButton
+                  className={"customButtonDesign3"}
+                  title={"SEND"}
+                  functionEmit={() => createPost()}
+                />
               </div>
             </div>
           </div>
         </div>
       }
-    </div>
+    </div >
   );
 };

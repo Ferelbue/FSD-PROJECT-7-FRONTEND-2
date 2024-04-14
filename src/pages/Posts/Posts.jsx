@@ -36,7 +36,6 @@ export const Posts = () => {
 
   const handleLike = async (index, userId) => {
     let positionRemove = 0;
-    console.log(index);
     for (let i = 0; i < postsData.data[index].like.length; i++) {
 
       if ((postsData.data[index].like[i]) === userId) {
@@ -51,7 +50,6 @@ export const Posts = () => {
     } else {
       (postsData.data[index].like).push(userId)
     }
-    console.log(postsData.data[index].like)
 
     return postsData.data[index].like;
   };

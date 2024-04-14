@@ -12,7 +12,8 @@
 }
 
 .timelineCardDesign3 {
-    height: 92vh;
+    min-height: 92vh;
+    height: auto;
     width: 50vw;
     border-radius: 0.5em;
     border-width: 0.1em;
@@ -27,7 +28,6 @@
     align-items: center;
     margin: 0.5em;
     font-size: 1.2vw !important;
-    overflow: hidden;
 }
 
 .titlePostTimeline4 {
@@ -35,8 +35,8 @@
     width: 50vw;
     top: 90%;
     font-weight: bold;
-    font-size: medium;
-    margin-top: 1.5em;
+    font-size: large;
+    margin-bottom: 1em;
     color: rgb(61, 88, 139);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -299,4 +299,55 @@
 .imagePost {
     width: 20vw;
     height: 20vh;
+}
+.bodyDateTimeline6{
+    height: 2vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.inputDescriptionPostDesign4{
+    width: 40vw;
+    height: 10vh;
+    resize:none;
+    background-color: white;
+    color: black;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: black;
+    flex-wrap: wrap;
+  }
+  .customButtonDesign5 {
+    height: 2em;
+    width: 15em;
+    border-radius: 0.5em;
+    border: solid 0.2em;
+    transition: 0.3s;
+    border-color: rgb(61, 88, 139);
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.customButtonDesign5:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgb(61, 88, 139);
+    border: solid 0.2em;
+    border-color: white;
+    color: white;
+
+}
+.sendCommentaryButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

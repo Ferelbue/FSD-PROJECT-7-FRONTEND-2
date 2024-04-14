@@ -9,6 +9,7 @@ import { CustomInput } from "../CustomInput/CustomInput";
 import { updateDetail } from "../../app/slices/postSlice";
 import { updateFollow } from "../../app/slices/followSlice";
 import { useNavigate } from "react-router-dom"
+import logo from "../../../public/logo.png"
 
 
 export const Header = () => {
@@ -29,35 +30,35 @@ export const Header = () => {
         <>
           <div className="headerDesign">
             <div className="logoHeader">
-              LOGO
+              <img className="imagePost3" src={logo} alt={"logo"} onClick={()=>navigate("/timeline")}/>
             </div>
             <div className="menuHeader">
               <CustomLink title="HOME" destination="/timeline" />
-              <CustomLink title={`${rdxName?.payload?.name?.name} PROFILE`} destination="/profile" />
+              <CustomLink title={`PROFILE`} destination="/profile" />
             </div>
             <div className="rightHeader">
-              
+
               <div className="out-design" onClick={() => handleLogout()} >
-                log out
+                LOG OUT
               </div>
             </div>
           </div>
         </>
       ) : (
-        (rdxUser?.credentials !== "" && (rdxUser?.credentials?.user?.roleName === "admin" || rdxUser?.credentials?.user?.roleName === "super-admin" )) ? (
+        (rdxUser?.credentials !== "" && (rdxUser?.credentials?.user?.roleName === "admin" || rdxUser?.credentials?.user?.roleName === "super-admin")) ? (
           <>
             <div className="headerDesign">
               <div className="logoHeader">
-                LOGO
+                <img className="imagePost3" src={logo} alt={"logo"} onClick={()=>navigate("/timeline")} />
               </div>
               <div className="menuHeader">
                 <CustomLink title="HOME" destination="/timeline" />
-                <CustomLink title={`${rdxName?.payload?.name?.name} PROFILE`} destination="/profile" />
+                <CustomLink title={`PROFILE`} destination="/profile" />
               </div>
               <div className="rightHeader">
-              <CustomLink title="ADMIN" destination="/admin" />
+                <CustomLink title="ADMIN" destination="/admin" />
                 <div className="out-design" onClick={() => handleLogout()} >
-                  log out
+                  LOG OUT
                 </div>
               </div>
             </div>

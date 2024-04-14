@@ -51,7 +51,7 @@ export const AdminUsers = () => {
   };
 
   const checkError = (e) => {
-    console.log(e.target.name, e.target.value)
+
     const error = validame(e.target.name, e.target.value);
 
     setUserError((prevState) => ({
@@ -60,6 +60,13 @@ export const AdminUsers = () => {
 
     }));
   };
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   useEffect(() => {
     if (rdxUser.credentials === "") {
@@ -127,7 +134,7 @@ export const AdminUsers = () => {
     try {
       dispatch(updateUserBy({ userBy: userId }))
       const fetched = await getUserProfileById(rdxUser.credentials.token, userId);
-      console.log(fetched)
+
       setUser({
         firstName: fetched.data.firstName,
         lastName: fetched.data.lastName,
@@ -140,7 +147,7 @@ export const AdminUsers = () => {
   const updateData = async () => {
 
     try {
-      console.log(rdxBy)
+
       const fetchedUpdated = await updateUserById(rdxUser.credentials.token, rdxBy.userBy, user)
       setUpdateUser(fetchedUpdated)
       setWrite("disabled")
@@ -159,6 +166,9 @@ export const AdminUsers = () => {
         <div className="leftUsersAdmin">
           <div className="filtersAdmin">
             <div className="inputHeader">
+              <div className="titlePostTimeline6">
+                USER FILTERS
+              </div>
               <div className="pagText">
                 FILTER BY NAME
               </div>
@@ -195,75 +205,85 @@ export const AdminUsers = () => {
               />
             </div>
           </div>
+
+          {rdxUser?.credentials?.user?.roleName === "super-admin" ? (
           <div className="detailAdmin">
-
-            <div className="pagText">
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">NAME:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"firstName"}
-                    disabled={"disable"}
-                    value={user.firstName || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.firstNameError}</div>
-                </div>
+          <div className="pagText">
+            <div className="titlePostTimeline6">
+              EDIT ROLE USER
+            </div>
+            <div className="inputUserFormat">
+              <div>
+                <div className="inputUser">NAME:</div>
               </div>
-
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">LAST NAME:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"lastName"}
-                    disabled={"disable"}
-                    value={user.lastName || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.lastNameError}</div>
-                </div>
+              <div>
+                <CustomInput
+                  className={`inputSearch`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"firstName"}
+                  disabled={"disable"}
+                  value={user.firstName || ""}
+                  onChangeFunction={(e) => inputHandler(e)}
+                  onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="error">{userError.firstNameError}</div>
               </div>
+            </div>
 
-              <div className="inputUserFormat">
-                <div>
-                  <div className="inputUser">Role:</div>
-                </div>
-                <div>
-                  <CustomInput
-                    className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
-                      }`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"role"}
-                    disabled={write}
-                    value={user.role || ""}
-                    onChangeFunction={(e) => inputHandler(e)}
-                    onBlurFunction={(e) => checkError(e)}
-                  />
-                  <div className="error">{userError.roleError}</div>
-                </div>
-                <div className="cardUserDown">
-                  <CustomButton
-                    className={write === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
-                    title={write === "" ? "Confirm" : "Edit"}
-                    functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
-                  />
-                </div>
+            <div className="inputUserFormat">
+              <div>
+                <div className="inputUser">LAST NAME:</div>
+              </div>
+              <div>
+                <CustomInput
+                  className={`inputSearch`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"lastName"}
+                  disabled={"disable"}
+                  value={user.lastName || ""}
+                  onChangeFunction={(e) => inputHandler(e)}
+                  onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="error">{userError.lastNameError}</div>
+              </div>
+            </div>
+
+            
+            <div className="inputUserFormat">
+              <div>
+                <div className="inputUser">Role:</div>
+              </div>
+              <div>
+                <CustomInput
+                  className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
+                    }`}
+                  type={"text"}
+                  placeholder={""}
+                  name={"role"}
+                  disabled={write}
+                  value={user.role || ""}
+                  onChangeFunction={(e) => inputHandler(e)}
+                  onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="error">{userError.roleError}</div>
+              </div>
+              <div className="cardUserDown">
+                <CustomButton
+                  className={write === "" ? "cButtonGreen customButtonDesign4" : "customButtonDesign4"}
+                  title={write === "" ? "Confirm" : "Edit"}
+                  functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
+                />
               </div>
             </div>
           </div>
+        </div>
+          )
+        : (null)
+        }
+
+
         </div>
 
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import "./PostNew.css";
@@ -9,7 +10,8 @@ import { registerMe } from "../../services/apiCalls";
 import { userData } from "../../app/slices/userSlice";
 
 export const PostNew = () => {
-
+  const [writeModal, setWriteModal] = useState("disabled");
+  const [error, setError] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -71,67 +73,127 @@ export const PostNew = () => {
     }
   };
 
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
+
+  const handleModal = async () => {
+    try {
+      setModal(true)
+      setWriteModal("")
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const handleBack = async () => {
+    try {
+      setModal(false)
+      setWriteModal("disable")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return (
     <>
       <div className="postNewDesign">
-        <div className="postNewCardDesign">
-          <div className="registerCardUp">
-            NEW POST
-          </div>
+          <div className="modalDesign">
+            <div className="modalCardDesign">
+              <div className="profileModalTitle5">
+                <div className="profileModalTitle1">
 
-          <div className="registerCardDown">
-            <CustomInput
-              className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""
-                }`}
-              type={"text"}
-              placeholder={"name"}
-              name={"firstName"}
-              value={user.firstName || ""}
-              onChangeFunction={(e) => inputHandler(e)}
-              onBlurFunction={(e) => checkError(e)}
-            />
-            <div className="error">{userError.firstNameError}</div>
-            <CustomInput
-              className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
-                }`}
-              type={"email"}
-              placeholder={"email"}
-              name={"email"}
-              value={user.email || ""}
-              onChangeFunction={(e) => inputHandler(e)}
-              onBlurFunction={(e) => checkError(e)}
-            />
-            <div className="error">{userError.emailError}</div>
-            <CustomInput
-              className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
-                }`}
-              type={"password"}
-              placeholder={"password"}
-              name={"password"}
-              value={user.password || ""}
-              onChangeFunction={(e) => inputHandler(e)}
-              onBlurFunction={(e) => checkError(e)}
-            />
-            <div className="error">{userError.passwordError}</div>
-            <CustomInput
-              className={`inputDesign ${userError.imageError !== "" ? "inputDesignError" : ""
-                }`}
-              type={"text"}
-              placeholder={"image"}
-              name={"image"}
-              value={user.image || ""}
-              onChangeFunction={(e) => inputHandler(e)}
-              onBlurFunction={(e) => checkError(e)}
-            />
-            <div className="error">{userError.imageError}</div>
-            <CustomButton
-              className={"customButtonDesign"}
-              title={"Send"}
-              functionEmit={registerUser}
-            />
-            <div className="error">{msgError}</div>
+                </div>
+                <div className="profileModalTitle2">
+                  NEW POST
+                </div>
+                <div className="profileModalTitle3">
+                  <CustomButton
+                    className={"customButtonXDesign2"}
+                    title={"X"}
+                    functionEmit={() => handleBack()}
+                  />
+                </div>
+              </div>
+
+              <div className="profileModalBody">
+
+                <div className="newPostTitleTitle">
+                  <div className="newPostTitle1Title">
+                    TITLE:
+                  </div >
+                  <div className="newPostTitle2Title">
+                    <CustomInput
+                      className={`inputTitlePostDesign`}
+                      type={"text"}
+                      placeholder={"Introduce a TITLE"}
+                      name={"title"}
+                      disabled={writeModal}
+                      value={postUpdated.title}
+                      onChangeFunction={(e) => inputHandlerPost(e)}
+
+                    />
+                  </div>
+                </div>
+
+                <div className="newPostImageTitle">
+                  <div className="newPostImage1Title">
+                    IMAGE:
+                  </div >
+                  <div className="newPostImage2Title">
+                    <div className="newPostImage4Title">
+                      <img className="imagePostProfile3" src={postUpdated.image} alt={`Paste a URL -->`} />
+                    </div>
+
+                    <div className="newPostImage3Title">
+                      URL:&nbsp;
+                      <CustomInput
+                        className={`inputTitlePostDesign`}
+                        type={"text"}
+                        placeholder={"Introduce a URL from a image"}
+                        name={"image"}
+                        disabled={writeModal}
+                        value={postUpdated.image}
+                        onChangeFunction={(e) => inputHandlerPost(e)}
+
+                      />
+                    </div>
+
+                  </div>
+                </div>
+
+                <div className="newPostTextTitle">
+                  <div className="newPostText1Title">
+                    TEXT:
+                  </div >
+                  <div className="newPostText2Title">
+                    <CustomTextArea
+                      className={`inputDescriptionPostDesign`}
+                      type={"textarea"}
+                      placeholder={"Introduce a TEXT"}
+                      name={"description"}
+                      disabled={writeModal}
+                      value={postUpdated.description}
+                      onChangeFunction={(e) => inputHandlerPost(e)}
+                    />
+                  </div>
+                </div>
+
+                <div className="newPostButonTitle">
+                  <CustomButton
+                    className={"customButtonDesign3"}
+                    title={"SEND"}
+                    functionEmit={() => createPost()}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        
       </div>
     </>
   );

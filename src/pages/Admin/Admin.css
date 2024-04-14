@@ -11,7 +11,17 @@
 .adminUsersCard {
     height: 40vh;
     width: 20vw;
-    background-color: rgb(225, 166, 166);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5em;
+
+}
+.adminPostsCard {
+    height: 40vh;
+    width: 20vw;
     z-index: 9;
     display: flex;
     flex-direction: row;
@@ -20,15 +30,8 @@
     margin: 2em;
     cursor: pointer;
 }
-.adminPostsCard {
+.image3Post{
+
     height: 40vh;
-    width: 20vw;
-    background-color: rgb(193, 199, 236);
-    z-index: 9;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 2em;
     cursor: pointer;
 }

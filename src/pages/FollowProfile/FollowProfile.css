@@ -416,3 +416,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.bodyDate7Timeline {
+    width: 45vw;
+    font-weight: bold;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 1em;
+}

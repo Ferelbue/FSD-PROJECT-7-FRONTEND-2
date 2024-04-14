@@ -17,26 +17,56 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 
 }
 
 .loginBody {
-  height: 40vh;
+  height: 50vh;
   width: 100vw;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+}
+
+.loginBody1{
+  height: 50vh;
+  width: 50vw;
+  padding: 1em;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border: solid;
+  border-color: rgb(205, 200, 200);
+  border-right-width: 0.1em;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+.loginBody2{
+  height: 50vh;
+  width: 50vw;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-left: 1em;
+
+}
+.loginBody3{
+  width: 40vw;
+  display: flex;
+  align-items: flex-start;
+
 }
 
 .loginFooter {
-  height: 30vh;
+  height: 20vh;
   width: 100vw;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .loginButton {
@@ -61,7 +91,7 @@
   width: 7em;
 
   border-radius: 0.5em;
-  border: solid 0.2em;
+  border: solid 0.1em;
   border-color: rgb(61, 88, 139);
   background-color: white;
   color: black;
@@ -70,7 +100,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 .customButtonHeaderDesign:hover {
@@ -78,7 +110,7 @@
   cursor: pointer;
   transition: 0.2s;
   background-color: rgb(61, 88, 139);
-  border: solid 0.2em;
+  border: solid 0.1em;
   border-color: white;
 
   height: 2.3em;
@@ -87,15 +119,22 @@
 
 .inputError {
   width: 20vw;
+
 }
 
 .menuInputHeader {
-  width: 70vw;
+  width: 50vw;
   height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  border: solid;
+  border-color: rgb(205, 200, 200);
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0.1em;
 }
 
 .registerHeader {
@@ -120,16 +159,34 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-right: 2em;
+  margin-right: 0.5em;
 }
 
 .errorHeader {
+  height: 2vh;
   color: red;
   font-size: small;
   font-weight: bold;
   margin-left: 1em;
   height: 1vh;
 }
-.inputError{
+
+.inputError {
   width: 20vw;
+  margin-top: 2em;
+}
+
+.inputDesign1 {
+  height: 3em;
+  width: 18em;
+
+  border: 0.1em solid black;
+  border-radius: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: white;
+  color: black;
+}
+.imgLogin{
+  height: 20vh;
+
 }

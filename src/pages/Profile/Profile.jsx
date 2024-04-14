@@ -16,7 +16,8 @@ import { NewPost } from "../../common/NewPost/NewPost";
 import { updateName } from "../../app/slices/nameSlice";
 import dayjs from "dayjs";
 import pot from "../../../public/pot.png"
-
+import like from "../../../public/like.png";
+import newP from "../../../public/newPost.png";
 
 export const Profile = () => {
 
@@ -130,7 +131,7 @@ export const Profile = () => {
 
 
   const updateData = async () => {
-    console.log("1")
+
     try {
       const fetched = await updateProfile(rdxUser.credentials.token, user)
       setUser({
@@ -149,9 +150,9 @@ export const Profile = () => {
 
   const handleDelete = async (postId) => {
     try {
-      console.log(postId)
+
       await deletePost(postId, rdxUser.credentials.token);
-      console.log("HOLA")
+
 
       const data = await getUserPosts(rdxUser.credentials.token);
 
@@ -168,7 +169,6 @@ export const Profile = () => {
       setWritePost("")
       for (let i = 0; i < postsData.data.length; i++) {
         if (postsData.data[i]._id === postId) {
-          console.log("este", postsData.data[i].image);
           setPost({
             description: postsData.data[i].description,
             image: postsData.data[i].image,
@@ -184,7 +184,6 @@ export const Profile = () => {
 
   const updateUserPost = async (postId) => {
     try {
-      console.log(postId, "asd")
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
 
       setPost({
@@ -450,10 +449,10 @@ export const Profile = () => {
 
               <div className="bodyBotomProfile">
                 <div className="bodyBotom1Profile">
-                  {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                  {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                 </div>
                 <div className="bodyBotom2Profile">
-                  <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                  <img className="image2Post" src={like} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                 </div>
                 <div className="bodyBotom3Profile">
                   <img className="image2" src={pot} alt={`${post.firstName}`} />
@@ -487,73 +486,101 @@ export const Profile = () => {
         </div>
       </div>
 
-      
+
       <NewPost
         className={`test1234`}
-        src={"../../public/newPost.png"}
+        src={newP}
         alt={"asd"}
         onClick={() => handleModal()}
       />
       {modal &&
-        <div className="modalProfileDesign">
-          <div className="modalProfileCardDesign">
-            <div className="profileModalTitle">
-              NEW POST
+        <div className="modalDesign">
+          <div className="modalCardDesign">
+            <div className="profileModalTitle5">
+              <div className="profileModalTitle1">
+
+              </div>
+              <div className="profileModalTitle2">
+                NEW POST
+              </div>
+              <div className="profileModalTitle3">
+                <CustomButton
+                  className={"customButtonXDesign2"}
+                  title={"X"}
+                  functionEmit={() => handleBack()}
+                />
+              </div>
             </div>
+
             <div className="profileModalBody">
-              <div className="imageModal">
 
-                <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"image"}
-                  disabled={writeModal}
-                  value={postUpdated.image}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
+              <div className="newPostTitleTitle">
+                <div className="newPostTitle1Title">
+                  TITLE:
+                </div >
+                <div className="newPostTitle2Title">
+                  <CustomInput
+                    className={`inputTitlePostDesign`}
+                    type={"text"}
+                    placeholder={"Introduce a TITLE"}
+                    name={"title"}
+                    disabled={writeModal}
+                    value={postUpdated.title}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
 
-                />
-                <div className="error">{userError.imageError}</div>
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"title"}
-                  disabled={writeModal}
-                  value={postUpdated.title}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-
-                />
-                <div className="error">{userError.imageError}</div>
-              </div>
-              <div>
-                <CustomTextArea
-                  className={`inputDescriptionPostDesign`}
-                  type={"textarea"}
-                  placeholder={""}
-                  name={"description"}
-                  disabled={writeModal}
-                  value={postUpdated.description}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-                />
-                <div className="error">{userError.imageError}</div>
-                <div className="modalButtons">
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"SEND"}
-                    functionEmit={() => createPost()}
-                  />
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"BACK"}
-                    functionEmit={() => handleBack()}
                   />
                 </div>
+              </div>
+
+              <div className="newPostImageTitle">
+                <div className="newPostImage1Title">
+                  IMAGE:
+                </div >
+                <div className="newPostImage2Title">
+                  <div className="newPostImage4Title">
+                    <img className="imagePostProfile3" src={postUpdated.image} alt={`Paste a URL -->`} />
+                  </div>
+
+                  <div className="newPostImage3Title">
+                    URL:&nbsp;
+                    <CustomInput
+                      className={`inputTitlePostDesign`}
+                      type={"text"}
+                      placeholder={"Introduce a URL from a image"}
+                      name={"image"}
+                      disabled={writeModal}
+                      value={postUpdated.image}
+                      onChangeFunction={(e) => inputHandlerPost(e)}
+
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              <div className="newPostTextTitle">
+                <div className="newPostText1Title">
+                  TEXT:
+                </div >
+                <div className="newPostText2Title">
+                  <CustomTextArea
+                    className={`inputDescriptionPostDesign`}
+                    type={"textarea"}
+                    placeholder={"Introduce a TEXT"}
+                    name={"description"}
+                    disabled={writeModal}
+                    value={postUpdated.description}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
+                  />
+                </div>
+              </div>
+
+              <div className="newPostButonTitle">
+                <CustomButton
+                  className={"customButtonDesign3"}
+                  title={"SEND"}
+                  functionEmit={() => createPost()}
+                />
               </div>
             </div>
           </div>

@@ -17,6 +17,8 @@ import { followData } from "../../app/slices/followSlice";
 import { useRef } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import dayjs from "dayjs";
+import like from "../../../public/like.png";
+import comment from "../../../public/comment.png";
 
 export const FollowProfile = () => {
 
@@ -39,13 +41,19 @@ export const FollowProfile = () => {
   const [editIndex, setEditIndex] = useState(-1);
   const [nameCriteria, setNameCriteria] = useState("")
   const centerRef = useRef(null);
+  
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        console.log(followRdx.follow)
-        const data = await getUserPostById(rdxUser.credentials.token, followRdx.follow);
 
+        const data = await getUserPostById(rdxUser.credentials.token, followRdx.follow);
         setPostsData(data);
       } catch (error) {
         setError(error);
@@ -63,7 +71,7 @@ export const FollowProfile = () => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
-          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria);
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -84,6 +92,27 @@ export const FollowProfile = () => {
     return () => clearTimeout(searching);
   }, [criteria]);
 
+  const handlePost = async (postId) => {
+    try {
+      dispatch(updateDetail({ detail: postId }))
+      navigate("/detailPost")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const handleLike = async (postId) => {
+    try {
+      const fetched = await updatePost(postId, rdxUser.credentials.token);
+      const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
+      setUsersFetched(usersData);
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   const searchHandler = (e) => {
     setCriteria(e.target.value)
     setNameCriteria(e.target.value.toLowerCase())
@@ -101,13 +130,13 @@ export const FollowProfile = () => {
             {`${postsData?.data[0]?.userId?.firstName.toUpperCase()}`} INFORMATION
           </div>
 
-          {!postsData ? (
+          {!postsData?.data[0] ? (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           ) : (
             <>
-              {postsData && (
+              {postsData?.data[0] && (
                 <>
                   <div className="timelineProfileUp">
                     <div>
@@ -155,9 +184,9 @@ export const FollowProfile = () => {
           <div>
             {usersFetched?.success && usersFetched?.data?.length > 0 ? (
               <div className="searchUsers">
-                {usersFetched.data.slice(0, 4).map((user) => {
+                {usersFetched.data.slice(0, 4).map((user,index) => {
                   return (
-                    <div className="userSearched4" key={`${index}_${user._id}`}>
+                    <div className="userSearched4" key={`${user._id}_${index}`}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
@@ -190,7 +219,7 @@ export const FollowProfile = () => {
         ) : (
           <div ref={centerRef}>
             {postsData && postsData?.data?.slice().reverse().map((post, index) => (
-              <div key={index} className='timelineCardDesign'>
+              <div key={`${index}_${post._id}`} className='timelineCardDesign'>
                 {index === 0 ? <div className="titlePostTimeline">{`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;TIME-LINE</div> : null}
                 <div className="bodyCardTimeline">
 
@@ -198,7 +227,7 @@ export const FollowProfile = () => {
                     <div className="bodyDate1Timeline">
 
                     </div>
-                    <div className="bodyDate2Timeline">
+                    <div className="bodyDate7Timeline">
 
                       {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
                     </div>
@@ -209,7 +238,7 @@ export const FollowProfile = () => {
                   </div>
 
                   <div className="bodyImageTimeline">
-                    <img className="image1Post" src={post.image} alt={`${post._id}`} />
+                    <img className="image1Post" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
                   </div>
 
                   <div className="bodyDescriptionTimeline">
@@ -222,10 +251,10 @@ export const FollowProfile = () => {
                     </div>
                     <div className="bodyLike2Timeline">
                       <div className="bodyLike3Timeline">
-                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                       </div>
                       <div className="bodyLike4Timeline">
-                        <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                        <img className="image2Post" src={comment} alt={`${post._id}_${index}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                       </div>
                     </div>
                   </div>
@@ -242,9 +271,9 @@ export const FollowProfile = () => {
           {`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;PICTURES
         </div>
         <div className="profileRightDown">
-          {postsData && postsData?.data?.map((post, index) => (
-            <div className="placePictureEven" key={post._id}>
-              <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
+          {postsData && postsData?.data?.slice().reverse().map((post, index) => (
+            <div className="imgUsr" key={`${post._id}_${index}`}>
+              <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
             </div>
           ))
           }

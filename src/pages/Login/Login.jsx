@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../../app/slices/userSlice";
 import { CustomRegister } from "../../common/CustomRegister/CustomRegister";
 import { updateName } from "../../app/slices/nameSlice";
+import logo3 from "../../../public/logo3.png";
 
 
 export const Login = () => {
@@ -50,7 +51,6 @@ export const Login = () => {
     const fetched = await loginMe(credenciales);
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
-      console.log(decodificado)
 
       const passport = {
         token: fetched.token,
@@ -70,7 +70,7 @@ export const Login = () => {
     if (rdxUser.credentials !== "") {
 
 
-        navigate("/timeline")
+      navigate("/timeline")
 
 
 
@@ -83,14 +83,11 @@ export const Login = () => {
       <div className="loginDesign">
 
         <div className="headerloginDesign">
-          <div className="logoHeader">
-            <CustomLink title="LOGO" destination="/" />
-          </div>
           <div className="menu2">
             <div className="menuInputHeader">
               <div className="inputError">
                 <CustomInput
-                  className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
+                  className={`inputDesign1 ${userError.emailError !== "" ? "inputDesignError" : ""
                     }`}
                   type="email"
                   placeholder="write your email...."
@@ -103,7 +100,7 @@ export const Login = () => {
               </div>
               <div className="inputError">
                 <CustomInput
-                  className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
+                  className={`inputDesign1 ${userError.passwordError !== "" ? "inputDesignError" : ""
                     }`}
                   type="password"
                   name="password"
@@ -125,10 +122,25 @@ export const Login = () => {
           </div>
         </div>
         <div className="loginBody" >
-          INSTAGEEKS!
+          <div className="loginBody1">
+            <img className="imgLogin" src={logo3} alt={`logoLogin`} />
+          </div>
+
+          <div className="loginBody2">
+            <p>What is InstaGeeks?</p>
+            <div className="loginBody3">
+              InstaGeeks is a private social platform
+            </div>
+            <div className="loginBody3">
+            used by hundreds of people to communicate and
+            </div>
+            <div className="loginBody3">
+            share every day.
+             </div>
+          </div>
+
         </div>
         <div className="loginFooter" >
-
         </div>
       </div>
     </>
