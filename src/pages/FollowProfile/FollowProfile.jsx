@@ -17,6 +17,8 @@ import { followData } from "../../app/slices/followSlice";
 import { useRef } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import dayjs from "dayjs";
+import like from "../../../public/like.png";
+import comment from "../../../public/comment.png";
 
 export const FollowProfile = () => {
 
@@ -39,6 +41,7 @@ export const FollowProfile = () => {
   const [editIndex, setEditIndex] = useState(-1);
   const [nameCriteria, setNameCriteria] = useState("")
   const centerRef = useRef(null);
+  
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -222,10 +225,10 @@ export const FollowProfile = () => {
                     </div>
                     <div className="bodyLike2Timeline">
                       <div className="bodyLike3Timeline">
-                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                        {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                       </div>
                       <div className="bodyLike4Timeline">
-                        <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                        <img className="image2Post" src={comment} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                       </div>
                     </div>
                   </div>

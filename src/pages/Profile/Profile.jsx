@@ -16,7 +16,8 @@ import { NewPost } from "../../common/NewPost/NewPost";
 import { updateName } from "../../app/slices/nameSlice";
 import dayjs from "dayjs";
 import pot from "../../../public/pot.png"
-
+import like from "../../../public/like.png";
+import newP from "../../../public/newPost.png";
 
 export const Profile = () => {
 
@@ -450,10 +451,10 @@ export const Profile = () => {
 
               <div className="bodyBotomProfile">
                 <div className="bodyBotom1Profile">
-                  {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                  {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                 </div>
                 <div className="bodyBotom2Profile">
-                  <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                  <img className="image2Post" src={like} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                 </div>
                 <div className="bodyBotom3Profile">
                   <img className="image2" src={pot} alt={`${post.firstName}`} />
@@ -490,7 +491,7 @@ export const Profile = () => {
 
       <NewPost
         className={`test1234`}
-        src={"../../public/newPost.png"}
+        src={newP}
         alt={"asd"}
         onClick={() => handleModal()}
       />

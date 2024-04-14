@@ -16,6 +16,9 @@ import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { updateFollow } from "../../app/slices/followSlice";
 import Spinner from 'react-bootstrap/Spinner';
 import dayjs from "dayjs";
+import like from "../../../public/like.png";
+import comment from "../../../public/comment.png";
+import newP from "../../../public/newPost.png";
 
 export const DetailPost = () => {
   const [profileData, setProfileData] = useState();
@@ -329,10 +332,10 @@ export const DetailPost = () => {
                             </div>
                             <div className="bodyLike2Timeline">
                               <div className="bodyLike3Timeline">
-                                {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={"../../public/like.png"} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                                {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                               </div>
                               <div className="bodyLike4Timeline">
-                                <img className="image2Post" src={"../../public/comment.png"} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                                <img className="image2Post" src={comment} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                               </div>
                             </div>
                           </div>
@@ -436,7 +439,7 @@ export const DetailPost = () => {
       </div>
       <NewPost
         className={`test1234`}
-        src={"../../public/newPost.png"}
+        src={newP}
         alt={"asd"}
         onClick={() => handleModal()}
       />
