@@ -107,15 +107,14 @@ You will need the [backend](https://github.com/Ferelbue/FSD-PROJECT-5-BACKEND-2.
 - **Responsive design 📱** - Adapt the app for a mobile versón. Whith diferent planning of views.
 - **Add notification** - So users can see when a friend make a publication.
 - **Online Chat** - So users can online speak with other friends connected.
+- **Error handling 📱** - Correct and extended error management.
 
 ---
 
 
 ## Posible Bugs :alien:
 
-- **Responsive design 📱** - Adapt the app for a mobile versón. Whith diferent planning of views.
-- **Add notification 🔔** - So users can see when a friend make a publication.
-- **Online Chat ➿** - So users can online speak with other connected friends.
+- **Sesion expired 📱** - When the sesion expired It is necessary to refresh the app.
 
 ---
 
