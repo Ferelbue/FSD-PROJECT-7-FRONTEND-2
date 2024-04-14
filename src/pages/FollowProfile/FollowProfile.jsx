@@ -52,9 +52,7 @@ export const FollowProfile = () => {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        console.log(followRdx.follow)
         const data = await getUserPostById(rdxUser.credentials.token, followRdx.follow);
-
         setPostsData(data);
       } catch (error) {
         setError(error);
@@ -93,13 +91,20 @@ export const FollowProfile = () => {
     return () => clearTimeout(searching);
   }, [criteria]);
 
+  const handlePost = async (postId) => {
+    try {
+      console.log(postId,"por aqui vamos7")
+      dispatch(updateDetail({ detail: postId }))
+      navigate("/detailPost")
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   const handleLike = async (postId) => {
     try {
-
-      console.log(postId, "asdasdasdasdsadsa")
       const fetched = await updatePost(postId, rdxUser.credentials.token);
-      console.log(fetched, "asdasdasdasdsadsa")
-
       const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
       setUsersFetched(usersData);
 
@@ -181,7 +186,7 @@ export const FollowProfile = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user,index) => {
                   return (
-                    <div className="userSearched4" key={`${index}_${user._id}`}>
+                    <div className="userSearched4" key={`${user._id}_${index}`}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
@@ -214,7 +219,7 @@ export const FollowProfile = () => {
         ) : (
           <div ref={centerRef}>
             {postsData && postsData?.data?.slice().reverse().map((post, index) => (
-              <div key={index} className='timelineCardDesign'>
+              <div key={`${index}_${post._id}`} className='timelineCardDesign'>
                 {index === 0 ? <div className="titlePostTimeline">{`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;TIME-LINE</div> : null}
                 <div className="bodyCardTimeline">
 
@@ -222,7 +227,7 @@ export const FollowProfile = () => {
                     <div className="bodyDate1Timeline">
 
                     </div>
-                    <div className="bodyDate2Timeline">
+                    <div className="bodyDate7Timeline">
 
                       {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
                     </div>
@@ -233,7 +238,7 @@ export const FollowProfile = () => {
                   </div>
 
                   <div className="bodyImageTimeline">
-                    <img className="image1Post" src={post.image} alt={`${post._id}`} />
+                    <img className="image1Post" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
                   </div>
 
                   <div className="bodyDescriptionTimeline">
@@ -249,7 +254,7 @@ export const FollowProfile = () => {
                         {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
                       </div>
                       <div className="bodyLike4Timeline">
-                        <img className="image2Post" src={comment} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                        <img className="image2Post" src={comment} alt={`${post._id}_${index}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
                       </div>
                     </div>
                   </div>
@@ -267,7 +272,7 @@ export const FollowProfile = () => {
         </div>
         <div className="profileRightDown">
           {postsData && postsData?.data?.slice().reverse().map((post, index) => (
-            <div className="imgUsr" key={post._id}>
+            <div className="imgUsr" key={`${post._id}_${index}`}>
               <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
             </div>
           ))

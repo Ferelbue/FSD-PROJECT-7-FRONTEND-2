@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerMe } from "../../services/apiCalls";
 import { userData } from "../../app/slices/userSlice";
+import logo3 from "../../../public/logo3.png";
 
 export const Register = () => {
 
@@ -74,18 +75,17 @@ export const Register = () => {
   return (
     <>
       <div className="headerRegisterDesing">
-        LOGO INSTAGEEKS
+        <img className="imgLogin" src={logo3} alt={`logoLogin`} />
       </div>
       <div className="registerDesign">
-        {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         <div className="registerCardDesign">
-          <div className="registerCardUp">
+          <div className="registerCardUp2">
             Registro
           </div>
 
-          <div className="registerCardDown">
+          <div className="registerCardDown2">
             <CustomInput
-              className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""
+              className={`inputDesign3 ${userError.firstNameError !== "" ? "inputDesignError" : ""
                 }`}
               type={"text"}
               placeholder={"name"}
@@ -94,9 +94,9 @@ export const Register = () => {
               onChangeFunction={(e) => inputHandler(e)}
               onBlurFunction={(e) => checkError(e)}
             />
-            <div className="error">{userError.firstNameError}</div>
+            <div className="error7">{userError.firstNameError}</div>
             <CustomInput
-              className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
+              className={`inputDesign3 ${userError.emailError !== "" ? "inputDesignError" : ""
                 }`}
               type={"email"}
               placeholder={"email"}
@@ -105,9 +105,9 @@ export const Register = () => {
               onChangeFunction={(e) => inputHandler(e)}
               onBlurFunction={(e) => checkError(e)}
             />
-            <div className="error">{userError.emailError}</div>
+            <div className="error7">{userError.emailError}</div>
             <CustomInput
-              className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
+              className={`inputDesign3 ${userError.passwordError !== "" ? "inputDesignError" : ""
                 }`}
               type={"password"}
               placeholder={"password"}
@@ -116,9 +116,9 @@ export const Register = () => {
               onChangeFunction={(e) => inputHandler(e)}
               onBlurFunction={(e) => checkError(e)}
             />
-            <div className="error">{userError.passwordError}</div>
+            <div className="error7">{userError.passwordError}</div>
             <CustomInput
-              className={`inputDesign ${userError.imageError !== "" ? "inputDesignError" : ""
+              className={`inputDesign3 ${userError.imageError !== "" ? "inputDesignError" : ""
                 }`}
               type={"text"}
               placeholder={"image"}
@@ -127,13 +127,13 @@ export const Register = () => {
               onChangeFunction={(e) => inputHandler(e)}
               onBlurFunction={(e) => checkError(e)}
             />
-            <div className="error">{userError.imageError}</div>
+            <div className="error7">{userError.imageError}</div>
             <CustomButton
-              className={"customButtonDesign"}
+              className={"customButtonDesign7"}
               title={"Send"}
               functionEmit={registerUser}
             />
-            <div className="error">{msgError}</div>
+            <div className="error8">{msgError}</div>
           </div>
         </div>
       </div>

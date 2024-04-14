@@ -77,7 +77,7 @@ export const DetailPost = () => {
       try {
         const data = await getPosts(rdxUser.credentials.token, "", "", "");
         setPostsData(data);
-        console.log(data, "asdasdsadsadsadasd")
+
       } catch (error) {
         setError(error);
       }
@@ -92,7 +92,7 @@ export const DetailPost = () => {
 
         const data = await getFollowers(rdxUser.credentials.token);
         setFollowersData(data);
-        console.log("este", data)
+
       } catch (error) {
         setError(error);
       }
@@ -104,7 +104,7 @@ export const DetailPost = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        console.log(rdxUser.credentials.token);
+
         const data = await getUserProfile(rdxUser.credentials.token);
         setProfileData(data);
 
@@ -176,7 +176,7 @@ export const DetailPost = () => {
 
   const manageDetail = async (userRdx) => {
     try {
-      console.log(userRdx, "esto")
+
       dispatch(updateFollow({ follow: userRdx }))
 
       navigate("/followprofile")
@@ -219,7 +219,7 @@ export const DetailPost = () => {
                   <div className="timelineProfileCenter">
                     <div>
                       <div>
-                        {profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}
+                        {profileData?.data?.firstName} {profileData?.data?.lastName}
                       </div>
                       {profileData?.data?.email}
                     </div>
@@ -258,7 +258,7 @@ export const DetailPost = () => {
               <div className="searchUsers">
                 {usersFetched.data.slice(0, 4).map((user) => {
                   return (
-                    <div className="userSearched4" key={user._id}>
+                    <div className="userSearched4" key={`${index}_${user._id}`}>
                       <div className="test1">
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
@@ -298,7 +298,7 @@ export const DetailPost = () => {
                 postsData?.data?.map((post) => {
                   if (post._id === rdxDetail.detail) {
                     return (
-                      <div key={post._id}>
+                      <div key={`${index}_${post._id}`}>
                         <div className="bodyCardTimeline4">
 
                           <div className="bodyDateTimeline6" onClick={() => handlePost(post._id)}>

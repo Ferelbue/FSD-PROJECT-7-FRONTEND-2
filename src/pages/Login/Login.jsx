@@ -51,7 +51,6 @@ export const Login = () => {
     const fetched = await loginMe(credenciales);
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
-      console.log(decodificado)
 
       const passport = {
         token: fetched.token,

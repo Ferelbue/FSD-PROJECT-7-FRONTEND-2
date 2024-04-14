@@ -145,7 +145,6 @@ export const Timeline = () => {
     try {
 
       const fetched = await updatePost(postId, rdxUser.credentials.token);
-      console.log(fetched, "asdasdasdasdsadsa")
 
       const res = await getPosts(rdxUser.credentials.token, "", "", "");
 
@@ -248,7 +247,7 @@ export const Timeline = () => {
                   <div className="timelineProfileCenter">
                     <div>
                       <div>
-                        {profileData?.data?.firstName.toUpperCase()} {profileData?.data?.lastName.toUpperCase()}
+                        {profileData?.data?.firstName} {profileData?.data?.lastName}
                       </div>
                       {profileData?.data?.email}
                     </div>

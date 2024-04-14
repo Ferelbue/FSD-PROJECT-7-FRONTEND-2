@@ -48,7 +48,6 @@ export const AdminPosts = () => {
     const bringUsers = async () => {
       try {
         const postsData = await getPosts(rdxUser.credentials.token,"","");
-        console.log("asdasd")
         setNumberPosts(postsData.data.length)
       } catch (error) {
         setError(error);
@@ -62,11 +61,9 @@ export const AdminPosts = () => {
     const bringPosts = async () => {
 
       try {
-        console.log(rdxUser.credentials.token,criteria, limit, pag)
         const postsData = await getPosts(rdxUser.credentials.token, searchRdx.criteria, limit, pag);
         setPostsFetched(postsData);
         setUserDelete(false)
-        console.log(postsData)
 
       } catch (error) {
         setError(error);
@@ -79,7 +76,7 @@ export const AdminPosts = () => {
 
   const handleDelete = async (postId) => {
     try {
-      console.log("fafas")
+
       await deletePost(postId, rdxUser.credentials.token);
       setUserDelete(true);
     } catch (error) {

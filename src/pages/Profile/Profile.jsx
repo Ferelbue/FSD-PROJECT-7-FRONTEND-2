@@ -131,7 +131,7 @@ export const Profile = () => {
 
 
   const updateData = async () => {
-    console.log("1")
+
     try {
       const fetched = await updateProfile(rdxUser.credentials.token, user)
       setUser({
@@ -150,9 +150,9 @@ export const Profile = () => {
 
   const handleDelete = async (postId) => {
     try {
-      console.log(postId)
+
       await deletePost(postId, rdxUser.credentials.token);
-      console.log("HOLA")
+
 
       const data = await getUserPosts(rdxUser.credentials.token);
 
@@ -169,7 +169,6 @@ export const Profile = () => {
       setWritePost("")
       for (let i = 0; i < postsData.data.length; i++) {
         if (postsData.data[i]._id === postId) {
-          console.log("este", postsData.data[i].image);
           setPost({
             description: postsData.data[i].description,
             image: postsData.data[i].image,
@@ -185,7 +184,6 @@ export const Profile = () => {
 
   const updateUserPost = async (postId) => {
     try {
-      console.log(postId, "asd")
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
 
       setPost({

@@ -28,13 +28,23 @@
     height: 20vh;
     width: 100vw;
     background-color: rgb(111, 163, 202);
-
+    padding-top: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
-.registerCardUp {
+.inputDesign3 {
+    height: 5vh;
+    width: 20vw;
+    border-radius: 0.3em;
+    background-color: rgb(229, 229, 229);
+    color: black;
+
+}
+
+.registerCardUp2 {
     height: 3vh;
     width: 39vw;
     color: black;
@@ -42,13 +52,57 @@
     justify-content: start;
     align-items: center;
     margin-left: 1em;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 0.5em;
+    color: rgb(61, 88, 139);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
-.registerCardDown {
+.registerCardDown2 {
     height: 72vh;
     width: 40vw;
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.customButtonDesign7 {
+    height: 3em;
+    width: 15em;
+    border-radius: 0.5em;
+    border: solid 0.2em;
+    border-color: rgb(61, 88, 139);
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.customButtonDesign7:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: rgb(61, 88, 139);
+    border: solid 0.2em;
+    border-color: white;
+    height: 3.5em;
+    width: 16em;
+}
+
+.error7 {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 2em;
+    height: 5vh;
+}
+
+.error8 {
+    height: 5vh;
+    color: rgb(61, 88, 139);
+    font-weight: bold;
 }

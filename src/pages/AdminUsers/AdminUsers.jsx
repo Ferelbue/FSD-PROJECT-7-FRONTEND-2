@@ -51,7 +51,7 @@ export const AdminUsers = () => {
   };
 
   const checkError = (e) => {
-    console.log(e.target.name, e.target.value)
+
     const error = validame(e.target.name, e.target.value);
 
     setUserError((prevState) => ({
@@ -134,7 +134,7 @@ export const AdminUsers = () => {
     try {
       dispatch(updateUserBy({ userBy: userId }))
       const fetched = await getUserProfileById(rdxUser.credentials.token, userId);
-      console.log(fetched)
+
       setUser({
         firstName: fetched.data.firstName,
         lastName: fetched.data.lastName,
@@ -147,7 +147,7 @@ export const AdminUsers = () => {
   const updateData = async () => {
 
     try {
-      console.log(rdxBy)
+
       const fetchedUpdated = await updateUserById(rdxUser.credentials.token, rdxBy.userBy, user)
       setUpdateUser(fetchedUpdated)
       setWrite("disabled")

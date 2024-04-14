@@ -55,7 +55,7 @@ export const registerMe = async (credenciales) => {
 };
 
 export const getUserProfile = async (token) => {
-  // console.log(token)
+
   const options = {
     method: "GET",
     headers: {
@@ -106,7 +106,7 @@ export const getUserPosts = async (token) => {
 };
 
 export const getPosts = async (token, criteria, limit, pag) => {
-  console.log("aaaaaaaaaaaaaaaa")
+
   const options = {
     method: "GET",
     headers: {
@@ -151,7 +151,6 @@ export const updatePost = async (postId, token) => {
 
 export const deletePost = async (postId, token) => {
   try {
-    console.log("HOLA")
     const response = await fetch(`${root}posts/${postId}`, {
       method: 'DELETE',
       headers: {
@@ -246,9 +245,7 @@ export const updateProfile = async (token, data) => {
 };
 
 export const updateUserPosts = async (token, postId, data) => {
-  console.log(token, "token")
-  console.log(postId, "post")
-  console.log(data, "data")
+
   const options = {
     method: "PUT",
     headers: {
@@ -274,8 +271,6 @@ export const updateUserPosts = async (token, postId, data) => {
 };
 
 export const createNewPost = async (token, data) => {
-  console.log(token, "token")
-  console.log(data, "data")
 
   const options = {
     method: "POST",
@@ -314,9 +309,7 @@ export const followUser = async (userId, token) => {
 
   try {
     const response = await fetch(`${root}users/follow/${userId}`, options);
-
     const data = await response.json();
-    console.log("esto", data)
     if (!data.success) {
       throw new Error(data.message);
     }
@@ -328,7 +321,6 @@ export const followUser = async (userId, token) => {
 };
 
 export const getUserPostById = async (token, userId) => {
-  // console.log(token)
   const options = {
     method: "GET",
     headers: {
@@ -353,7 +345,6 @@ export const getUserPostById = async (token, userId) => {
 };
 
 export const getUserProfileById = async (token, userId) => {
-  // console.log(token)
   const options = {
     method: "GET",
     headers: {
@@ -397,9 +388,7 @@ export const deleteUserById = async (token, userId) => {
 };
 
 export const updateUserById = async (token, userId, data) => {
-  console.log(token, "token")
-  console.log(userId, "post")
-  console.log(data, "data")
+
   const options = {
     method: "PUT",
     headers: {
