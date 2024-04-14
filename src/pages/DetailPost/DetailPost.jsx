@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import './DetailPost.css';
-import { createNewPost, followUser, getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
+import { commentPostById, createNewPost, followUser, getFollowers, getPosts, getUserPosts, getUserProfile, getUsers, updatePost } from "../../services/apiCalls";
 import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
@@ -26,6 +26,7 @@ export const DetailPost = () => {
   const [postsData, setPostsData] = useState();
   const [error, setError] = useState();
   const [modal, setModal] = useState(false);
+  const [commenta, setCommenta] = useState(false);
   const rdxUser = useSelector(userData);
   const rdxDetail = useSelector(detailData);
   const searchRdx = useSelector(searchData);
@@ -40,9 +41,19 @@ export const DetailPost = () => {
     image: "",
     title: "",
   });
+  const [commentaryUpdated, setCommentary] = useState({
+    commentary: "",
+  });
 
   const inputHandlerPost = (e) => {
     setPost((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const inputHandlerPost2 = (e) => {
+    setCommentary((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -65,6 +76,20 @@ export const DetailPost = () => {
     bringUsers();
   }, [searchRdx.criteria]);
 
+  const commentPost = async (postId) => {
+    try {
+      const data = await commentPostById(rdxUser.credentials.token, postId, commentaryUpdated)
+      setCommenta(true)
+      setCommentary({
+        commentary: ""
+      });
+      console.log(data)
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() => {
     if (rdxUser.credentials === "") {
       navigate("/login");
@@ -77,14 +102,14 @@ export const DetailPost = () => {
       try {
         const data = await getPosts(rdxUser.credentials.token, "", "", "");
         setPostsData(data);
-
+        setCommenta(false)
       } catch (error) {
         setError(error);
       }
     };
 
     fetchUserPosts();
-  }, []);
+  }, [commenta]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -151,7 +176,7 @@ export const DetailPost = () => {
 
       await updatePost(postId, rdxUser.credentials.token);
 
-      const updatedPostsData = await getPosts(rdxUser.credentials.token,"","","");
+      const updatedPostsData = await getPosts(rdxUser.credentials.token, "", "", "");
       setPostsData(updatedPostsData);
     } catch (error) {
       setError(error);
@@ -256,7 +281,7 @@ export const DetailPost = () => {
           <div>
             {usersFetched?.success && usersFetched?.data?.length > 0 ? (
               <div className="searchUsers">
-                {usersFetched.data.slice(0, 4).map((user) => {
+                {usersFetched.data.slice(0, 4).map((user, index) => {
                   return (
                     <div className="userSearched4" key={`${index}_${user._id}`}>
                       <div className="test1">
@@ -295,18 +320,18 @@ export const DetailPost = () => {
             <div className="timelineCardDesign3">
               <div className="titlePostTimeline4">POST-DETAIL</div>
               {
-                postsData?.data?.map((post) => {
+                postsData?.data?.map((post, index) => {
                   if (post._id === rdxDetail.detail) {
                     return (
                       <div key={`${index}_${post._id}`}>
                         <div className="bodyCardTimeline4">
 
-                          <div className="bodyDateTimeline6" onClick={() => handlePost(post._id)}>
+                          <div className="bodyDateTimeline6">
                             <div className="bodyDate1Timeline">
 
                             </div>
                             <div className="bodyDate3Timeline">
-                              {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
+                              {post.userId.firstName}&nbsp;{post.userId.lastName}
                             </div>
                             <div className="bodyDate2Timeline">
 
@@ -314,15 +339,15 @@ export const DetailPost = () => {
                             </div>
                           </div>
 
-                          <div className="bodyTitleTimeline" onClick={() => handlePost(post._id)}>
+                          <div className="bodyTitleTimeline">
                             {post.title.toUpperCase()}
                           </div>
 
-                          <div className="bodyImageTimeline" onClick={() => handlePost(post._id)}>
+                          <div className="bodyImageTimeline">
                             <img className="image1Post" src={post.image} alt={`${post._id}`} />
                           </div>
 
-                          <div className="bodyDescriptionTimeline" onClick={() => handlePost(post._id)}>
+                          <div className="bodyDescriptionTimeline">
                             {post.description}
                           </div>
 
@@ -340,6 +365,26 @@ export const DetailPost = () => {
                             </div>
                           </div>
                           <div className="likesDetail">
+                            <div className="commentaryDetail">
+                              <CustomTextArea
+                                className={`inputDescriptionPostDesign4`}
+                                type={"textarea"}
+                                placeholder={"Introduce a TEXT"}
+                                name={"commentary"}
+                                disabled={""}
+                                value={commentaryUpdated.commentary || ""}
+                                onChangeFunction={(e) => inputHandlerPost2(e)}
+
+                              />
+                              <div className="sendCommentaryButton">
+                                <CustomButton
+                                  className={"customButtonDesign5"}
+                                  title={"SEND COMMENTARY"}
+                                  functionEmit={() => commentPost(post._id)}
+                                />
+                              </div>
+                            </div>
+
                             {post.comments.map((comment, index) => {
                               return (
                                 <>
@@ -383,7 +428,7 @@ export const DetailPost = () => {
                 <div className="searchUsers2">
                   {profileData.data.follower.map((user, index) => {
                     return (
-                      <div className="userSearched1" key={`${index}_${user._id}`}>
+                      <div className="userSearched1" key={`follower_${index}_${user._id}`}>
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>

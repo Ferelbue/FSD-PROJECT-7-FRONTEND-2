@@ -122,7 +122,6 @@ export const getPosts = async (token, criteria, limit, pag) => {
       throw new Error(data.message);
     }
 
-    console.log(data)
     return data;
 
   } catch (error) {
@@ -321,6 +320,7 @@ export const followUser = async (userId, token) => {
 };
 
 export const getUserPostById = async (token, userId) => {
+
   const options = {
     method: "GET",
     headers: {
@@ -410,5 +410,35 @@ export const updateUserById = async (token, userId, data) => {
     return data;
   } catch (error) {
     return error;
+  }
+};
+
+export const commentPostById = async (token, postId, data) => {
+
+  console.log(token)
+  console.log(postId)
+  console.log(data)
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(`${root}posts/comment/${postId}`, options);
+    console.log(response)
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data;
+
+  } catch (error) {
+    return error
   }
 };

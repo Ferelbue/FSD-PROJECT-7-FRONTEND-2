@@ -1,4 +1,4 @@
-# SORRY MOM - TATTOO STUDIO :black_nib:
+# INSTAGEEKS - SOCIAL MEDIA :cyclone:
 ---
 <div align="center">
 

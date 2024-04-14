@@ -52,6 +52,7 @@ export const FollowProfile = () => {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
+
         const data = await getUserPostById(rdxUser.credentials.token, followRdx.follow);
         setPostsData(data);
       } catch (error) {
@@ -93,7 +94,6 @@ export const FollowProfile = () => {
 
   const handlePost = async (postId) => {
     try {
-      console.log(postId,"por aqui vamos7")
       dispatch(updateDetail({ detail: postId }))
       navigate("/detailPost")
 

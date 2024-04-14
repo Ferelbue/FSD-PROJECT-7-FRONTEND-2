@@ -329,7 +329,7 @@ export const Timeline = () => {
 
                     </div>
                     <div className="bodyDate3Timeline">
-                      {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
+                      {post.userId.firstName}&nbsp;{post.userId.lastName}
                     </div>
                     <div className="bodyDate2Timeline">
 
