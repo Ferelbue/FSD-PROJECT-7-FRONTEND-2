@@ -94,6 +94,7 @@ export const FollowProfile = () => {
 
   const handlePost = async (postId) => {
     try {
+      console.log(postId)
       dispatch(updateDetail({ detail: postId }))
       navigate("/detailPost")
 

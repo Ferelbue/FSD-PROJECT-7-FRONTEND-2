@@ -13,6 +13,7 @@ import { CustomInput } from "../../common/CustomInput/CustomInput";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { CustomNumber } from "../../common/CustomNumber copy/CustomNumber";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
+import Spinner from 'react-bootstrap/Spinner';
 
 export const AdminUsers = () => {
   const navigate = useNavigate();
@@ -207,182 +208,190 @@ export const AdminUsers = () => {
           </div>
 
           {rdxUser?.credentials?.user?.roleName === "super-admin" ? (
-          <div className="detailAdmin">
-          <div className="pagText">
-            <div className="titlePostTimeline6">
-              EDIT ROLE USER
-            </div>
-            <div className="inputUserFormat">
-              <div>
-                <div className="inputUser">NAME:</div>
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputSearch`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"firstName"}
-                  disabled={"disable"}
-                  value={user.firstName || ""}
-                  onChangeFunction={(e) => inputHandler(e)}
-                  onBlurFunction={(e) => checkError(e)}
-                />
-                <div className="error">{userError.firstNameError}</div>
-              </div>
-            </div>
-
-            <div className="inputUserFormat">
-              <div>
-                <div className="inputUser">LAST NAME:</div>
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputSearch`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"lastName"}
-                  disabled={"disable"}
-                  value={user.lastName || ""}
-                  onChangeFunction={(e) => inputHandler(e)}
-                  onBlurFunction={(e) => checkError(e)}
-                />
-                <div className="error">{userError.lastNameError}</div>
-              </div>
-            </div>
-
-            
-            <div className="inputUserFormat">
-              <div>
-                <div className="inputUser">Role:</div>
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
-                    }`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"role"}
-                  disabled={write}
-                  value={user.role || ""}
-                  onChangeFunction={(e) => inputHandler(e)}
-                  onBlurFunction={(e) => checkError(e)}
-                />
-                <div className="error">{userError.roleError}</div>
-              </div>
-              <div className="cardUserDown">
-                <CustomButton
-                  className={write === "" ? "cButtonGreen customButtonDesign4" : "customButtonDesign4"}
-                  title={write === "" ? "Confirm" : "Edit"}
-                  functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-          )
-        : (null)
-        }
-
-
-        </div>
-
-
-
-
-        {usersFetched?.success && usersFetched?.data?.length > 0 ? (
-          <div className="searchAdminUsers">
-            <div className="firstAdminRow">
-              <div className="usersAdminIndex">
-                INDEX
-              </div>
-              <div className="usersAdminImage">
-                IMAGE
-              </div>
-              <div className="usersAdminName">
-                FIRST NAME
-              </div>
-              <div className="usersAdminLast">
-                LAST NAME
-              </div>
-              <div className="usersAdminEmail">
-                EMAIL
-              </div>
-              <div className="usersAdminRole">
-                ROLE
-              </div>
-              <div className="usersAdminDelete">
-                DELETE
-              </div>
-            </div>
-            {usersFetched.data.map((user, index) => {
-              return (
-                <div className="userAdminSearched" key={user._id}>
-                  <div className="usersAdminIndex">
-                    {index + 1}
+            <div className="detailAdmin">
+              <div className="pagText">
+                <div className="titlePostTimeline6">
+                  EDIT ROLE USER
+                </div>
+                <div className="inputUserFormat">
+                  <div>
+                    <div className="inputUser">NAME:</div>
                   </div>
-                  <div className="usersAdminImage">
-                    <img className="image" src={user.image} alt={`${user.firstName}`} onClick={() => handleModify(user._id)} />
-                  </div>
-                  <div className="usersAdminName">
-                    {user.firstName.toUpperCase()}
-                  </div>
-                  <div className="usersAdminLast">
-                    {user.lastName.toUpperCase()}
-                  </div>
-                  <div className="usersAdminEmail">
-                    {user.email.toUpperCase()}
-                  </div>
-                  <div className="usersAdminRole">
-                    {user.role.toUpperCase()}
-                  </div>
-                  <div className="usersAdminDelete" onClick={() => handleDelete(user._id)}>
-                    <img className="image2" src={pot} alt={`${user.firstName}`} />
+                  <div>
+                    <CustomInput
+                      className={`inputSearch`}
+                      type={"text"}
+                      placeholder={""}
+                      name={"firstName"}
+                      disabled={"disable"}
+                      value={user.firstName || ""}
+                      onChangeFunction={(e) => inputHandler(e)}
+                      onBlurFunction={(e) => checkError(e)}
+                    />
+                    <div className="error">{userError.firstNameError}</div>
                   </div>
                 </div>
-              );
-            })}
-            <CustomNumber
-              className={`pagSearch`}
-              type="number"
-              placeholder="Number of user showed..."
-              value={pag || ""}
-              min="1"
-              max={Math.ceil((numberUsers / limit))}
-              defaultValue="1"
-              onChangeFunction={(e) => searchHandler2(e)}
-            />
-            <div className="pagText">
-              PAG
+
+                <div className="inputUserFormat">
+                  <div>
+                    <div className="inputUser">LAST NAME:</div>
+                  </div>
+                  <div>
+                    <CustomInput
+                      className={`inputSearch`}
+                      type={"text"}
+                      placeholder={""}
+                      name={"lastName"}
+                      disabled={"disable"}
+                      value={user.lastName || ""}
+                      onChangeFunction={(e) => inputHandler(e)}
+                      onBlurFunction={(e) => checkError(e)}
+                    />
+                    <div className="error">{userError.lastNameError}</div>
+                  </div>
+                </div>
+
+
+                <div className="inputUserFormat">
+                  <div>
+                    <div className="inputUser">Role:</div>
+                  </div>
+                  <div>
+                    <CustomInput
+                      className={`inputSearch ${userError.roleError !== "" ? "inputDesignError" : write === "" ? "inputDesignAvaiable" : ""
+                        }`}
+                      type={"text"}
+                      placeholder={""}
+                      name={"role"}
+                      disabled={write}
+                      value={user.role || ""}
+                      onChangeFunction={(e) => inputHandler(e)}
+                      onBlurFunction={(e) => checkError(e)}
+                    />
+                    <div className="error">{userError.roleError}</div>
+                  </div>
+                  <div className="cardUserDown">
+                    <CustomButton
+                      className={write === "" ? "cButtonGreen customButtonDesign4" : "customButtonDesign4"}
+                      title={write === "" ? "Confirm" : "Edit"}
+                      functionEmit={(write === "" && (userError.roleError === "")) ? (updateData) : () => setWrite("")}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+          )
+            : (null)
+          }
+
+
+        </div>
+
+
+
+        {!usersFetched ? (
+          <div className="searchAdminUsers">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           </div>
         ) : (
-          <div className="searchAdminUsers">
-            <div className="firstAdminRow">
-              <div className="usersAdminIndex">
-                INDEX
+          <>
+            {usersFetched?.success && usersFetched?.data?.length > 0 ? (
+              <div className="searchAdminUsers">
+                <div className="firstAdminRow">
+                  <div className="usersAdminIndex">
+                    INDEX
+                  </div>
+                  <div className="usersAdminImage">
+                    IMAGE
+                  </div>
+                  <div className="usersAdminName">
+                    FIRST NAME
+                  </div>
+                  <div className="usersAdminLast">
+                    LAST NAME
+                  </div>
+                  <div className="usersAdminEmail">
+                    EMAIL
+                  </div>
+                  <div className="usersAdminRole">
+                    ROLE
+                  </div>
+                  <div className="usersAdminDelete">
+                    DELETE
+                  </div>
+                </div>
+                {usersFetched.data.map((user, index) => {
+                  return (
+                    <div className="userAdminSearched" key={user._id}>
+                      <div className="usersAdminIndex">
+                        {index + 1}
+                      </div>
+                      <div className="usersAdminImage">
+                        <img className="image" src={user.image} alt={`${user.firstName}`} onClick={() => handleModify(user._id)} />
+                      </div>
+                      <div className="usersAdminName">
+                        {user.firstName.toUpperCase()}
+                      </div>
+                      <div className="usersAdminLast">
+                        {user.lastName.toUpperCase()}
+                      </div>
+                      <div className="usersAdminEmail">
+                        {user.email.toUpperCase()}
+                      </div>
+                      <div className="usersAdminRole">
+                        {user.role.toUpperCase()}
+                      </div>
+                      <div className="usersAdminDelete" onClick={() => handleDelete(user._id)}>
+                        <img className="image2" src={pot} alt={`${user.firstName}`} />
+                      </div>
+                    </div>
+                  );
+                })}
+                <CustomNumber
+                  className={`pagSearch`}
+                  type="number"
+                  placeholder="Number of user showed..."
+                  value={pag || ""}
+                  min="1"
+                  max={Math.ceil((numberUsers / limit))}
+                  defaultValue="1"
+                  onChangeFunction={(e) => searchHandler2(e)}
+                />
+                <div className="pagText">
+                  PAG
+                </div>
               </div>
-              <div className="usersAdminImage">
-                IMAGE
+            ) : (
+              <div className="searchAdminUsers">
+                <div className="firstAdminRow">
+                  <div className="usersAdminIndex">
+                    INDEX
+                  </div>
+                  <div className="usersAdminImage">
+                    IMAGE
+                  </div>
+                  <div className="usersAdminName">
+                    FIRST NAME
+                  </div>
+                  <div className="usersAdminLast">
+                    LAST NAME
+                  </div>
+                  <div className="usersAdminEmail">
+                    EMAIL
+                  </div>
+                  <div className="usersAdminRole">
+                    ROLE
+                  </div>
+                  <div className="usersAdminDelete">
+                    DELETE
+                  </div>
+                </div>
               </div>
-              <div className="usersAdminName">
-                FIRST NAME
-              </div>
-              <div className="usersAdminLast">
-                LAST NAME
-              </div>
-              <div className="usersAdminEmail">
-                EMAIL
-              </div>
-              <div className="usersAdminRole">
-                ROLE
-              </div>
-              <div className="usersAdminDelete">
-                DELETE
-              </div>
-            </div>
-          </div>
-        )
-        }
+            )}
+          </>
+        )}
       </div >
     </>
   );

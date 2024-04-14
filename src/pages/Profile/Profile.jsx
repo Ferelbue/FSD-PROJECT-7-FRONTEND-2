@@ -14,6 +14,7 @@ import { CustomLike } from "../../common/CustomLike/CustomLike";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
 import { NewPost } from "../../common/NewPost/NewPost";
 import { updateName } from "../../app/slices/nameSlice";
+import Spinner from 'react-bootstrap/Spinner';
 import dayjs from "dayjs";
 import pot from "../../../public/pot.png"
 import like from "../../../public/like.png";
@@ -187,9 +188,9 @@ export const Profile = () => {
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
 
       setPost({
-        description: fetched.data.description,
-        image: fetched.data.image,
-        title: fetched.data.title,
+        description: "",
+        image: "",
+        title: "",
       })
 
       setWritePost("disabled")
@@ -358,132 +359,151 @@ export const Profile = () => {
       </div>
 
       <div className={`profileCenter ${modal === true ? "profileCenter2" : ""}`} >
-        {postsData && postsData?.data?.map((post, index) => (
-          <div key={index} className='profilePostCardDesign2'>
-            {index === 0 ? <div className="titlePost">MY POSTS</div> : null}
-            <div className="bodyPostProfile2">
-              <div className="bodyDateProfile">
-                <div className="bodyDate1Profile">
+        {!postsData ? (
+          <div className='timelineTest'>
 
-                </div>
-                <div className="bodyDate2Profile">
-                  {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
-                </div>
-              </div>
-
-
-              <div className="bodyTitleTextProfile">
-                <div className="bodyTitleText1Profile">
-                  TITLE:
-                </div>
-                <div className="bodyTitleText2Profile">
-
-                </div>
-              </div>
-              <div className="bodyTitleProfile">
-                <div className="bodyTitle1Profile">
-                  <CustomInput
-                    className={`inputTitlePostDesign ${index === editIndex ? "inputEdit" : ""}`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"title"}
-                    disabled={writePost}
-                    value={index === editIndex ? postUpdated.title || "" : post.title.toUpperCase() || ""}
-                    onChangeFunction={(e) => inputHandlerPost(e)}
-
-                  />
-                  <div className="error">{userError.imageError}</div>
-                </div>
-              </div>
-
-              <div className="bodyImageTextProfile">
-                <div className="bodyImageText1Profile">
-                  IMAGE:
-                </div>
-                <div className="bodyImageText2Profile">
-
-                </div>
-              </div>
-              <div className="bodyImageProfile">
-                <div className="bodyImage1Profile">
-                  <img className="imagePostProfile2" src={index === editIndex ? postUpdated.image : post.image} alt={`${post._id}`} />
-                </div>
-                <div className="bodyImage2Profile">
-                  <CustomInput
-                    className={`inputTitlePostDesign ${index === editIndex ? "inputEdit" : ""}`}
-                    type={"text"}
-                    placeholder={""}
-                    name={"image"}
-                    disabled={writePost}
-                    value={index === editIndex ? postUpdated.image || "" : post.image || ""}
-                    onChangeFunction={(e) => inputHandlerPost(e)}
-                  />
-                  <div className="error">{userError.imageError}</div>
-                </div>
-              </div>
-
-
-              <div className="bodyDescriptionTextProfile">
-                <div className="bodyDescriptionText1Profile">
-                  DESCRIPTION:
-                </div>
-                <div className="bodyDescriptionText2Profile">
-
-                </div>
-              </div>
-              <div className="bodyDescriptionProfile">
-                <div className="bodyDescription1Profile">
-                  <CustomTextArea
-                    className={`inputDescriptionPostDesign ${index === editIndex ? "inputEdit" : ""}`}
-                    type={"textarea"}
-                    placeholder={""}
-                    name={"description"}
-                    disabled={writePost}
-                    value={index === editIndex ? postUpdated.description || "" : post.description || ""}
-                    onChangeFunction={(e) => inputHandlerPost(e)}
-                  />
-                  <div className="error">{userError.imageError}</div>
-                </div>
-              </div>
-
-
-              <div className="bodyBotomProfile">
-                <div className="bodyBotom1Profile">
-                  {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
-                </div>
-                <div className="bodyBotom2Profile">
-                  <img className="image2Post" src={like} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
-                </div>
-                <div className="bodyBotom3Profile">
-                  <img className="image2" src={pot} alt={`${post.firstName}`} />
-                </div>
-                <div className="bodyBotom4Profile">
-                  <CustomButton
-                    className={writePost === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
-                    title={(writePost === "") && (index === editIndex) ? "Confirm" : "Edit"}
-                    functionEmit={writePost === "" ? () => updateUserPost(post._id) : () => handleEdit(index, post._id)}
-                  />
-                </div>
-              </div>
-
-            </div>
+            <p>TIME-LINE</p>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
           </div>
-        ))}
+        ) : (
+          <div>
+            {postsData && postsData?.data?.map((post, index) => (
+              <div key={index} className='profilePostCardDesign2'>
+                {index === 0 ? <div className="titlePost">MY POSTS</div> : null}
+                <div className="bodyPostProfile2">
+                  <div className="bodyDateProfile">
+                    <div className="bodyDate1Profile">
 
+                    </div>
+                    <div className="bodyDate2Profile">
+                      {dayjs(post.createdAt).format('ddd DD-MM-YYYY')}
+                    </div>
+                  </div>
+
+
+                  <div className="bodyTitleTextProfile">
+                    <div className="bodyTitleText1Profile">
+                      TITLE:
+                    </div>
+                    <div className="bodyTitleText2Profile">
+
+                    </div>
+                  </div>
+                  <div className="bodyTitleProfile">
+                    <div className="bodyTitle1Profile">
+                      <CustomInput
+                        className={`inputTitlePostDesign ${index === editIndex ? "inputEdit" : ""}`}
+                        type={"text"}
+                        placeholder={""}
+                        name={"title"}
+                        disabled={writePost}
+                        value={index === editIndex ? postUpdated.title || "" : post.title.toUpperCase() || ""}
+                        onChangeFunction={(e) => inputHandlerPost(e)}
+
+                      />
+                      <div className="error">{userError.imageError}</div>
+                    </div>
+                  </div>
+
+                  <div className="bodyImageTextProfile">
+                    <div className="bodyImageText1Profile">
+                      IMAGE:
+                    </div>
+                    <div className="bodyImageText2Profile">
+
+                    </div>
+                  </div>
+                  <div className="bodyImageProfile">
+                    <div className="bodyImage1Profile">
+                      <img className="imagePostProfile2" src={index === editIndex ? postUpdated.image : post.image} alt={`${post._id}`} />
+                    </div>
+                    <div className="bodyImage2Profile">
+                      <CustomInput
+                        className={`inputTitlePostDesign ${index === editIndex ? "inputEdit" : ""}`}
+                        type={"text"}
+                        placeholder={""}
+                        name={"image"}
+                        disabled={writePost}
+                        value={index === editIndex ? postUpdated.image || "" : post.image || ""}
+                        onChangeFunction={(e) => inputHandlerPost(e)}
+                      />
+                      <div className="error">{userError.imageError}</div>
+                    </div>
+                  </div>
+
+
+                  <div className="bodyDescriptionTextProfile">
+                    <div className="bodyDescriptionText1Profile">
+                      DESCRIPTION:
+                    </div>
+                    <div className="bodyDescriptionText2Profile">
+
+                    </div>
+                  </div>
+                  <div className="bodyDescriptionProfile">
+                    <div className="bodyDescription1Profile">
+                      <CustomTextArea
+                        className={`inputDescriptionPostDesign ${index === editIndex ? "inputEdit" : ""}`}
+                        type={"textarea"}
+                        placeholder={""}
+                        name={"description"}
+                        disabled={writePost}
+                        value={index === editIndex ? postUpdated.description || "" : post.description || ""}
+                        onChangeFunction={(e) => inputHandlerPost(e)}
+                      />
+                      <div className="error">{userError.imageError}</div>
+                    </div>
+                  </div>
+
+
+                  <div className="bodyBotomProfile">
+                    <div className="bodyBotom1Profile">
+                      {post.like.length}&nbsp;&nbsp;&nbsp;&nbsp;<img className="image2Post" src={like} alt={`${post._id}`} onClick={() => handleLike(post._id)} />
+                    </div>
+                    <div className="bodyBotom2Profile">
+                      <img className="image2Post" src={like} alt={`${post._id}`} />&nbsp;&nbsp;&nbsp;&nbsp;{post.comments.length}
+                    </div>
+                    <div className="bodyBotom3Profile">
+                      <img className="image2" src={pot} alt={`${post.firstName}`} />
+                    </div>
+                    <div className="bodyBotom4Profile">
+                      <CustomButton
+                        className={writePost === "" ? "cButtonGreen customButtonDesign" : "customButtonDesign"}
+                        title={(writePost === "") && (index === editIndex) ? "Confirm" : "Edit"}
+                        functionEmit={writePost === "" ? () => updateUserPost(post._id) : () => handleEdit(index, post._id)}
+                      />
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className={`profileRight12 ${modal === true ? "profileRight22" : ""}`} >
         <div className="profileRightUp">
           MY PICTURES
         </div>
-        <div className="profileRightDown">
-          {postsData && postsData?.data?.reverse().map((post, index) => (
-            <div className="imgUsr" key={post._id}>
-              <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
+        {!postsData ? (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        ) : (
+          <>
+            <div className="profileRightDown">
+              {postsData && postsData?.data?.reverse().map((post, index) => (
+                <div className="imgUsr" key={post._id}>
+                  <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePost(post._id)} />
+                </div>
+              ))
+              }
             </div>
-          ))
-          }
-        </div>
+          </>
+        )}
       </div>
 
 
