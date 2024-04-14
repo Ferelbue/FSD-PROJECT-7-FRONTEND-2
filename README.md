@@ -60,7 +60,7 @@ There is also an administration view where you can have an overall control of th
 
 Try out the APP at:
 
-> [https://master.d167ercn2p9m0z.amplifyapp.com/#home](https://master.d167ercn2p9m0z.amplifyapp.com/#home)
+> [https://master.d76havowjf8ax.amplifyapp.com/](https://master.d76havowjf8ax.amplifyapp.com/)
 
 ---
 
