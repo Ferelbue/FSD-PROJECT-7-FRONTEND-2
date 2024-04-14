@@ -63,7 +63,7 @@ export const FollowProfile = () => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
-          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria);
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -101,13 +101,13 @@ export const FollowProfile = () => {
             {`${postsData?.data[0]?.userId?.firstName.toUpperCase()}`} INFORMATION
           </div>
 
-          {!postsData ? (
+          {!postsData?.data[0] ? (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           ) : (
             <>
-              {postsData && (
+              {postsData?.data[0] && (
                 <>
                   <div className="timelineProfileUp">
                     <div>
@@ -155,7 +155,7 @@ export const FollowProfile = () => {
           <div>
             {usersFetched?.success && usersFetched?.data?.length > 0 ? (
               <div className="searchUsers">
-                {usersFetched.data.slice(0, 4).map((user) => {
+                {usersFetched.data.slice(0, 4).map((user,index) => {
                   return (
                     <div className="userSearched4" key={`${index}_${user._id}`}>
                       <div className="test1">
@@ -242,9 +242,9 @@ export const FollowProfile = () => {
           {`${postsData?.data[0].userId.firstName.toUpperCase()}`}&nbsp;PICTURES
         </div>
         <div className="profileRightDown">
-          {postsData && postsData?.data?.map((post, index) => (
-            <div className="placePictureEven" key={post._id}>
-              <img className="pictureEven" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
+          {postsData && postsData?.data?.slice().reverse().map((post, index) => (
+            <div className="imgUsr" key={post._id}>
+              <img className="imagesUser" src={post.image} alt={`${post._id}`} onClick={() => handlePostClick(index)} />
             </div>
           ))
           }

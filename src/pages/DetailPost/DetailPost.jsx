@@ -49,7 +49,7 @@ export const DetailPost = () => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
-          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria);
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -173,8 +173,8 @@ export const DetailPost = () => {
 
   const manageDetail = async (userRdx) => {
     try {
-      console.log(userRdx._id, "esto")
-      dispatch(updateFollow({ follow: userRdx._id }))
+      console.log(userRdx, "esto")
+      dispatch(updateFollow({ follow: userRdx }))
 
       navigate("/followprofile")
     } catch (error) {
@@ -382,7 +382,7 @@ export const DetailPost = () => {
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
-                        <div className="test32" onClick={() => manageDetail(user._id)} >
+                        <div className="test321" >
                           {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
                         </div>
                       </div>

@@ -314,7 +314,7 @@ export const Timeline = () => {
 
                   <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
                     <div className="bodyDate1Timeline">
-                      
+
                     </div>
                     <div className="bodyDate3Timeline">
                       {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
@@ -435,68 +435,96 @@ export const Timeline = () => {
       {modal &&
         <div className="modalDesign">
           <div className="modalCardDesign">
-            <div className="profileModalTitle">
-              NEW POST
+            <div className="profileModalTitle5">
+              <div className="profileModalTitle1">
+
+              </div>
+              <div className="profileModalTitle2">
+                NEW POST
+              </div>
+              <div className="profileModalTitle3">
+                <CustomButton
+                  className={"customButtonXDesign2"}
+                  title={"X"}
+                  functionEmit={() => handleBack()}
+                />
+              </div>
             </div>
+
             <div className="profileModalBody">
-              <div className="imageModal">
-                <img className="imagePostProfile" src={postUpdated.image} alt={`${1}`} />
-              </div>
-              <div>
 
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"image"}
-                  disabled={writeModal}
-                  value={postUpdated.image}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
+              <div className="newPostTitleTitle">
+                <div className="newPostTitle1Title">
+                  TITLE:
+                </div >
+                <div className="newPostTitle2Title">
+                  <CustomInput
+                    className={`inputTitlePostDesign`}
+                    type={"text"}
+                    placeholder={"Introduce a TITLE"}
+                    name={"title"}
+                    disabled={writeModal}
+                    value={postUpdated.title}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
 
-                />
-
-              </div>
-              <div>
-                <CustomInput
-                  className={`inputTitlePostDesign`}
-                  type={"text"}
-                  placeholder={""}
-                  name={"title"}
-                  disabled={writeModal}
-                  value={postUpdated.title}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-
-                />
-
-              </div>
-              <div>
-                <CustomTextArea
-                  className={`inputDescriptionPostDesign`}
-                  type={"textarea"}
-                  placeholder={""}
-                  name={"description"}
-                  disabled={writeModal}
-                  value={postUpdated.description}
-                  onChangeFunction={(e) => inputHandlerPost(e)}
-                />
-
-                <div className="modalButtons">
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"SEND"}
-                    functionEmit={() => createPost()}
-                  />
-                  <CustomButton
-                    className={"customButtonDesign"}
-                    title={"BACK"}
-                    functionEmit={() => handleBack()}
                   />
                 </div>
+              </div>
+
+              <div className="newPostImageTitle">
+                <div className="newPostImage1Title">
+                  IMAGE:
+                </div >
+                <div className="newPostImage2Title">
+                  <div className="newPostImage4Title">
+                    <img className="imagePostProfile3" src={postUpdated.image} alt={`Paste a URL -->`} />
+                  </div>
+
+                  <div className="newPostImage3Title">
+                    URL:&nbsp;
+                    <CustomInput
+                      className={`inputTitlePostDesign`}
+                      type={"text"}
+                      placeholder={"Introduce a URL from a image"}
+                      name={"image"}
+                      disabled={writeModal}
+                      value={postUpdated.image}
+                      onChangeFunction={(e) => inputHandlerPost(e)}
+
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              <div className="newPostTextTitle">
+                <div className="newPostText1Title">
+                  TEXT:
+                </div >
+                <div className="newPostText2Title">
+                  <CustomTextArea
+                    className={`inputDescriptionPostDesign`}
+                    type={"textarea"}
+                    placeholder={"Introduce a TEXT"}
+                    name={"description"}
+                    disabled={writeModal}
+                    value={postUpdated.description}
+                    onChangeFunction={(e) => inputHandlerPost(e)}
+                  />
+                </div>
+              </div>
+
+              <div className="newPostButonTitle">
+                <CustomButton
+                  className={"customButtonDesign3"}
+                  title={"SEND"}
+                  functionEmit={() => createPost()}
+                />
               </div>
             </div>
           </div>
         </div>
       }
-    </div>
+    </div >
   );
 };
