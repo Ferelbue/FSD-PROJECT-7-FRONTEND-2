@@ -300,3 +300,11 @@
     width: 20vw;
     height: 20vh;
 }
+.bodyDateTimeline6{
+    height: 2vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}

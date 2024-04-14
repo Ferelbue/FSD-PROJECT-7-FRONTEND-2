@@ -1,7 +1,7 @@
 .adminUsersDesign {
     min-height: 95vh;
     height: auto;
-    width: 99vw;
+    width: 98vw;
     background-color: white;
     z-index: 9;
     display: flex;
@@ -45,6 +45,10 @@
 
 .pagText{
     margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .inputAdmin{
     margin:0;
@@ -196,4 +200,39 @@
     background-color: white;
     color: black;
     border-radius: 0.5em;
+}
+
+.titlePostTimeline6 {
+    height: 2vh;
+    width: 20vw;
+    margin-top: 0.5em;
+    font-weight: bold;
+    color: rgb(61, 88, 139);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.customButtonDesign4 {
+    height: 3em;
+    width: 6em;
+    border-radius: 0.5em;
+    border: solid 0.2em;
+    transition: 0.3s;
+    border-color: rgb(61, 88, 139);
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.customButtonDesign4:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgb(61, 88, 139);
+    border: solid 0.2em;
+    border-color: white;
+    height: 3.5em;
+    width: 6.5em;
 }

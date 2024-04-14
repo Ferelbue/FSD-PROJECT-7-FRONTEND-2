@@ -49,7 +49,7 @@ export const DetailPost = () => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
-          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria,"","","");
+          const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "", "");
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -298,9 +298,12 @@ export const DetailPost = () => {
                       <div key={post._id}>
                         <div className="bodyCardTimeline4">
 
-                          <div className="bodyDateTimeline" onClick={() => handlePost(post._id)}>
+                          <div className="bodyDateTimeline6" onClick={() => handlePost(post._id)}>
                             <div className="bodyDate1Timeline">
 
+                            </div>
+                            <div className="bodyDate3Timeline">
+                              {post.userId.firstName.toUpperCase()}&nbsp;{post.userId.lastName.toUpperCase()}
                             </div>
                             <div className="bodyDate2Timeline">
 
@@ -337,16 +340,16 @@ export const DetailPost = () => {
                             {post.comments.map((comment, index) => {
                               return (
                                 <>
-                                <div className="titleCommentarys"> COMMENTARYS:</div>
+                                  <div className="titleCommentarys"> COMMENTARYS:</div>
                                   <div className="commentPost" key={`${comment._id}_${index}`}>
                                     <div>
                                       {comment?.commentatorId?.firstName.toUpperCase()}
-                                      </div>
-                                      <div className="textComment">
+                                    </div>
+                                    <div className="textComment">
                                       {comment?.commentary}
                                     </div>
                                   </div>
-                                  </>
+                                </>
                               )
                             })
                             }
