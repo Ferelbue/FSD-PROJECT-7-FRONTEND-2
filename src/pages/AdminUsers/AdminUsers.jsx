@@ -69,6 +69,13 @@ export const AdminUsers = () => {
   }, [rdxUser]);
 
   useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
+
+  useEffect(() => {
     const bringUsers = async () => {
       try {
         const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "");
@@ -199,7 +206,7 @@ export const AdminUsers = () => {
             </div>
           </div>
 
-          {rdxUser.credentials.user.roleName === "super-admin" ? (
+          {rdxUser?.credentials?.user?.roleName === "super-admin" ? (
           <div className="detailAdmin">
           <div className="pagText">
             <div className="titlePostTimeline6">

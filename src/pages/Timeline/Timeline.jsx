@@ -50,10 +50,20 @@ export const Timeline = () => {
   };
 
   useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
     const bringUsers = async () => {
       if (searchRdx.criteria !== "") {
         try {
           const usersData = await getUsers(rdxUser.credentials.token, searchRdx.criteria, "", "", "");
+          if (data === "JWT NOT VALID OR MALFORMED") {
+            { dispatch(logout({ credentials: "" }), updateDetail({ detail: "" })) }
+            navigate("/")
+          }
           setUsersFetched(usersData);
         } catch (error) {
           setError(error);
@@ -74,7 +84,7 @@ export const Timeline = () => {
       dispatch(updateName({ name: "" }));
       navigate("/login");
     }
-  }, [rdxUser]);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {

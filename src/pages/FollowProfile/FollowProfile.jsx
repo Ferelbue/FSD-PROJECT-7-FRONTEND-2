@@ -42,6 +42,12 @@ export const FollowProfile = () => {
   const [nameCriteria, setNameCriteria] = useState("")
   const centerRef = useRef(null);
   
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   useEffect(() => {
     const fetchUserPosts = async () => {

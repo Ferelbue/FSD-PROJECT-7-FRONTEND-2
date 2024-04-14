@@ -1,13 +1,15 @@
 
+import { useState, useEffect } from "react";
 import "./Admin.css";
 import { useNavigate } from "react-router-dom";
 import imgUsers from "../../../public/adminUsers.png"
 import imgPosts from "../../../public/adminPost.png"
-
+import { userData} from "../../app/slices/userSlice";
+import { useSelector } from "react-redux";
 
 export const Admin = () => {
   const navigate = useNavigate();
-
+  const rdxUser = useSelector(userData);
   const handleUsers = () => {
 
     navigate("/adminUsers")
@@ -17,6 +19,12 @@ export const Admin = () => {
 
     navigate("/adminPosts")
   }
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+  }, [rdxUser]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import "./Register.css";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
@@ -70,6 +70,13 @@ export const Register = () => {
       setMsgError(error.message);
     }
   };
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   return (
     <>

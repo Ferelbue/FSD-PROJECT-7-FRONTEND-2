@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { CustomInput } from "../../common/CustomInput/CustomInput";
 import "./PostNew.css";
@@ -70,6 +71,13 @@ export const PostNew = () => {
       setMsgError(error.message);
     }
   };
+
+  useEffect(() => {
+    if (rdxUser.credentials === "") {
+      navigate("/login");
+    }
+
+  }, [rdxUser]);
 
   return (
     <>
