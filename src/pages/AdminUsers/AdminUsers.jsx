@@ -181,16 +181,6 @@ export const AdminUsers = () => {
                 onChangeFunction={(e) => searchHandler(e)}
               />
               <div className="pagText">
-                FILTER BY EMAIL
-              </div>
-              <CustomInput
-                className={`inputSearch`}
-                type="text"
-                placeholder="search a user...."
-                value={criteria || ""}
-                onChangeFunction={(e) => searchHandler(e)}
-              />
-              <div className="pagText">
                 Nº USERS DISPLAYED
               </div>
               <CustomNumber
