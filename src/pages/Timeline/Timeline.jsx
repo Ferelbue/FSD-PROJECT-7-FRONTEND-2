@@ -292,7 +292,7 @@ export const Timeline = () => {
                         <img className="test2" src={user.image} alt={`${user.firstName}`} />
                       </div>
                       <div className="test3">
-                        {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
+                        {user.firstName}&nbsp;{user.lastName}
                       </div>
                       <div className="test4" onClick={() => handleFollow(user._id)}>
                         FOLLOW USER
@@ -329,7 +329,7 @@ export const Timeline = () => {
 
                     </div>
                     <div className="bodyDate3Timeline">
-                      {post.userId.firstName}&nbsp;{post.userId.lastName}
+                      {post?.userId?.firstName}&nbsp;{post?.userId?.lastName}
                     </div>
                     <div className="bodyDate2Timeline">
 
@@ -338,7 +338,7 @@ export const Timeline = () => {
                   </div>
 
                   <div className="bodyTitleTimeline" onClick={() => handlePost(post._id)}>
-                    {post.title.toUpperCase()}
+                    {post.title}
                   </div>
 
                   <div className="bodyImageTimeline" onClick={() => handlePost(post._id)}>
@@ -383,14 +383,14 @@ export const Timeline = () => {
             <>
               {profileData?.success && profileData?.data?.follower?.length >= 0 ? (
                 <div className="searchUsers2">
-                  {profileData.data.follower.map((user, index) => {
+                  {profileData?.data?.follower?.map((user, index) => {
                     return (
                       <div className="userSearched1" key={`follower_${index}_${user._id}`}>
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
                         <div className="test321">
-                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
+                          {user.firstName}&nbsp;{user.lastName}
                         </div>
                       </div>
                     );
@@ -415,14 +415,14 @@ export const Timeline = () => {
             <>
               {profileData?.success && profileData?.data?.following?.length >= 0 ? (
                 <div className="searchUsers3">
-                  {profileData.data.following.map((user, index) => {
+                  {profileData?.data?.following?.map((user, index) => {
                     return (
                       <div className="userSearched3" key={`follow_${index}_${user._id}`}>
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>
                         <div className="test32" onClick={() => manageDetail(user._id)}>
-                          {user.firstName.toUpperCase()}&nbsp;{user.lastName.toUpperCase()}
+                          {user.firstName}&nbsp;{user.lastName}
                         </div>
                         <div className="test4" onClick={() => handleFollow(user._id)}>
                           UNFOLLOW USER

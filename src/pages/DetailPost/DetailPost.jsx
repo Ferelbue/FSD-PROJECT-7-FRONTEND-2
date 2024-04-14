@@ -428,7 +428,7 @@ export const DetailPost = () => {
                 <div className="searchUsers2">
                   {profileData.data.follower.map((user, index) => {
                     return (
-                      <div className="userSearched1" key={`follower_${index}_${user._id}`}>
+                      <div className="userSearched1" key={`follower_${user._id}_${index}`}>
                         <div className="test12">
                           <img className="test22" src={user.image} alt={`${user.firstName}`} />
                         </div>

@@ -187,9 +187,9 @@ export const Profile = () => {
       const fetched = await updateUserPosts(rdxUser.credentials.token, postId, postUpdated)
 
       setPost({
-        description: fetched.data.description,
-        image: fetched.data.image,
-        title: fetched.data.title,
+        description: "",
+        image: "",
+        title: "",
       })
 
       setWritePost("disabled")
