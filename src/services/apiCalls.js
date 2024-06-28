@@ -1,5 +1,5 @@
 
-const root = "https://fsd-project-5-backend-2.onrender.com/api/";
+const root = "https://instageeks.zeabur.app/api/";
 // const root = "http://localhost:4000/api/";
 
 export const loginMe = async (credenciales) => {
